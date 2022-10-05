@@ -2,6 +2,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+//const initialState : UserInitialState = {};
+//위와 같은 형식으로 사용하고 Type 지정한 변수값이 다 들어가야함.
+
 const initialState = {};
 export const logIn = createAsyncThunk(
     "logIn",
