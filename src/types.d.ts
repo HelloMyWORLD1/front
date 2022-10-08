@@ -1,5 +1,7 @@
 // types,interface 를 전역으로 지정
 
+import { BooleanLiteral } from "typescript";
+
 interface UserInitialState {
     user: null | object;
     logInLoading: boolean;
@@ -25,4 +27,12 @@ interface UserInitialState {
     deleteAccountError: null | string;
 }
 
-interface BlogInitalState {}
+interface BlogInitalState {
+    blog: null | object;
+    registerPortFolioLoading: boolean;
+    registerPortFolioDone: boolean;
+    registerPortFolioError: null | string;
+    getPortFolioLoading: boolean;
+    getPortFolioDone: boolean;
+    getPortFolioError: null | string;
+}
