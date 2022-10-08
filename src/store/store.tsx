@@ -1,5 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "../slices/userSlice";
+
+// 전역으로 관리하기 위한 스토어
 const store = configureStore({
     reducer: {
         user: userSlice,
