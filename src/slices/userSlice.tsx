@@ -99,22 +99,23 @@ const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {},
+    // 비동기 통신을 위한 리듀서
     extraReducers: {
         [logIn.pending.type]: (state, action) => {
-            //처음 프론트에서 백엔드로 비동기 통신 접근 시
+            //처음 프론트에서 백엔드로 비동기 통신 접근 시(실행 전)
             state.logInLoading = true;
             state.logInDone = false;
             state.logInError = null;
         },
         [logIn.fulfilled.type]: (state, action) => {
-            // 정상적으로 비동기 통신 완료 시
+            // 정상적으로 비동기 통신 완료 시(성공)
             state.logInLoading = false;
             state.logInDone = true;
             state.logInError = null;
             state.user = action.payload;
         },
         [logIn.rejected.type]: (state, action) => {
-            //error 발생 시
+            //error 발생 시(실패)
             state.logInLoading = false;
             state.logInDone = true;
             state.logInError = null;
