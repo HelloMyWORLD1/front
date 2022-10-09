@@ -4,12 +4,12 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {};
 
-const blogSlice = createSlice({
-    name: "blog",
+const portFolioSlice = createSlice({
+    name: "portFolio",
     initialState,
     reducers: {},
     extraReducers: {},
 });
 
-export const blogSliceActions = blogSlice.actions;
-export default blogSlice.reducer;
+export const portFolioSliceActions = portFolioSlice.actions;
+export default portFolioSlice.reducer;
