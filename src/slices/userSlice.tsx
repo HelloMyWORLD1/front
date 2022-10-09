@@ -91,6 +91,7 @@ export const inquireMyInfo = createAsyncThunk("inquireMyInfo", async () => {
             "로그인 후 본인 정보 조회 / 토큰을 이용한 프론트에서 로그인 유지에도 사용될 듯 함"
         );
         console.log(res.data);
+        return res.data;
     } catch (error: any) {
         console.error(error);
     }
@@ -101,24 +102,83 @@ const userSlice = createSlice({
     reducers: {},
     // 비동기 통신을 위한 리듀서
     extraReducers: {
-        [logIn.pending.type]: (state, action) => {
+        //logIn 로직
+        [logIn.pending.type]: (state, action: PayloadAction<object>) => {
             //처음 프론트에서 백엔드로 비동기 통신 접근 시(실행 전)
             state.logInLoading = true;
             state.logInDone = false;
             state.logInError = null;
         },
-        [logIn.fulfilled.type]: (state, action) => {
+        [logIn.fulfilled.type]: (state, action: PayloadAction<object>) => {
             // 정상적으로 비동기 통신 완료 시(성공)
             state.logInLoading = false;
             state.logInDone = true;
             state.logInError = null;
             state.user = action.payload;
         },
-        [logIn.rejected.type]: (state, action) => {
+        [logIn.rejected.type]: (state, action: PayloadAction<object>) => {
             //error 발생 시(실패)
             state.logInLoading = false;
             state.logInDone = true;
-            state.logInError = null;
+            state.logInError = action.payload;
+        },
+        //signUp 로직
+        [signUp.pending.type]: (state, action: PayloadAction<object>) => {
+            state.signUpLoading = true;
+            state.signUpDone = false;
+            state.signUpError = null;
+        },
+        [signUp.fulfilled.type]: (state, action: PayloadAction<object>) => {
+            state.signUpLoading = false;
+            state.signUpDone = true;
+            state.signUpError = null;
+        },
+        [signUp.rejected.type]: (state, action: PayloadAction<object>) => {
+            state.signUpLoading = false;
+            state.signUpDone = false;
+            state.signUpError = action.payload;
+        },
+        //logOut 로직
+        [logOut.pending.type]: (state, action: PayloadAction<object>) => {
+            state.logOutLoading = true;
+            state.logOutDone = false;
+            state.logOutError = null;
+        },
+        [logOut.fulfilled.type]: (state, action: PayloadAction<object>) => {
+            state.logOutLoading = false;
+            state.logOutDone = true;
+            state.logOutError = null;
+        },
+        [logOut.rejected.type]: (state, action: PayloadAction<object>) => {
+            state.logOutLoading = false;
+            state.logOutDone = false;
+            state.logOutError = action.payload;
+        },
+        //token을 가지고 본인 정보조회 로직
+        [inquireMyInfo.pending.type]: (
+            state,
+            action: PayloadAction<object>
+        ) => {
+            state.inquireMyInfoLoading = true;
+            state.inquireMyInfoDone = false;
+            state.inquireMyInfoError = null;
+        },
+        [inquireMyInfo.fulfilled.type]: (
+            state,
+            action: PayloadAction<object>
+        ) => {
+            state.inquireMyInfoLoading = false;
+            state.inquireMyInfoDone = true;
+            state.inquireMyInfoError = null;
+            state.user = action.payload;
+        },
+        [inquireMyInfo.rejected.type]: (
+            state,
+            action: PayloadAction<object>
+        ) => {
+            state.inquireMyInfoLoading = false;
+            state.inquireMyInfoDone = false;
+            state.inquireMyInfoError = action.payload;
         },
     },
 });
