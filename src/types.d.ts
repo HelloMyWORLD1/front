@@ -1,7 +1,5 @@
 // types,interface 를 전역으로 지정
 
-import { BooleanLiteral } from "typescript";
-
 interface UserInitialState {
     user: null | object;
     logInLoading: boolean;
