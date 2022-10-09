@@ -25,8 +25,8 @@ interface UserInitialState {
     deleteAccountError: null | object;
 }
 
-interface BlogInitalState {
-    blog: null | object;
+interface PortFolioInitalState {
+    portFolio: null | object;
     registerPortFolioLoading: boolean;
     registerPortFolioDone: boolean;
     registerPortFolioError: null | object;
