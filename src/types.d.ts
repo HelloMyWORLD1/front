@@ -4,33 +4,33 @@ interface UserInitialState {
     user: null | object;
     logInLoading: boolean;
     logInDone: boolean;
-    logInError: null | string;
+    logInError: null | object;
     logOutLoading: boolean;
     logOutDone: boolean;
-    logOutError: null | string;
+    logOutError: null | object;
     signUpLoading: boolean;
     signUpDone: boolean;
-    signUpError: null | string;
+    signUpError: null | object;
     findPasswordLoading: boolean;
     findPasswordDone: boolean;
-    findPasswordError: null | string;
+    findPasswordError: null | object;
     inquireMyInfoLoading: boolean;
     inquireMyInfoDone: boolean;
-    inquireMyInfoError: null | string;
+    inquireMyInfoError: null | object;
     reviseMyInfoLoading: boolean;
     reviseMyInfoDone: boolean;
-    reviseMyInfoError: null | string;
+    reviseMyInfoError: null | object;
     deleteAccountLoading: boolean;
     deleteAccountDone: boolean;
-    deleteAccountError: null | string;
+    deleteAccountError: null | object;
 }
 
 interface BlogInitalState {
     blog: null | object;
     registerPortFolioLoading: boolean;
     registerPortFolioDone: boolean;
-    registerPortFolioError: null | string;
+    registerPortFolioError: null | object;
     getPortFolioLoading: boolean;
     getPortFolioDone: boolean;
-    getPortFolioError: null | string;
+    getPortFolioError: null | object;
 }
