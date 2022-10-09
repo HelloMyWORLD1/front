@@ -5,7 +5,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 const initialState = {};
 
 const blogSlice = createSlice({
-    name: "user",
+    name: "blog",
     initialState,
     reducers: {},
     extraReducers: {},
