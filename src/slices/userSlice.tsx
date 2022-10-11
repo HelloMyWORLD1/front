@@ -29,20 +29,22 @@ const initialState: UserInitialState = {
     deleteAccountDone: false,
     deleteAccountError: null,
 };
+//Thunk 생성(액션들을 처리할 로직)
 export const logIn = createAsyncThunk(
-    "logIn",
+    "logIn", //이 값에 따라 pending(실행전), fulfilled(성공), rejected(실패)가 붙은 액션 타입이 생성된다.
+    //비동기 로직의 결과를 포함하고 있는 프로미스를 반환하는 비동기 함수
     async (data, { rejectWithValue }) => {
         try {
             const res = await axios.post("/user/logIn", data, {
-                withCredentials: true,
+                withCredentials: true, //클라이언트와 서버가 토큰 값을 공유하겠다는 소리(CORS 요청 -> 클라이언트와 서버 둘다 설정해줘야함)
             });
-            localStorage.setItem("cookie", res.data.token.accessToken);
-            const COOKIE = localStorage.getItem("cookie");
-            console.log(COOKIE); // 로그인 후 쿠키가 local에 저장이 제대로 되어있는지 확인
+            localStorage.setItem("jwtToken", res.data.token.accessToken); //로컬 스토리지에 쿠키 저장
+            const JWTTOKEN = localStorage.getItem("jwtToken");
+            console.log(JWTTOKEN); // 로그인 후 쿠키가 local에 저장이 제대로 되어있는지 확인
             return res.data;
         } catch (error: any) {
             console.error(error);
-            return rejectWithValue(error.response.data);
+            return rejectWithValue(error.response.data); // 내부에서 요류 처리
         }
     }
 );
@@ -67,16 +69,16 @@ export const logOut = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             axios.defaults.headers.common["Authorization"] = "";
-            const COOKIE = localStorage.getItem("cookie");
-            axios.defaults.headers.common["Authorization"] = `Bearer ${COOKIE}`;
+            const JWTTOKEN = localStorage.getItem("jwtToken");
+            axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOKEN}`; 
             const res = await axios.post("/user/logOut", data); // data = userId
             if (res.status === 200) {
-                localStorage.removeItem("cookie");
+                localStorage.removeItem("jwtToken");
             }
         } catch (error: any) {
             // error type 미정 찾아봐야할듯.
             console.error(error);
-            return rejectWithValue(error.response.data);
+            return rejectWithValue(error.response.data); //내부에서 오류 처리하기 위함.
         }
     }
 );
@@ -84,8 +86,8 @@ export const logOut = createAsyncThunk(
 export const inquireMyInfo = createAsyncThunk("inquireMyInfo", async () => {
     try {
         axios.defaults.headers.common["Authorization"] = "";
-        const COOKIE = localStorage.getItem("cookie");
-        axios.defaults.headers.common["Authorization"] = `Bearer ${COOKIE}`;
+        const JWTTOEKN = localStorage.getItem("jwtToken");
+        axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
         const res = await axios.get("/user/inquireMyInfo");
         console.log(
             "로그인 후 본인 정보 조회 / 토큰을 이용한 프론트에서 로그인 유지에도 사용될 듯 함"
