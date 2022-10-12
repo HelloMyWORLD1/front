@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { Action } from "@remix-run/router";
+import { act } from "react-dom/test-utils";
 
 const initialState: PortFolioInitalState = {
     portFolio: null,
@@ -88,11 +89,20 @@ export const getPortFoiloLike = createAsyncThunk(
     }
 )
 
-// //포트폴리오 최신순(분야별) 조회-> 페이지네이션
-// export const getPortFolioLatest = createAsyncThunk(
-//     "getPortFolioLatest",
-//     async()
-// )
+//포트폴리오 최신순(분야별) 조회-> 페이지네이션(오프셋 20개)
+export const getPortFolioLatest = createAsyncThunk(
+    "getPortFolioLatest",
+    async() => {
+        try{
+            const res = await axios.get(`blog/get/{field}?{pageNum}`);
+            console.log(res.data);
+            return res.data;
+        }catch(error: any){
+            console.log(error);
+            return error;
+        }
+    }
+)
 
 //팔로우하기
 export const followPortFolio = createAsyncThunk(
@@ -191,6 +201,23 @@ const portFolioSlice = createSlice({
             state.getPortFolioLikeLoading = false;
             state.getPortFolioLikeDone = false;
             state.getPortFoiloLikeError = action.payload;
+        },
+        //getPortFolioLatest 로직
+        [getPortFolioLatest.pending.type] : (state, action: PayloadAction<object>) => {
+            state.getPortFolioLatestLoading = true;
+            state.getPortFolioLatestDone = false;
+            state.getPortFolioLatestError = null;
+        },
+        [getPortFolioLatest.fulfilled.type] : (state, action: PayloadAction<object>) => {
+            state.getPortFolioLatestLoading = false;
+            state.getPortFolioLatestDone = true;
+            state.getPortFolioLatestError = null;
+            state.portFolio = action.payload;
+        },
+        [getPortFolioLatest.pending.type] : (state, action: PayloadAction<object>) => {
+            state.getPortFolioLatestLoading = false;
+            state.getPortFolioLatestDone = false;
+            state.getPortFolioLatestError = action.payload;
         },
         //followPortFolio 로직
         [followPortFolio.pending.type] : (state, action: PayloadAction<object>) => {
