@@ -59,3 +59,9 @@ interface PortFolioInitalState {
     unFollowPortFolioDone: boolean;
     unFollowPortFolioError: null | object;
 }
+
+//이미지 모듈 선언
+declare module '*png' {
+    const content: string;
+    export default content;
+}

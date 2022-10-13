@@ -18,6 +18,10 @@
 
 -   Header, Footer, Button 등 각각의 컴포넌트
 
+> img 폴더
+
+-   logo 등 이미지
+
 > store
 
 -   `slices` 폴더에서 불러온 userSlice, blogSlice를 불러오고 toolkit을 이용해 redux의 전역상태 store 구성
