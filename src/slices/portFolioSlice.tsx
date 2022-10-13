@@ -6,6 +6,7 @@ import { act } from "react-dom/test-utils";
 
 const initialState: PortFolioInitalState = {
     portFolio: null,
+    portFolios: null,
     //포트폴리오 생성/등록
     registerPortFolioLoading: false, 
     registerPortFolioDone: false,
@@ -58,10 +59,6 @@ export const getPortFolio = createAsyncThunk(
     "getPortFolio",
     async(nickname, {rejectWithValue}) => {
         try{
-            //로그인 확인을 위한 토큰 값 확인
-            axios.defaults.headers.common["Authorization"] = "";
-            const JWTTOEKN = localStorage.getItem("jwtToken");
-            axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
             //get 요청시 닉네임 받기 위함
             const res = await axios.get(`blog/get/${nickname}`);
             console.log(res.data);
@@ -195,7 +192,7 @@ const portFolioSlice = createSlice({
             state.getPortFolioLikeLoading = false;
             state.getPortFolioLikeDone = true;
             state.getPortFoiloLikeError = null;
-            state.portFolio = action.payload;
+            state.portFolios = action.payload;
         },
         [getPortFoiloLike.rejected.type] : (state, action: PayloadAction<object>) => {
             state.getPortFolioLikeLoading = false;
@@ -212,7 +209,7 @@ const portFolioSlice = createSlice({
             state.getPortFolioLatestLoading = false;
             state.getPortFolioLatestDone = true;
             state.getPortFolioLatestError = null;
-            state.portFolio = action.payload;
+            state.portFolios = action.payload;
         },
         [getPortFolioLatest.pending.type] : (state, action: PayloadAction<object>) => {
             state.getPortFolioLatestLoading = false;

@@ -30,7 +30,10 @@ interface UserInitialState {
 }
 
 interface PortFolioInitalState {
+    //개인 포폴
     portFolio: null | object;
+    //메인페이지|커뮤니티용 포폴
+    portFolios: null | object;
     //개인 포폴 등록
     registerPortFolioLoading: boolean;
     registerPortFolioDone: boolean;
