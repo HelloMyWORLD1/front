@@ -18,7 +18,7 @@ const App = () => {
             <Route path="/signUp" element={<SignUpPage />}></Route>
 
             {/* 포트폴리오 페이지 */}
-            <Route path="/blog/get/:id" element={<PortFolioPage />}></Route>
+            <Route path="/blog/get/:nickname" element={<PortFolioPage />}></Route>
         </Routes>
     );
 };
