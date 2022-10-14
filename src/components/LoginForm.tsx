@@ -1,25 +1,32 @@
-import React from 'react';
-import styled from 'styled-components';
-import logo from "../img/logo.png";
+import React, { useState } from 'react';
+import Button from './Button';
+import Input from './Input';
 
-function LoginForm(){
+function LoginForm() {
+  const [emailInput, setEmailInput] = useState("");
+  const [pwInput, setPwInout] = useState("");
+  const onChange = (str: string) => {
+    setEmailInput(str);
+    setPwInout(str);
+  };
+
   return (
-    <div>
-        <Logo />
-    </div>
+    <form>
+      <Input
+        onChange={onChange}
+        name="email"
+        placeholder="이메일"
+        value={emailInput}
+      />
+      <Input
+        onChange={onChange}
+        name="password"
+        placeholder='비밀번호'
+        value={pwInput} 
+        />
+      <Button value='로그인' className='login-btn' />
+    </form>
   );
 };
-
-const Logo = styled.img.attrs({
-    src: `${logo}`,
-})`
-  position: absolute;
-  width: 120.85px;
-  height: 72px;
-  left: 899.5px;
-  top: 80px;
-`;
-
-
 
 export default LoginForm;

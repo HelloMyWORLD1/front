@@ -1,5 +1,6 @@
 // types,interface 를 전역으로 지정
 
+//회원 비동기처리 상태관리
 interface UserInitialState {
     user: null | object;
     //로그인
@@ -29,6 +30,7 @@ interface UserInitialState {
     deleteAccountError: null | object;
 }
 
+//포트폴리오 비동기 처리 상태관리
 interface PortFolioInitalState {
     //개인 포폴
     portFolio: null | object;
