@@ -1,37 +1,40 @@
-import React, { useState } from 'react';
-import Button from './Button';
-import Input from './Input';
-import { PwVector } from './styled';
-import pwCheck from "../img/Vector-2.svg"
+import React, { useState } from "react";
+import { PwVector, EmailInput, PwInput, LoginBtn } from "./styled";
+import pwCheck from "../img/Vector-2.svg";
 
 function LoginForm() {
-  const [emailInput, setEmailInput] = useState("");
-  const [pwInput, setPwInout] = useState("");
-  const onChange = (str: string) => {
-    setEmailInput(str);
-    setPwInout(str);
+  const [email, setEmail] = useState<string>("");
+  const [pw,setPw] = useState<string>("")
+  const emailHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setEmail(event.currentTarget.value);
+  };
+  const pwHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setPw(event.currentTarget.value);
+  };
+
+  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(email,pw);
   };
 
   return (
-    <form>
-      <Input
-        onChange={onChange}
-        name="email"
+    <form onSubmit={onSubmit}>
+      <EmailInput
+        value={email}
+        onChange={emailHandler}
+        type="text"
         placeholder="이메일"
-        value={emailInput}
-        classname = 'email-input'
       />
-      <Input
-        onChange={onChange}
-        name="password"
-        placeholder='비밀번호'
-        value={pwInput}
-        classname = 'pw-input' 
-        />
-        <PwVector src={pwCheck}></PwVector>
-      <Button value='로그인' className='login-btn' />
+      <PwInput
+        value={pw}
+        onChange={pwHandler}
+        type="text"
+        placeholder="비밀번호"
+      />
+      <PwVector src={pwCheck}></PwVector>
+      <LoginBtn>로그인</LoginBtn>
     </form>
   );
-};
+}
 
 export default LoginForm;
