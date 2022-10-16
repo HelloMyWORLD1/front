@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   EmailSignUpInput,
+  EmailSignUpSelect,
   BirthInput,
   PhoneInput,
   NameInput,
@@ -22,6 +24,13 @@ function SignUpForm() {
   const [email, setEmail] = useState<string>("");
   const [pw, setPw] = useState<string>("");
   const [pwCheck, setPwCheck] = useState<string>("");
+  const [domain, setDomain] = useState<string>("");
+  const selectList = ["도메인 선택","@naver.com","hanmail.net", "daum.net","nate.com","gmail.com", "hotmail.com","lycos.co.kr", "empal.com","cyworld.com","yahoo.com","paran.com","dreamwiz.com","직접입력" ]
+
+  const navigate = useNavigate();
+  const gotoProfile = () => {
+      navigate("/signUp/profile")
+  }
 
   const nameHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setName(event.currentTarget.value);
@@ -34,6 +43,9 @@ function SignUpForm() {
   };
   const emailHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setEmail(event.currentTarget.value);
+  };
+  const domainHandler = (event: React.FormEvent<HTMLSelectElement>) => {
+    setDomain(event.currentTarget.value);
   };
   const pwHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setPw(event.currentTarget.value);
@@ -76,6 +88,11 @@ function SignUpForm() {
         type="text"
         placeholder="이메일아이디"
       />
+      <EmailSignUpSelect value={domain} onChange={domainHandler} >
+          {selectList.map((item) => (
+              <option value={item} key={item}>{item}</option>
+          ))}
+      </EmailSignUpSelect>
       <EmailTxt>한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)</EmailTxt>
       <PwSignUpInput
         value={pw}
@@ -90,8 +107,9 @@ function SignUpForm() {
         type="text"
         placeholder="비밀번호를 다시 입력해주세요"
       />
-      <SignUpBtn>회원가입</SignUpBtn>
       <PwCheckTxt>비밀번호가 일치하지 않습니다.</PwCheckTxt>
+      <SignUpBtn onClick={gotoProfile}>회원가입</SignUpBtn>
+      
     </form>
   );
 }
