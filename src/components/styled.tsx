@@ -274,6 +274,18 @@ letter-spacing: -0.1em;
   color: #999999;
 }
 `;
+export const EmailSignUpSelect = styled.select`
+box-sizing: border-box;
+
+position: absolute;
+width: 207px;
+height: 60px;
+left: 1053px;
+top: 754px;
+
+background: #FFFFFF;
+border: 1px solid #E5E5E5;`;
+
 export const PwSignUpInput = styled.input`
 box-sizing: border-box;
 
@@ -433,5 +445,116 @@ line-height: 23px;
 letter-spacing: -0.1em;
 
 color: #FF0000;`;
+
+//회원가입(프로필등록)
+export const SignUpProfileTxt = styled.span`
+position: absolute;
+height: 67px;
+left: 863px;
+top: 252px;
+
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 500;
+font-size: 46px;
+line-height: 67px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+letter-spacing: -0.1em;
+text-transform: uppercase;
+
+color: #333333;
+`;
+export const SignUpProfileTxt2 = styled.span`
+
+position: absolute;
+height: 26px;
+left: 838px;
+top: 324px;
+
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 26px;
+/* identical to box height */
+
+display: flex;
+align-items: center;
+letter-spacing: -0.1em;
+text-transform: uppercase;
+
+color: #999999;
+`;
+export const Mask = styled.img`
+position: absolute;
+width: 150px;
+height: 150px;
+left: 885px;
+top: 390px;
+`;
+export const UploadImg = styled.img`
+position: absolute;
+width: 40px;
+height: 40px;
+left: 940px;
+top: 435px;
+`;
+export const UploadBtn = styled.button`
+border: 0;
+outline: 0;
+background-color : rgba(0,0,0,0);
+position: absolute;
+width: 78px;
+height: 60px;
+left: 921px;
+top: 435px;
+`;
+export const NicknameInput = styled.input`
+box-sizing: border-box;
+
+position: absolute;
+width: 500px;
+height: 60px;
+left: 710px;
+top: 570px;
+
+background: #FFFFFF;
+border: 1px solid #E5E5E5;
+
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 350;
+font-size: 14px;
+line-height: 20px;
+letter-spacing: -0.1em;
+&::placeholder{
+  color: #999999;
+}
+
+`;
+export const RegisterProfileBtn = styled.button`
+position: absolute;
+width: 502px;
+height: 60px;
+left: 710px;
+top: 640px;
+
+background: #222222;
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+/* identical to box height */
+
+text-align: center;
+letter-spacing: -0.1em;
+
+color: #FFFFFF;
+
+`;
 
 
