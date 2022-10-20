@@ -9,6 +9,7 @@ export const LogoImg = styled.img`
     //top: 80px;
     margin-left: 20px;
     margin-top: 91px;
+    cursor: pointer;
 `;
 export const BlackLine = styled.div`
     //position: absolute;
@@ -20,12 +21,26 @@ export const BlackLine = styled.div`
     margin-top: 60px;
     border: 1px solid #e5e5e5;
 `;
+export const LogInComponent = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+export const LogInInsideBox = styled.div`
+    width: 440px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
 export const LoginBtn = styled.button`
-    position: absolute;
+    //position: absolute;
     width: 400px;
     height: 60px;
-    left: 760px;
-    top: 402px;
+    //left: 760px;
+    //top: 402px;
+    margin-left: 20px;
+    margin-top: 15px;
     background: #222222;
 
     font-family: "Noto Sans CJK KR";
@@ -33,7 +48,7 @@ export const LoginBtn = styled.button`
     font-weight: 500;
     font-size: 18px;
     line-height: 26px;
-
+    cursor: pointer;
     text-align: center;
     letter-spacing: -0.1em;
 
@@ -43,12 +58,13 @@ export const LoginBtn = styled.button`
 export const EmailInput = styled.input`
     box-sizing: border-box;
 
-    position: absolute;
+    //position: absolute;
     width: 400px;
     height: 60px;
-    left: 760px;
-    top: 212px;
-
+    //left: 760px;
+    //top: 212px;
+    margin-left: 20px;
+    margin-top: 60px;
     background: #ffffff;
     border: 1px solid #333333;
 
@@ -66,12 +82,13 @@ export const EmailInput = styled.input`
 export const PwInput = styled.input`
     box-sizing: border-box;
 
-    position: absolute;
+    //position: absolute;
     width: 400px;
     height: 60px;
-    left: 760px;
-    top: 282px;
-
+    //left: 760px;
+    //top: 282px;
+    margin-left: 20px;
+    margin-top: 10px;
     background: #ffffff;
     border: 1px solid #e5e5e5;
 
@@ -96,13 +113,17 @@ export const PwVector = styled.img`
     opacity: 0.3;
 `;
 
+export const TagBox = styled.div`
+    margin-top: 15px;
+`;
 export const SignupTag = styled.a`
     text-decoration: none;
 
-    position: absolute;
+    //position: absolute;
     height: 23px;
-    left: 760px;
-    top: 477px;
+    //left: 760px;
+    //top: 477px;
+    margin-left: 20px;
 
     font-family: "Noto Sans CJK KR";
     font-style: normal;
@@ -115,11 +136,12 @@ export const SignupTag = styled.a`
 `;
 export const FingTag = styled.a`
     text-decoration: none;
-    position: absolute;
+    //position: absolute;
     height: 23px;
-    left: 1032px;
-    top: 477px;
-
+    //left: 1032px;
+    //top: 477px;
+    margin-left: 216px;
+    margin-top: 30px;
     font-family: "Noto Sans CJK KR";
     font-style: normal;
     font-weight: 400;
@@ -131,28 +153,31 @@ export const FingTag = styled.a`
 `;
 
 export const AutoLoginTxt = styled.span`
-    position: absolute;
+    //position: absolute;
 
     height: 23px;
-    left: 798px;
-    top: 360px;
+    //left: 798px;
+    //top: 360px;
+    margin-left: 9.25px;
 
     font-family: "Noto Sans CJK KR";
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
-    line-height: 23px;
+    line-height: 40px;
     letter-spacing: -0.1em;
 
     color: #999999;
 `;
 
 export const AutoLoginImg = styled.img`
-    position: absolute;
+    //position: absolute;
     width: 30px;
     height: 30px;
-    left: 760px;
-    top: 357px;
+    //left: 760px;
+    //top: 357px;
+    margin-left: 20px;
+    margin-top: 16.25px;
 `;
 
 // 회원가입페이지
@@ -162,7 +187,7 @@ export const SignUpComponent = styled.div`
     justify-content: center;
     align-items: center;
 `;
-export const Test = styled.div`
+export const SignUpInsideBox = styled.div`
     width: 620px;
     display: flex;
     flex-direction: column;
