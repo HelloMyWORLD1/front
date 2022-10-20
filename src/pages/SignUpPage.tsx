@@ -1,6 +1,5 @@
 import React from "react";
 import SignUpForm from "../components/SignUpForm";
-import { LogoImg, SignUpTxt, SignUpTxt2 } from "../components/styled";
 
 function SignUpPage() {
     //<SignUpTxt>회원가입하기</SignUpTxt>
