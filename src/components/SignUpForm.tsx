@@ -18,7 +18,7 @@ import {
     SignUpComponent,
     SignUpTxt,
     SignUpTxt2,
-    Test,
+    SignUpInsideBox,
     LogoImg,
     BlackLine,
     ExplainTxt,
@@ -87,7 +87,7 @@ function SignUpForm() {
 
     return (
         <SignUpComponent>
-            <Test>
+            <SignUpInsideBox>
                 <LogoImg src={logo} onClick={gotoHome}></LogoImg>
                 <BlackLine></BlackLine>
                 <SignUpTxt>회원가입하기</SignUpTxt>
@@ -163,7 +163,7 @@ function SignUpForm() {
                     <PwCheckTxt>비밀번호가 일치하지 않습니다.</PwCheckTxt>
                     <SignUpBtn onClick={gotoProfile}>회원가입</SignUpBtn>
                 </form>
-            </Test>
+            </SignUpInsideBox>
         </SignUpComponent>
     );
 }
