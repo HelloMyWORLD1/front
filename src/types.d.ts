@@ -50,7 +50,7 @@ interface PortFolioInitalState {
     getPortFoiloLikeError: null | object;
     //분야별(최신순) 포폴 조회
     getPortFolioLatestLoading: boolean;
-    getPortFolioLatestDone : boolean;
+    getPortFolioLatestDone: boolean;
     getPortFolioLatestError: null | object;
     //포폴 팔로우하기
     followPortFolioLoading: boolean;
@@ -63,11 +63,10 @@ interface PortFolioInitalState {
 }
 
 //이미지 모듈 선언
-declare module '*png' {
+declare module "*png" {
     const content: string;
     export default content;
 }
-declare module '*svg';
+declare module "*svg";
 //폰트 모듈 선언
-declare module '*woff';
-
+declare module "*woff";
