@@ -1,33 +1,45 @@
 import styled from "styled-components";
 
-//LoginPage 스타일
+// 중첩 사용 스타일
 export const LogoImg = styled.img`
     //position: absolute;
     width: 120.85px;
     height: 72px;
     //left: 899.5px;
     //top: 80px;
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 91px;
     cursor: pointer;
 `;
-export const BlackLine = styled.div`
+export const BlackLine = styled.div<{ marginTop?: number }>`
     //position: absolute;
     width: 300px;
     height: 0px;
     //left: 810px;
     //top: 212px;
-    margin-left: 20px;
-    margin-top: 60px;
+    //margin-left: 20px;
+    margin-top: ${(props) =>
+        props.marginTop ? `${props.marginTop}px` : "60px"};
     border: 1px solid #e5e5e5;
 `;
+export const Vector = styled.img`
+    //position: absolute;
+    //left: 34.38%;
+    //right: 63.75%;
+    //top: 2.22%;
+    //bottom: 96.12%;
+    position: absolute;
+    margin-top: 40px;
+    //margin-left: 20px;
+`;
+//LoginPage 스타일
 export const LogInComponent = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
 `;
 export const LogInInsideBox = styled.div`
-    width: 440px;
+    width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,7 +51,7 @@ export const LoginBtn = styled.button`
     height: 60px;
     //left: 760px;
     //top: 402px;
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 15px;
     background: #222222;
 
@@ -63,7 +75,7 @@ export const EmailInput = styled.input`
     height: 60px;
     //left: 760px;
     //top: 212px;
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 60px;
     background: #ffffff;
     border: 1px solid #333333;
@@ -87,7 +99,7 @@ export const PwInput = styled.input`
     height: 60px;
     //left: 760px;
     //top: 282px;
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 10px;
     background: #ffffff;
     border: 1px solid #e5e5e5;
@@ -123,7 +135,7 @@ export const SignupTag = styled.a`
     height: 23px;
     //left: 760px;
     //top: 477px;
-    margin-left: 20px;
+    //margin-left: 20px;
 
     font-family: "Noto Sans CJK KR";
     font-style: normal;
@@ -176,7 +188,7 @@ export const AutoLoginImg = styled.img`
     height: 30px;
     //left: 760px;
     //top: 357px;
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 16.25px;
 `;
 
@@ -188,7 +200,7 @@ export const SignUpComponent = styled.div`
     align-items: center;
 `;
 export const SignUpInsideBox = styled.div`
-    width: 620px;
+    width: 600px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -201,7 +213,7 @@ export const SignUpTxt = styled.span`
     //left: 845px; //원본
     //top: 252px; //원본
     margin-top: 40px; //margin-top : test
-    margin-left: 20px; // margin-left : test
+    //margin-left: 20px; // margin-left : test
     font-family: "Noto Sans CJK KR";
     font-style: normal;
     font-weight: 500;
@@ -222,7 +234,7 @@ export const SignUpTxt2 = styled.span`
     //left: 830px; // 원본
     //top: 324px; // 원본
     margin-top: 5px; //test
-    margin-left: 20px; //test
+    //margin-left: 20px; //test
     font-family: "Noto Sans CJK KR";
     font-style: normal;
     font-weight: 400;
@@ -244,7 +256,7 @@ export const NameInput = styled.input`
     height: 60px;
     //left: 660px; //원본
     //top: 390px; //원본
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 10px;
     background: #ffffff;
     border: 1px solid #e5e5e5;
@@ -267,7 +279,7 @@ export const BirthInput = styled.input`
     height: 60px;
     //left: 660px; 원본
     //top: 511px; 원본
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 10px;
     background: #ffffff;
     border: 1px solid #e5e5e5;
@@ -290,7 +302,7 @@ export const PhoneInput = styled.input`
     height: 60px;
     //left: 660px;
     //top: 632px;
-    margin-left: 20px; //test
+    //margin-left: 20px; //test
     margin-top: 10px; //test
     background: #ffffff;
     border: 1px solid #e5e5e5;
@@ -313,7 +325,7 @@ export const EmailSignUpInput = styled.input`
     height: 60px;
     //left: 660px;
     //top: 754px;
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 10px;
     background: #ffffff;
     border: 1px solid #e5e5e5;
@@ -349,7 +361,7 @@ export const PwSignUpInput = styled.input`
     height: 60px;
     //left: 660px; 원본
     //top: 895px; 원본
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 10px;
     background: #ffffff;
     border: 1px solid #e5e5e5;
@@ -372,7 +384,7 @@ export const PwCheckInput = styled.input`
     height: 60px;
     //left: 660px; 원본
     //top: 1009px; 원본
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 10px;
     background: #ffffff;
     border: 1px solid #e5e5e5;
@@ -393,7 +405,7 @@ export const SignUpBtn = styled.button`
     height: 60px;
     //left: 660px;
     //top: 1140px;
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 40px;
     margin-bottom: 200px;
     background: #222222;
@@ -413,7 +425,7 @@ export const SignUpBtn = styled.button`
 export const ExplainTxt = styled.div`
     //position: absolute;
     height: 20px;
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 40px;
     font-family: "Noto Sans CJK KR";
     font-style: normal;
@@ -431,7 +443,7 @@ export const NameTxt = styled.span`
     height: 23px;
     //left: 660px;
     //top: 458px;
-    margin-left: 20px;
+    //margin-left: 20px;
 
     font-family: "Noto Sans CJK KR";
     font-style: normal;
@@ -448,7 +460,7 @@ export const BirthTxt = styled.span`
     height: 23px;
     //left: 660px; 원본
     //top: 579px; 원본
-    margin-left: 20px;
+    //margin-left: 20px;
     font-family: "Noto Sans CJK KR";
     font-style: normal;
     font-weight: 400;
@@ -464,7 +476,7 @@ export const PhoneTxt = styled.span`
     height: 23px;
     //left: 660px; 원본
     //top: 700px; 원본
-    margin-left: 20px;
+    //margin-left: 20px;
 
     font-family: "Noto Sans CJK KR";
     font-style: normal;
@@ -481,7 +493,7 @@ export const EmailTxt = styled.span`
     height: 23px;
     //left: 660px; 원본
     //top: 822px; 원본
-    margin-left: 20px;
+    //margin-left: 20px;
     font-family: "Noto Sans CJK KR";
     font-style: normal;
     font-weight: 400;
@@ -497,7 +509,7 @@ export const PwTxt = styled.span`
     height: 23px;
     //left: 660px; 원본
     //top: 963px; 원본
-    margin-left: 20px;
+    //margin-left: 20px;
 
     font-family: "Noto Sans CJK KR";
     font-style: normal;
@@ -514,7 +526,7 @@ export const PwCheckTxt = styled.span`
     height: 23px;
     //left: 660px;
     //top: 1077px;
-    margin-left: 20px;
+    //margin-left: 20px;
     font-family: "Noto Sans CJK KR";
     font-style: normal;
     font-weight: 400;
@@ -544,7 +556,7 @@ export const SignUpProfileTxt = styled.span`
     height: 67px;
     //left: 863px;
     //top: 252px;
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 40px;
     font-family: "Noto Sans CJK KR";
     font-style: normal;
@@ -566,7 +578,7 @@ export const SignUpProfileTxt2 = styled.span`
 
     //left: 838px;
     //top: 324px;
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 5px;
     font-family: "Noto Sans CJK KR";
     font-style: normal;
@@ -615,7 +627,7 @@ export const NicknameInput = styled.input`
     height: 60px;
     //left: 710px;
     //top: 570px;
-    margin-left: 20px;
+    //margin-left: 20px;
     margin-top: 30px;
     background: #ffffff;
     border: 1px solid #e5e5e5;
@@ -637,11 +649,93 @@ export const RegisterProfileBtn = styled.button`
     //left: 710px;
     //top: 640px;
     margin-top: 40px;
-    margin-left: 20px;
+    //margin-left: 20px;
     background: #222222;
     font-family: "Noto Sans CJK KR";
     font-style: normal;
     font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height */
+
+    text-align: center;
+    letter-spacing: -0.1em;
+
+    color: #ffffff;
+`;
+
+//비밀번호 찾기 페이지
+export const FindPasswordComponent = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`;
+export const FindPasswordOutSideBox = styled.div`
+    width: 600px;
+`;
+export const FindPasswordInsideBox = styled.div`
+    width: 600px;
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const FindPasswordTxt = styled.span`
+    //position: absolute;
+    width: 124px;
+    height: 35px;
+    //left: 1048px;
+    //top: 205px;
+    margin-top: 53px;
+    //margin-left: 20px;
+    font-family: "Noto Sans CJK KR";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 35px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.1em;
+    text-transform: uppercase;
+
+    color: #333333;
+`;
+
+export const FindPasswordInput = styled.input`
+    box-sizing: border-box;
+
+    //position: absolute;
+    width: 600px;
+    height: 60px;
+    //left: 660px;
+    //top: 312px;
+    &::placeholder {
+        color: #999999;
+    }
+    background: #ffffff;
+    border: 1px solid #333333;
+`;
+
+export const FindPasswordSubmitButton = styled.button`
+    box-sizing: border-box;
+
+    //position: absolute;
+    width: 600px;
+    height: 60px;
+    //left: 660px;
+    //top: 412px;
+    margin-top: 40px;
+    background: #222222;
+    border: 1px solid #e5e5e5;
+    font-family: "Noto Sans CJK KR";
+    font-style: normal;
+    font-weight: 400;
     font-size: 18px;
     line-height: 26px;
     /* identical to box height */
