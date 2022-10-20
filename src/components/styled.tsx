@@ -526,12 +526,26 @@ export const PwCheckTxt = styled.span`
 `;
 
 //회원가입(프로필등록)
-export const SignUpProfileTxt = styled.span`
-    position: absolute;
-    height: 67px;
-    left: 863px;
-    top: 252px;
+export const SignUpProfileComponent = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
 
+export const SignUpProfileBox = styled.div`
+    width: 540px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+export const SignUpProfileTxt = styled.span`
+    //position: absolute;
+    height: 67px;
+    //left: 863px;
+    //top: 252px;
+    margin-left: 20px;
+    margin-top: 40px;
     font-family: "Noto Sans CJK KR";
     font-style: normal;
     font-weight: 500;
@@ -547,11 +561,13 @@ export const SignUpProfileTxt = styled.span`
     color: #333333;
 `;
 export const SignUpProfileTxt2 = styled.span`
-    position: absolute;
+    //position: absolute;
     height: 26px;
-    left: 838px;
-    top: 324px;
 
+    //left: 838px;
+    //top: 324px;
+    margin-left: 20px;
+    margin-top: 5px;
     font-family: "Noto Sans CJK KR";
     font-style: normal;
     font-weight: 400;
@@ -566,39 +582,41 @@ export const SignUpProfileTxt2 = styled.span`
 
     color: #999999;
 `;
+export const MaskBox = styled.div`
+    position: relative;
+`;
 export const Mask = styled.img`
-    position: absolute;
     width: 150px;
     height: 150px;
-    left: 885px;
-    top: 390px;
+    //left: 885px;
+    //top: 390px;
+    margin-left: 187px;
+    margin-top: 40px;
 `;
 export const UploadImg = styled.img`
     position: absolute;
+
     width: 40px;
     height: 40px;
-    left: 940px;
-    top: 435px;
+    //left: 940px;
+    //top: 435px;
+
+    top: 50%;
+    left: 45%;
+
+    cursor: pointer;
 `;
-export const UploadBtn = styled.button`
-    border: 0;
-    outline: 0;
-    background-color: rgba(0, 0, 0, 0);
-    position: absolute;
-    width: 78px;
-    height: 60px;
-    left: 921px;
-    top: 435px;
-`;
+
 export const NicknameInput = styled.input`
     box-sizing: border-box;
 
-    position: absolute;
+    //position: absolute;
     width: 500px;
     height: 60px;
-    left: 710px;
-    top: 570px;
-
+    //left: 710px;
+    //top: 570px;
+    margin-left: 20px;
+    margin-top: 30px;
     background: #ffffff;
     border: 1px solid #e5e5e5;
 
@@ -613,12 +631,13 @@ export const NicknameInput = styled.input`
     }
 `;
 export const RegisterProfileBtn = styled.button`
-    position: absolute;
+    //position: absolute;
     width: 502px;
     height: 60px;
-    left: 710px;
-    top: 640px;
-
+    //left: 710px;
+    //top: 640px;
+    margin-top: 40px;
+    margin-left: 20px;
     background: #222222;
     font-family: "Noto Sans CJK KR";
     font-style: normal;
