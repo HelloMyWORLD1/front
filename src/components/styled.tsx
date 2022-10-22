@@ -1,14 +1,19 @@
 import styled from "styled-components";
-
+import mid from "../img/Rectangle.png";
 // 중첩 사용 스타일
-export const LogoImg = styled.img`
+export const LogoImg = styled.img<{
+    width?: number;
+    height?: number;
+    marginTop?: number;
+}>`
     //position: absolute;
-    width: 120.85px;
-    height: 72px;
+    width: ${(props) => (props.width ? `${props.width}px` : "120.85px")};
+    height: ${(props) => (props.height ? `${props.height}px` : "72px")};
     //left: 899.5px;
     //top: 80px;
     //margin-left: 20px;
-    margin-top: 91px;
+    margin-top: ${(props) =>
+        props.marginTop ? `${props.marginTop}px` : "91px"};
     cursor: pointer;
 `;
 export const BlackLine = styled.div<{ marginTop?: number }>`
@@ -30,6 +35,7 @@ export const Vector = styled.img`
     //bottom: 96.12%;
     position: absolute;
     margin-top: 40px;
+    cursor: pointer;
     //margin-left: 20px;
 `;
 //LoginPage 스타일
@@ -718,6 +724,7 @@ export const FindPasswordInput = styled.input`
     &::placeholder {
         color: #999999;
     }
+    margin-top: 40px;
     background: #ffffff;
     border: 1px solid #333333;
 `;
@@ -744,4 +751,256 @@ export const FindPasswordSubmitButton = styled.button`
     letter-spacing: -0.1em;
 
     color: #ffffff;
+`;
+
+//Header
+
+export const HeaderComponent = styled.div`
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`;
+export const SearchImg = styled.img`
+    margin-left: 60px;
+    margin-right: 30px;
+    cursor: pointer;
+`;
+
+export const LinkCategory = styled.div`
+    display: flex;
+    padding-top: 5px;
+`;
+//홈 | 소개 | 커뮤니티 개별 카드
+export const LinkCategoryCard = styled.div`
+    height: 20px;
+
+    font-family: "Noto Sans CJK KR";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    //line-height: 62px;
+    /* or 388% */
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.1em;
+
+    color: #333333;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    cursor: pointer;
+`;
+
+export const MakeMyBlogBtn = styled.button`
+    width: 176px;
+    height: 80px;
+    background: #222222;
+    font-family: "Noto Sans CJK KR";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23px;
+    letter-spacing: -0.1em;
+
+    color: #ffffff;
+`;
+
+//HomePage
+
+export const HomePageMidComponent = styled.div`
+    position: relative;
+    width: 100%;
+    height: 100%;
+`;
+export const HomePageMidImg = styled.img`
+    width: 100%;
+    height: 100%;
+`;
+export const HomePageMidTxt1 = styled.div`
+    position: absolute;
+    width: 356px;
+    height: 124px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Noto Sans CJK KR";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 46px;
+    line-height: 62px;
+    /* or 135% */
+
+    text-align: center;
+    letter-spacing: -0.1em;
+
+    color: #ffffff;
+`;
+export const HomePageMidTxt2 = styled.div`
+    position: absolute;
+    width: 291px;
+    height: 20px;
+    //left: 815px;
+    //top: 630px;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Noto Sans CJK KR";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 62px;
+
+    /* or 310% */
+
+    //display: flex;
+    //align-items: center;
+    text-align: center;
+    letter-spacing: -0.1em;
+
+    color: #eeeeee;
+`;
+
+export const HomeCardIntroTxtComponent = styled.div`
+    display: flex;
+
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 10px;
+
+    //position: absolute;
+    width: 94%;
+    height: 64px;
+
+    margin-top: 80px;
+`;
+export const HomeCardIntroTxt1 = styled.div`
+    width: 220px;
+    height: 36px;
+
+    font-family: "Noto Sans CJK KR";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 36px;
+    /* identical to box height, or 129% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.1em;
+
+    color: #333333;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+`;
+export const HomeCardIntroTxt2 = styled.div`
+    width: 284px;
+    height: 18px;
+
+    font-family: "Noto Sans CJK KR";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 62px;
+    /* or 388% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.1em;
+
+    color: #999999;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+`;
+
+export const RedCircle = styled.img`
+    width: 7px;
+    height: 7px;
+    margin-left: 2px;
+    margin-bottom: 37px;
+`;
+export const HomePageUnderComponent = styled.div`
+    display: flex;
+    width: 100%;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+export const FilterComponent = styled.div`
+    margin-top: 30px;
+    height: 36px;
+    width: 94%;
+    display: flex;
+    justify-content: space-between;
+`;
+export const FilterCategory = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 0px;
+`;
+
+export const FilterEachCategory = styled.div`
+    height: 36px;
+
+    margin-right: 30px;
+    font-family: "Noto Sans CJK KR";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 36px;
+    /* identical to box height, or 200% */
+
+    letter-spacing: -0.1em;
+    cursor: pointer;
+    color: #999999;
+`;
+export const FilterTxt = styled.div`
+    //position: absolute;
+    width: 32px;
+    height: 36px;
+    //left: 1829px;
+    //top: 1234px;
+
+    font-family: "Noto Sans CJK KR";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 36px;
+    /* identical to box height, or 200% */
+
+    letter-spacing: -0.1em;
+
+    color: #999999;
+`;
+
+export const FilterResultCardComponent = styled.div`
+    width: 96%;
+
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 30px;
+`;
+export const FilterResultCard = styled.div`
+    width: 23%;
+    height: 320px;
+    margin: 1%;
+    background-color: black;
+    color: black;
 `;
