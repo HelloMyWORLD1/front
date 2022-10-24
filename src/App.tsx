@@ -10,29 +10,23 @@ import FindPwPage from "./pages/FindPwPage";
 //Route 설정.
 
 function App() {
-    return (
-        <div>
-            <GlobalStyles />
-            <Routes>
-                {/* 홈페이지 */}
-                <Route path="/" element={<HomePage />}></Route>
+  return (
+    <div>
+      <GlobalStyles />
+      <Routes>
+        {/* 홈페이지 */}
+        <Route path="/" element={<HomePage />}></Route>
 
-                {/* 로그인, 회원가입 */}
-                <Route path="/logIn" element={<LogInPage />}></Route>
-                <Route path="/signUp" element={<SignUpPage />}></Route>
-                <Route
-                    path="/signUp/profile"
-                    element={<SignUpProfilePage />}
-                ></Route>
-                <Route path="/findpassword" element={<FindPwPage />}></Route>
-                {/* 포트폴리오 페이지 */}
-                <Route
-                    path="/blog/get/:nickname"
-                    element={<PortFolioPage />}
-                ></Route>
-            </Routes>
-        </div>
-    );
+        {/* 로그인, 회원가입 */}
+        <Route path="/logIn" element={<LogInPage />}></Route>
+        <Route path="/signUp" element={<SignUpPage />}></Route>
+        <Route path="/signUp/profile" element={<SignUpProfilePage />}></Route>
+        <Route path="/findpassword" element={<FindPwPage />}></Route>
+        {/* 포트폴리오 페이지 */}
+        <Route path="/blog/get/:nickname" element={<PortFolioPage />}></Route>
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
