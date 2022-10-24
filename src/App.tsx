@@ -7,6 +7,7 @@ import SignUpPage from "./pages/SignUpPage";
 import PortFolioPage from "./pages/PortFolioPage";
 import SignUpProfilePage from "./pages/SignUpProfilePage";
 import FindPwPage from "./pages/FindPwPage";
+import TestPage from "./pages/TestPage";
 //Route 설정.
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
         <Route path="/findpassword" element={<FindPwPage />}></Route>
         {/* 포트폴리오 페이지 */}
         <Route path="/blog/get/:nickname" element={<PortFolioPage />}></Route>
+
+        {/* url 주소 테스트 페이지 */}
+        <Route path="/test" element={<TestPage />}></Route>
       </Routes>
     </div>
   );
