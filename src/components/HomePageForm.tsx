@@ -2,7 +2,10 @@ import React from "react";
 import Footer from "../subComponents/Footer";
 import Header from "../subComponents/Header";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { registerPortFolioTest } from "../slices/portFolioSlice";
+import {
+  registerPortFolioTest,
+  nicknameGetTest,
+} from "../slices/portFolioSlice";
 
 import {
   HomePageMidImg,
@@ -25,36 +28,41 @@ import mid from "../img/Rectangle.png";
 import circle from "../img/Circle.png";
 function HomePageForm() {
   const dispatch = useAppDispatch();
-  const onClickTestButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const data = {
-      detailJob: "string",
-      title: "string",
-      introduce: "string",
-      tech: [
-        {
-          techName: "string",
-          content: "string",
-        },
-      ],
-      education: "string",
-      sns: ["string"],
-      certificate: ["string"],
-      foreignLanguage: ["string"],
-      project: [
-        {
-          title: "string",
-          content: "string",
-        },
-      ],
-      career: [
-        {
-          year: "string",
-          title: "string",
-          content: "string",
-        },
-      ],
-    };
-    dispatch(registerPortFolioTest(data));
+  //test1
+  const data1 = {
+    detailJob: "string",
+    title: "string",
+    introduce: "string",
+    tech: [
+      {
+        techName: "string",
+        content: "string",
+      },
+    ],
+    education: "string",
+    sns: ["string"],
+    certificate: ["string"],
+    foreignLanguage: ["string"],
+    project: [
+      {
+        title: "string",
+        content: "string",
+      },
+    ],
+    career: [
+      {
+        year: "string",
+        title: "string",
+        content: "string",
+      },
+    ],
+  };
+  const data2: string = "Lee";
+  const onClickTest1 = () => {
+    dispatch(registerPortFolioTest(data1));
+  };
+  const onClickTest2 = () => {
+    dispatch(nicknameGetTest(data2));
   };
   return (
     <div>
@@ -69,7 +77,7 @@ function HomePageForm() {
         <HomePageMidTxt1>세상에 모든 가치를 그려내는 공간</HomePageMidTxt1>
         <HomePageMidTxt2>단 하나의 유일한 포트폴리오를 만나다</HomePageMidTxt2>
       </HomePageMidComponent>
-      <button onClick={onClickTestButton}>test</button>
+
       <HomePageUnderComponent>
         <HomeCardIntroTxtComponent>
           <HomeCardIntroTxt1>
@@ -81,6 +89,8 @@ function HomePageForm() {
           <HomeCardIntroTxt2>
             포트폴리오 만드는 방법 AtoZ를 참고할 수 있어요!
           </HomeCardIntroTxt2>
+          <button onClick={onClickTest1}>1</button>
+          <button onClick={onClickTest2}>2</button>
         </HomeCardIntroTxtComponent>
         <FilterComponent>
           <FilterCategory>

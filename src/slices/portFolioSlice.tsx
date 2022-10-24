@@ -1,9 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { PayloadAction } from "@reduxjs/toolkit";
-//import { backURL } from "../config/config";
 
-//axios.defaults.baseURL = backURL;
 axios.defaults.withCredentials = true;
 
 const initialState: PortFolioInitalState = {
@@ -53,13 +51,29 @@ export const registerPortFolioTest = createAsyncThunk(
   "registerPortFolioTest",
   async (data: pfTestType) => {
     try {
-      const res = axios.post("/api/portfolio", data);
+      console.log("test start");
+      const res = await axios.post("/api/portfolio", data, {
+        withCredentials: true,
+      });
+      console.log("test end");
       console.log(res);
     } catch (error: any) {
       console.log(error);
     }
   }
 );
+export const nicknameGetTest = createAsyncThunk(
+  "nicknameGetTest",
+  async (data: string) => {
+    try {
+      const res = await axios.get(`/api/portfolio/${data}`);
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 //Thunk 생성(비동기 처리 위한 로직)
 //포트폴리오 생성(자신의 포트폴리오)
 export const registerPortFolio = createAsyncThunk(
