@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { PayloadAction } from "@reduxjs/toolkit";
+//require("dotenv").config();
 
-//axios.defaults.baseURL = BACKURL;
+//axios.defaults.baseURL = `${process.env.BACKURL}`;
 axios.defaults.withCredentials = true;
 
 const initialState: PortFolioInitalState = {
