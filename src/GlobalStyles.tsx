@@ -1,8 +1,8 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import Font_L from "./fonts/NotoSansKR-Light.woff"
-import Font_R from "./fonts/NotoSansKR-Regular.woff"
-import Font_B from "./fonts/NotoSansKR-Bold.woff"
+import Font_L from "./fonts/NotoSansKR-Light.woff";
+import Font_R from "./fonts/NotoSansKR-Regular.woff";
+import Font_B from "./fonts/NotoSansKR-Bold.woff";
 
 const GlobalStyles = createGlobalStyle`
 ${reset}
@@ -25,8 +25,10 @@ ${reset}
 }
 body {
     position: relative;
-    width: 1920px;
+    //width: 1920px;
     height: 1034px;
+    width : 100%;
+    //height : 100%;
     background : #F5F5F5;
     
 }`;
