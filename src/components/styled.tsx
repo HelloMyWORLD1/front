@@ -841,7 +841,7 @@ export const HomePageMidTxt1 = styled.div`
 `;
 export const HomePageMidTxt2 = styled.div`
   position: absolute;
-  width: 291px;
+  // width: 291px;
   height: 20px;
   //left: 815px;
   //top: 630px;
@@ -879,7 +879,7 @@ export const HomeCardIntroTxtComponent = styled.div`
   margin-top: 80px;
 `;
 export const HomeCardIntroTxt1 = styled.div`
-  width: 220px;
+  // width: 220px;
   height: 36px;
 
   font-family: "Noto Sans CJK KR";
@@ -902,7 +902,7 @@ export const HomeCardIntroTxt1 = styled.div`
   flex-grow: 0;
 `;
 export const HomeCardIntroTxt2 = styled.div`
-  width: 284px;
+  // width: 284px;
   height: 18px;
 
   font-family: "Noto Sans CJK KR";
@@ -928,8 +928,8 @@ export const HomeCardIntroTxt2 = styled.div`
 export const RedCircle = styled.img`
   width: 7px;
   height: 7px;
-  margin-left: 2px;
-  margin-bottom: 37px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 `;
 export const HomePageUnderComponent = styled.div`
   display: flex;
@@ -938,6 +938,7 @@ export const HomePageUnderComponent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 150px;
 `;
 export const FilterComponent = styled.div`
   margin-top: 30px;
@@ -971,7 +972,7 @@ export const FilterEachCategory = styled.div`
 `;
 export const FilterTxt = styled.div`
   //position: absolute;
-  width: 32px;
+  // width: 32px;
   height: 36px;
   //left: 1829px;
   //top: 1234px;
@@ -999,6 +1000,122 @@ export const FilterResultCard = styled.div`
   width: 23%;
   height: 320px;
   margin: 1%;
-  background-color: black;
+  background: #FFFFFF;
   color: black;
+
+  text-align: center;
 `;
+
+//홈카드
+export const CardImg = styled.img`
+margin-top: 15px;
+width: 150px;
+height: 150px;
+border-radius: 190px;
+background: #EEEEEE;
+`;
+export const NicknameTxt = styled.div`
+height: 27px;
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 700;
+font-size: 22px;
+line-height: 27px;
+/* identical to box height, or 123% */
+letter-spacing: -0.1em;
+color: #333333;
+`;
+export const FieldTxt = styled.div`
+height: 27px;
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 27px;
+/* identical to box height, or 169% */
+letter-spacing: -0.1em;
+color: #999999;
+`;
+export const FollowTxt = styled.div`
+height: 27px;
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 27px;
+/* identical to box height, or 193% */
+letter-spacing: -0.1em;
+color: #CCCCCC;
+`;
+export const BlogTitle = styled.div`
+// width: 206px;
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 400;
+font-size: 16px;
+line-height: 27px;
+/* or 169% */
+letter-spacing: -0.1em;
+color: #999999;
+`;
+
+//푸터
+export const FooterComponent = styled.div`
+bottom: 0;
+left:0px;
+height: 300px;
+background: #000000;
+display:flex;
+justify-content: space-between;
+`;
+export const FooterWrapper = styled.div`
+margin-left:60px;
+margin-right:60px;
+height: 300px;
+background: #000000;
+display: flex;
+flex-direction: column;
+gap: 20px;
+`;
+export const Footertxt1 = styled.div`
+width: 621px;
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 350;
+font-size: 16px;
+line-height: 26px;
+/* or 162% */
+letter-spacing: -0.1em;
+color: #666666;
+`;
+export const FooterLine = styled.div`
+height: 0px;
+border: 1px solid #333333;
+`;
+export const FooterTxt2 = styled.div`
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 350;
+font-size: 16px;
+line-height: 14px;
+letter-spacing: -0.1em;
+color: #666666;
+
+`;
+export const FooterWrapper2 = styled.div`
+margin-top:50px;
+margin-right:60px;
+display:flex;
+gap:20px;
+`;
+export const FooterTxt3 = styled.div`
+height: 14px;
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 350;
+font-size: 16px;
+line-height: 14px;
+letter-spacing: -0.1em;
+color: #FFFFFF;
+`;
+
