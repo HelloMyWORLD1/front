@@ -6,11 +6,9 @@ export default function TestPage() {
   const url = `http://${API_KEY}/`;
 
   const TEST_KEY = process.env.REACT_APP_TEST;
-  const test = TEST_KEY;
 
   useEffect(() => {
       console.log(url);
-      console.log(test);
   },[]);
   
   return (<div>
