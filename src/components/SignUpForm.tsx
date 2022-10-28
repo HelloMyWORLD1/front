@@ -27,8 +27,8 @@ import logo from "../img/logo.png";
 
 function SignUpForm() {
   const [name, setName] = useState<string>("");
-  const [birth, setBirth] = useState<number>();
-  const [phone, setPhone] = useState<number>();
+  const [birth, setBirth] = useState<string>("");
+  const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [pw, setPw] = useState<string>("");
   const [pwCheck, setPwCheck] = useState<string>("");
@@ -62,10 +62,10 @@ function SignUpForm() {
     setName(event.currentTarget.value);
   };
   const birthHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    setBirth(+event.currentTarget.value);
+    setBirth(event.currentTarget.value);
   };
   const phoneHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    setPhone(+event.currentTarget.value);
+    setPhone(event.currentTarget.value);
   };
   const emailHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setEmail(event.currentTarget.value);
@@ -82,7 +82,7 @@ function SignUpForm() {
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(name, birth, phone, email, pw, pwCheck);
+    console.log(name, birth, phone, email, domain, pw, pwCheck);
   };
 
   return (
@@ -107,7 +107,7 @@ function SignUpForm() {
           <BirthInput
             value={birth}
             onChange={birthHandler}
-            type="number"
+            type="text"
             placeholder="숫자 8자리를 입력해주세요  ex) 19001201"
           />
           <BirthTxt>
@@ -117,7 +117,7 @@ function SignUpForm() {
           <PhoneInput
             value={phone}
             onChange={phoneHandler}
-            type="number"
+            type="text"
             placeholder="휴대전화번호 ‘-’를 제외하고 입력"
           />
           <PhoneTxt>
@@ -144,7 +144,7 @@ function SignUpForm() {
           <PwSignUpInput
             value={pw}
             onChange={pwHandler}
-            type="text"
+            type="password"
             placeholder="비밀번호(영문/숫자/특수문자 조합 8~20자)"
           />
           <PwTxt>8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.</PwTxt>
@@ -152,11 +152,11 @@ function SignUpForm() {
           <PwCheckInput
             value={pwCheck}
             onChange={pwCheckHandler}
-            type="text"
+            type="password"
             placeholder="비밀번호를 다시 입력해주세요"
           />
           <PwCheckTxt>비밀번호가 일치하지 않습니다.</PwCheckTxt>
-          <SignUpBtn onClick={gotoProfile}>회원가입</SignUpBtn>
+          <SignUpBtn>회원가입</SignUpBtn>
         </form>
       </SignUpInsideBox>
     </SignUpComponent>
