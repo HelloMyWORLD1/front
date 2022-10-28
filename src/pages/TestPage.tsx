@@ -3,7 +3,7 @@ import { useEffect } from "react";
 
 export default function TestPage() {
   const API_KEY = process.env.REACT_APP_API_KEY;
-  const url = `http://${API_KEY}/`;
+  const url = `${API_KEY}`;
 
   const TEST_KEY = process.env.REACT_APP_TEST;
 
