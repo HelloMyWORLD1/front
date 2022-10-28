@@ -1,6 +1,7 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { registerPortFolioTest } from "../slices/portFolioSlice";
+import { signUp } from "../slices/userSlice";
+import { registerPortFolio } from "../slices/portFolioSlice";
 
 import {
   HomePageMidImg,
@@ -41,7 +42,20 @@ function HomePageForm() {
         },
       ],
     };
-    dispatch(registerPortFolioTest(data));
+    dispatch(registerPortFolio(data));
+  };
+  const onClickButtonTest2 = (e: React.MouseEvent<HTMLElement>) => {
+    const data = {
+      email: "testleefirst",
+      password: "1234qwer!@#",
+      username: "leefirst",
+      field: "프론트엔드개발자",
+      phone: "010-1234-5678",
+      profileImage: "dd",
+      birth: "19970419",
+      nickname: "testleefirst",
+    };
+    dispatch(signUp(data));
   };
   return (
     <div>
@@ -55,7 +69,6 @@ function HomePageForm() {
         <HomePageMidTxt1>세상에 모든 가치를 그려내는 공간</HomePageMidTxt1>
         <HomePageMidTxt2>단 하나의 유일한 포트폴리오를 만나다</HomePageMidTxt2>
       </HomePageMidComponent>
-      <button onClick={onClickTestButton}>test</button>
     </div>
   );
 }
