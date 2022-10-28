@@ -35,36 +35,11 @@ const initialState: PortFolioInitalState = {
   unFollowPortFolioError: null,
 };
 
-// SWAGGER TEST
-// 포트폴리오 register test
-type pfTestType = {
-  detailJob: string;
-  title: string;
-  introduce: string;
-  tech: { techName: string; content: string }[];
-  education: string;
-  sns: string[];
-  certificate: string[];
-  foreignLanguage: string[];
-  project: { title: string; content: string }[];
-  career: { year: string; title: string; content: string }[];
-};
-export const registerPortFolioTest = createAsyncThunk(
-  "registerPortFolioTest",
-  async (data: pfTestType) => {
-    try {
-      const res = axios.post("/api/portfolio", data);
-      console.log(res);
-    } catch (error: any) {
-      console.log(error);
-    }
-  }
-);
 //Thunk 생성(비동기 처리 위한 로직)
 //포트폴리오 생성(자신의 포트폴리오)
 export const registerPortFolio = createAsyncThunk(
   "registerPortFolio",
-  async (data, { rejectWithValue }) => {
+  async (data: portFolioRegisterType, { rejectWithValue }) => {
     try {
       axios.defaults.headers.common["Authorization"] = "";
       const JWTTOEKN = localStorage.getItem("jwtToken");
