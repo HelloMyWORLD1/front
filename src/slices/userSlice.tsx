@@ -2,9 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-//const initialState : UserInitialState = {};
-//위와 같은 형식으로 사용하고 Type 지정한 변수값이 다 들어가야함.
-
 const initialState: UserInitialState = {
   user: null,
   logInLoading: false, // 로그인
@@ -33,12 +30,16 @@ const initialState: UserInitialState = {
 export const logIn = createAsyncThunk(
   "logIn", //이 값에 따라 pending(실행전), fulfilled(성공), rejected(실패)가 붙은 액션 타입이 생성된다.
   //비동기 로직의 결과를 포함하고 있는 프로미스를 반환하는 비동기 함수
-  async (data, { rejectWithValue }) => {
+  async (data: logInType, { rejectWithValue }) => {
     try {
-      const res = await axios.post("/user/logIn", data, {
-        withCredentials: true, //클라이언트와 서버가 토큰 값을 공유하겠다는 소리(CORS 요청 -> 클라이언트와 서버 둘다 설정해줘야함)
-      });
-      localStorage.setItem("jwtToken", res.data.token.accessToken); //로컬 스토리지에 쿠키 저장
+      const res = await axios.post(
+        "http://129.154.58.244:8001/api/login",
+        data,
+        {
+          withCredentials: false, //클라이언트와 서버가 토큰 값을 공유하겠다는 소리(CORS 요청 -> 클라이언트와 서버 둘다 설정해줘야함)
+        }
+      );
+      localStorage.setItem("jwtToken", res.data.token); //로컬 스토리지에 쿠키 저장
       const JWTTOKEN = localStorage.getItem("jwtToken");
       console.log(JWTTOKEN); // 로그인 후 쿠키가 local에 저장이 제대로 되어있는지 확인
       return res.data;
@@ -51,11 +52,15 @@ export const logIn = createAsyncThunk(
 
 export const signUp = createAsyncThunk(
   "signUp",
-  async (data, { rejectWithValue }) => {
+  async (data: signUpType, { rejectWithValue }) => {
     try {
-      const res = await axios.post("/user/signUp", data, {
-        withCredentials: true,
-      });
+      const res = await axios.post(
+        "http://129.154.58.244:8001/api/signup",
+        data,
+        {
+          withCredentials: false,
+        }
+      );
       console.log(res.data);
     } catch (error: any) {
       console.error(error);
