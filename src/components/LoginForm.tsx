@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   PwVector,
   EmailInput,
@@ -18,13 +18,19 @@ import { useNavigate } from "react-router-dom";
 import logo from "../img/logo.png";
 import circleFill from "../img/akar-icons_circle-check-fill.svg";
 import styled from "styled-components";
+import { useAppDispatch } from "../hooks";
+import { logIn } from "../slices/userSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 const AutoBox = styled.div`
   display: flex;
   align-items: center;
 `;
 function LoginForm() {
+  const { user } = useSelector((state: RootState) => state.user);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const gotoHome = () => {
     navigate("/");
   };
@@ -37,11 +43,23 @@ function LoginForm() {
     setPw(event.currentTarget.value);
   };
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(email, pw);
-  };
-
+  const onSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      dispatch(
+        logIn({
+          username: email,
+          password: pw,
+        })
+      );
+    },
+    [dispatch, email, pw]
+  );
+  useEffect(() => {
+    if (user) {
+      gotoHome();
+    }
+  }, [user]);
   return (
     <LogInComponent>
       <LogInInsideBox>
@@ -56,7 +74,7 @@ function LoginForm() {
           <PwInput
             value={pw}
             onChange={pwHandler}
-            type="text"
+            type="password"
             placeholder="비밀번호"
           />
           <AutoBox>
