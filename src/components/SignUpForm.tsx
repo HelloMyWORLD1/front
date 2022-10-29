@@ -28,7 +28,7 @@ import logo from "../img/logo.png";
 function SignUpForm() {
   const [name, setName] = useState<string>("");
   const [birth, setBirth] = useState<string>("");
-  const [phone, setPhone] = useState<string>("");
+  const [phone, setPhone] = useState<number>(0);
   const [email, setEmail] = useState<string>("");
   const [pw, setPw] = useState<string>("");
   const [pwCheck, setPwCheck] = useState<string>("");
@@ -65,7 +65,7 @@ function SignUpForm() {
     setBirth(event.currentTarget.value);
   };
   const phoneHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    setPhone(event.currentTarget.value);
+    setPhone(Number(event.currentTarget.value));
   };
   const emailHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setEmail(event.currentTarget.value);
