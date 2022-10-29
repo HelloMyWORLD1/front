@@ -52,10 +52,10 @@ function HomePageForm() {
       field: "프론트엔드개발자",
       phone: 1012345678,
       profileImage: "dd",
-      birth: "19970419",
+      birth: "1997-04-19 0",
       nickname: "testleefirst",
     };
-    dispatch(signUp(data));
+    //dispatch(signUp(data));
   };
   return (
     <div>
