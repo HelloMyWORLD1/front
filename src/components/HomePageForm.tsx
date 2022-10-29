@@ -50,7 +50,7 @@ function HomePageForm() {
       password: "1234qwer!@#",
       username: "leefirst",
       field: "프론트엔드개발자",
-      phone: "010-1234-5678",
+      phone: 1012345678,
       profileImage: "dd",
       birth: "19970419",
       nickname: "testleefirst",
