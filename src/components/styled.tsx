@@ -1000,7 +1000,7 @@ export const FilterResultCard = styled.div`
   width: 23%;
   height: 320px;
   margin: 1%;
-  background: #FFFFFF;
+  background: #ffffff;
   color: black;
 
   text-align: center;
@@ -1008,114 +1008,112 @@ export const FilterResultCard = styled.div`
 
 //홈카드
 export const CardImg = styled.img`
-margin-top: 15px;
-width: 150px;
-height: 150px;
-border-radius: 190px;
-background: #EEEEEE;
+  margin-top: 15px;
+  width: 150px;
+  height: 150px;
+  border-radius: 190px;
+  background: #eeeeee;
 `;
 export const NicknameTxt = styled.div`
-height: 27px;
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 700;
-font-size: 22px;
-line-height: 27px;
-/* identical to box height, or 123% */
-letter-spacing: -0.1em;
-color: #333333;
+  height: 27px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 27px;
+  /* identical to box height, or 123% */
+  letter-spacing: -0.1em;
+  color: #333333;
 `;
 export const FieldTxt = styled.div`
-height: 27px;
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 27px;
-/* identical to box height, or 169% */
-letter-spacing: -0.1em;
-color: #999999;
+  height: 27px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
+  /* identical to box height, or 169% */
+  letter-spacing: -0.1em;
+  color: #999999;
 `;
 export const FollowTxt = styled.div`
-height: 27px;
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-line-height: 27px;
-/* identical to box height, or 193% */
-letter-spacing: -0.1em;
-color: #CCCCCC;
+  height: 27px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 27px;
+  /* identical to box height, or 193% */
+  letter-spacing: -0.1em;
+  color: #cccccc;
 `;
 export const BlogTitle = styled.div`
-// width: 206px;
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 400;
-font-size: 16px;
-line-height: 27px;
-/* or 169% */
-letter-spacing: -0.1em;
-color: #999999;
+  // width: 206px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
+  /* or 169% */
+  letter-spacing: -0.1em;
+  color: #999999;
 `;
 
 //푸터
 export const FooterComponent = styled.div`
-bottom: 0;
-left:0px;
-height: 300px;
-background: #000000;
-display:flex;
-justify-content: space-between;
+  bottom: 0;
+  left: 0px;
+  height: 300px;
+  background: #000000;
+  display: flex;
+  justify-content: space-between;
 `;
 export const FooterWrapper = styled.div`
-margin-left:60px;
-margin-right:60px;
-height: 300px;
-background: #000000;
-display: flex;
-flex-direction: column;
-gap: 20px;
+  margin-left: 60px;
+  margin-right: 60px;
+  height: 300px;
+  background: #000000;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 `;
 export const Footertxt1 = styled.div`
-width: 621px;
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 350;
-font-size: 16px;
-line-height: 26px;
-/* or 162% */
-letter-spacing: -0.1em;
-color: #666666;
+  width: 621px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 350;
+  font-size: 16px;
+  line-height: 26px;
+  /* or 162% */
+  letter-spacing: -0.1em;
+  color: #666666;
 `;
 export const FooterLine = styled.div`
-height: 0px;
-border: 1px solid #333333;
+  height: 0px;
+  border: 1px solid #333333;
 `;
 export const FooterTxt2 = styled.div`
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 350;
-font-size: 16px;
-line-height: 14px;
-letter-spacing: -0.1em;
-color: #666666;
-
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 350;
+  font-size: 16px;
+  line-height: 14px;
+  letter-spacing: -0.1em;
+  color: #666666;
 `;
 export const FooterWrapper2 = styled.div`
-margin-top:50px;
-margin-right:60px;
-display:flex;
-gap:20px;
+  margin-top: 50px;
+  margin-right: 60px;
+  display: flex;
+  gap: 20px;
 `;
 export const FooterTxt3 = styled.div`
-height: 14px;
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 350;
-font-size: 16px;
-line-height: 14px;
-letter-spacing: -0.1em;
-color: #FFFFFF;
+  height: 14px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 350;
+  font-size: 16px;
+  line-height: 14px;
+  letter-spacing: -0.1em;
+  color: #ffffff;
 `;
-
