@@ -74,9 +74,11 @@ export const getPortFolio = createAsyncThunk(
 //포트폴리오 좋아요순(분야별) 조회
 export const getPortFoiloLike = createAsyncThunk(
   "getPortFoiloLike",
-  async (field, { rejectWithValue }) => {
+  async (field: string, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`blog/get/${field}/like`);
+      const res = await axios.get(
+        `http://129.154.58.244:8001/api/portfolio/${field}/like`
+      );
       console.log(res.data);
       return res.data;
     } catch (error: any) {
