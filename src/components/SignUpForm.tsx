@@ -83,6 +83,16 @@ function SignUpForm() {
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(name, birth, phone, email, domain, pw, pwCheck);
+    navigate("/signUp/profile", {
+      state: {
+        name,
+        birth,
+        phone,
+        email: `${email}@${domain}`,
+        pw,
+        pwCheck,
+      },
+    });
   };
 
   return (
