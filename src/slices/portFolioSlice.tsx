@@ -1,10 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { PayloadAction } from "@reduxjs/toolkit";
-//import { backURL } from "../config/config";
 
-//axios.defaults.baseURL = backURL;
-axios.defaults.withCredentials = true;
+axios.defaults.baseURL = "http://129.154.58.244:8001/api";
 
 const initialState: PortFolioInitalState = {
   portFolio: null,
@@ -44,7 +42,7 @@ export const registerPortFolio = createAsyncThunk(
       axios.defaults.headers.common["Authorization"] = "";
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
-      const res = await axios.post("blog/register", data, {
+      const res = await axios.post("/portfolio", data, {
         withCredentials: true,
       });
       console.log(res.data);
@@ -58,10 +56,10 @@ export const registerPortFolio = createAsyncThunk(
 //개인 포트폴리오 조회(클릭 시 이동하는 포폴 보기 위함)
 export const getPortFolio = createAsyncThunk(
   "getPortFolio",
-  async (nickname, { rejectWithValue }) => {
+  async (data: getPortFolioType, { rejectWithValue }) => {
     try {
       //get 요청시 닉네임 받기 위함
-      const res = await axios.get(`blog/get/${nickname}`);
+      const res = await axios.get(`/portfolio/${data.nickname}`);
       console.log(res.data);
       return res.data;
     } catch (error: any) {
@@ -74,11 +72,9 @@ export const getPortFolio = createAsyncThunk(
 //포트폴리오 좋아요순(분야별) 조회
 export const getPortFoiloLike = createAsyncThunk(
   "getPortFoiloLike",
-  async (field: string, { rejectWithValue }) => {
+  async (data: getPortFoiloLikeType, { rejectWithValue }) => {
     try {
-      const res = await axios.get(
-        `http://129.154.58.244:8001/api/portfolio/${field}/like`
-      );
+      const res = await axios.get(`/portfolio/${data.field}/like`);
       console.log(res.data);
       return res.data;
     } catch (error: any) {
@@ -91,9 +87,15 @@ export const getPortFoiloLike = createAsyncThunk(
 //포트폴리오 최신순(분야별) 조회-> 페이지네이션(오프셋 20개)
 export const getPortFolioLatest = createAsyncThunk(
   "getPortFolioLatest",
-  async () => {
+  async (data: getPortFolioLatestType) => {
     try {
-      const res = await axios.get(`blog/get/{field}?{pageNum}`);
+      // const res = await axios.get(`/portfolio/${data.field}?${data.pageNum}`);
+      // 분야별 최신순 받아야 하는데 notion에 자세히 작성이 안되있어서 백엔드쪽에서 착각하신듯함
+      // 그냥 최신순 모든 데이터로 되있는듯
+      // 일단 커뮤니티 기능과 디자인이 나와야 할 수 있는 기능이라 추후 수정하면 될듯함
+      // 아래가 현재 백엔드 주소임
+      // 주석 상단에 있는 형식로 변경해달라고 하면 될듯함
+      const res = await axios.get(`/portfolio/latest?page=${data.pageNum}`);
       console.log(res.data);
       return res.data;
     } catch (error: any) {
@@ -112,7 +114,7 @@ export const followPortFolio = createAsyncThunk(
       axios.defaults.headers.common["Authorization"] = "";
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
-      const res = await axios.post("portFolio/follow", data, {
+      const res = await axios.post("/portFolio/follow", data, {
         withCredentials: true,
       });
       console.log(res.data);
