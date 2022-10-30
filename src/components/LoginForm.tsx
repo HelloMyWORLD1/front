@@ -58,6 +58,8 @@ function LoginForm() {
   useEffect(() => {
     if (user) {
       gotoHome();
+    }else{
+      //로그인 시 오류 구분 지어서 동작하도록 해야할듯 합니다. -> 노션 에러코드(현재는 지금 에러코드가 하나밖에 안나옴)
     }
   }, [user]);
   return (
