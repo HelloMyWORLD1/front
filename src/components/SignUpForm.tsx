@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   EmailSignUpInput,
@@ -42,8 +42,7 @@ function SignUpForm() {
   const [pw, setPw] = useState<string>("");
   const [pwCheck, setPwCheck] = useState<string>("");
   const [domain, setDomain] = useState<string>("");
-  const [field,setField] = useState<string>("");
-  const [nickname,setNickname] = useState<string>("");
+  const [field, setField] = useState<string>("");
 
   const selectList = [
     "도메인 선택",
@@ -69,8 +68,8 @@ function SignUpForm() {
     "디자인",
     "마케팅",
     "회계",
-    "HR"
-  ]
+    "HR",
+  ];
   const gotoHome = () => {
     navigate("/");
   };
@@ -79,9 +78,6 @@ function SignUpForm() {
   };
 
   const fieldHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    setName(event.currentTarget.value);
-  };
-  const nicknameHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setName(event.currentTarget.value);
   };
   const nameHandler = (event: React.FormEvent<HTMLInputElement>) => {
@@ -109,7 +105,16 @@ function SignUpForm() {
   const onSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      console.log(name, birth, phone, email, domain, pw, pwCheck,field,nickname);
+      console.log(
+        name,
+        birth,
+        phone,
+        email,
+        domain,
+        pw,
+        pwCheck,
+        field,
+      );
       dispatch(
         signUp({
           email: email,
@@ -119,9 +124,15 @@ function SignUpForm() {
           phone: phone,
           profileImage: "string",
           birth: birth,
-          nickname: nickname,
+          nickname: "nickname",
         })
       );
+    },
+    [[dispatch, name, birth, phone, email, pw, pwCheck, field]]
+  );
+  useEffect(() => {
+    console.log(signUpLoading, signUpDone, signUpError);
+    if (signUpDone) {
       navigate("/signUp/profile", {
         state: {
           name,
@@ -131,12 +142,14 @@ function SignUpForm() {
           pw,
           pwCheck,
           field,
-          nickname
         },
       });
-    },
-    [[dispatch, email, pw]]
-  );
+    } else if (signUpLoading) {
+      console.log("회원가입 전");
+    } else if (signUpError) {
+      console.log(signUpError);
+    }
+  }, [signUpLoading, signUpDone, signUpError]);
 
   return (
     <SignUpComponent>
