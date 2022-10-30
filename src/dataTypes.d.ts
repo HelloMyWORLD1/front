@@ -3,7 +3,7 @@ type signUpType = {
   password: string;
   username: string;
   field: string;
-  phone: number;
+  phone: string;
   profileImage: string;
   birth: string;
   nickname: string;

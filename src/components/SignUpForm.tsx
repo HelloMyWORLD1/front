@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   EmailSignUpInput,
@@ -24,15 +24,27 @@ import {
   ExplainTxt,
 } from "./styled";
 import logo from "../img/logo.png";
+import { useAppDispatch } from "../hooks";
+import { logIn, signUp } from "../slices/userSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 function SignUpForm() {
+  const { user, signUpLoading, signUpDone, signUpError } = useSelector(
+    (state: RootState) => state.user
+  );
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [name, setName] = useState<string>("");
   const [birth, setBirth] = useState<string>("");
-  const [phone, setPhone] = useState<number>(0);
+  const [phone, setPhone] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [pw, setPw] = useState<string>("");
   const [pwCheck, setPwCheck] = useState<string>("");
   const [domain, setDomain] = useState<string>("");
+  const [field,setField] = useState<string>("");
+  const [nickname,setNickname] = useState<string>("");
+
   const selectList = [
     "도메인 선택",
     "@naver.com",
@@ -49,8 +61,16 @@ function SignUpForm() {
     "dreamwiz.com",
     "직접입력",
   ];
-
-  const navigate = useNavigate();
+  const fieldList = [
+    "개발",
+    "경영",
+    "운영",
+    "데이터",
+    "디자인",
+    "마케팅",
+    "회계",
+    "HR"
+  ]
   const gotoHome = () => {
     navigate("/");
   };
@@ -58,6 +78,12 @@ function SignUpForm() {
     navigate("/signUp/profile");
   };
 
+  const fieldHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setName(event.currentTarget.value);
+  };
+  const nicknameHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setName(event.currentTarget.value);
+  };
   const nameHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setName(event.currentTarget.value);
   };
@@ -65,7 +91,7 @@ function SignUpForm() {
     setBirth(event.currentTarget.value);
   };
   const phoneHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    setPhone(Number(event.currentTarget.value));
+    setPhone(event.currentTarget.value);
   };
   const emailHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setEmail(event.currentTarget.value);
@@ -80,20 +106,37 @@ function SignUpForm() {
     setPwCheck(event.currentTarget.value);
   };
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(name, birth, phone, email, domain, pw, pwCheck);
-    navigate("/signUp/profile", {
-      state: {
-        name,
-        birth,
-        phone,
-        email: `${email}@${domain}`,
-        pw,
-        pwCheck,
-      },
-    });
-  };
+  const onSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      console.log(name, birth, phone, email, domain, pw, pwCheck,field,nickname);
+      dispatch(
+        signUp({
+          email: email,
+          password: pw,
+          username: name,
+          field: field,
+          phone: phone,
+          profileImage: "string",
+          birth: birth,
+          nickname: nickname,
+        })
+      );
+      navigate("/signUp/profile", {
+        state: {
+          name,
+          birth,
+          phone,
+          email: `${email}@${domain}`,
+          pw,
+          pwCheck,
+          field,
+          nickname
+        },
+      });
+    },
+    [[dispatch, email, pw]]
+  );
 
   return (
     <SignUpComponent>

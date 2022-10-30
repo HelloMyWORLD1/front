@@ -28,7 +28,7 @@ const AutoBox = styled.div`
   align-items: center;
 `;
 function LoginForm() {
-  const { user } = useSelector((state: RootState) => state.user);
+  const { user,logInDone,logInError,logInLoading } = useSelector((state: RootState) => state.user);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const gotoHome = () => {
@@ -56,12 +56,17 @@ function LoginForm() {
     [dispatch, email, pw]
   );
   useEffect(() => {
-    if (user) {
+    console.log(user,logInDone,logInLoading,logInError);
+    if (logInDone) {
       gotoHome();
-    }else{
+    }else if(logInLoading){
       //로그인 시 오류 구분 지어서 동작하도록 해야할듯 합니다. -> 노션 에러코드(현재는 지금 에러코드가 하나밖에 안나옴)
+      console.log("로그인 전");
     }
-  }, [user]);
+    else if(logInError){
+      console.log(logInError);
+    }
+  }, [user,logInDone,logInError,logInLoading]);
   return (
     <LogInComponent>
       <LogInInsideBox>
