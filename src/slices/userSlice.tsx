@@ -126,7 +126,7 @@ const userSlice = createSlice({
     [logIn.rejected.type]: (state, action: PayloadAction<object>) => {
       //error 발생 시(실패)
       state.logInLoading = false;
-      state.logInDone = true;
+      state.logInDone = false;
       state.logInError = action.payload;
     },
     //signUp 로직
