@@ -30,6 +30,8 @@ import testImg9 from "../img/testImg9.png";
 import testImg10 from "../img/testImg10.png";
 import testImg11 from "../img/testImg11.png";
 import testImg12 from "../img/testImg12.png";
+import { getPortFoiloLike } from "../slices/portFolioSlice";
+import { useAppDispatch } from "../hooks";
 
 interface Cards {
   id: number;
@@ -37,6 +39,40 @@ interface Cards {
 }
 
 function HomeCard() {
+  const dispatch = useAppDispatch();
+
+  function onClickDeveloper(event: React.MouseEvent<HTMLInputElement>) {
+    console.log("개발");
+    //dispatch(getPortFoiloLike("개발"));
+  }
+  function onClickManagement(event: React.MouseEvent<HTMLInputElement>) {
+    console.log("경영");
+    //dispatch(getPortFoiloLike("경영"));
+  }
+  function onClickOperate(event: React.MouseEvent<HTMLInputElement>) {
+    console.log("운영");
+    //dispatch(getPortFoiloLike("운영"));
+  }
+  function onClickData(event: React.MouseEvent<HTMLInputElement>) {
+    console.log("데이터");
+    //dispatch(getPortFoiloLike("데이터"));
+  }
+  function onClickDesign(event: React.MouseEvent<HTMLInputElement>) {
+    console.log("디자인");
+    //dispatch(getPortFoiloLike("디자인"));
+  }
+  function onClickMarketing(event: React.MouseEvent<HTMLInputElement>) {
+    console.log("마케팅");
+    //dispatch(getPortFoiloLike("마케팅"));
+  }
+  function onClickAccounting(event: React.MouseEvent<HTMLInputElement>) {
+    console.log("회계");
+    //dispatch(getPortFoiloLike("회계"));
+  }
+  function onClickHR(event: React.MouseEvent<HTMLInputElement>) {
+    console.log("HR");
+    //dispatch(getPortFoiloLike("HR"));
+  }
   const [cards, setCards] = React.useState<Cards[]>([
     { id: 1, profile: testImg },
     { id: 2, profile: testImg2 },
@@ -64,7 +100,7 @@ function HomeCard() {
       </BlogTitle>
     </FilterResultCard>
   ));
-  
+
   return (
     <HomePageUnderComponent>
       <HomeCardIntroTxtComponent>
@@ -80,20 +116,30 @@ function HomeCard() {
       </HomeCardIntroTxtComponent>
       <FilterComponent>
         <FilterCategory>
-          <FilterEachCategory>개발</FilterEachCategory>
-          <FilterEachCategory>경영∙비즈니스</FilterEachCategory>
-          <FilterEachCategory>운영∙서비스기획</FilterEachCategory>
-          <FilterEachCategory>데이터</FilterEachCategory>
-          <FilterEachCategory>디자인</FilterEachCategory>
-          <FilterEachCategory>마케팅∙홍보</FilterEachCategory>
-          <FilterEachCategory>회계</FilterEachCategory>
-          <FilterEachCategory>HR</FilterEachCategory>
+          <FilterEachCategory onClick={onClickDeveloper}>
+            개발
+          </FilterEachCategory>
+          <FilterEachCategory onClick={onClickManagement}>
+            경영∙비즈니스
+          </FilterEachCategory>
+          <FilterEachCategory onClick={onClickOperate}>
+            운영∙서비스기획
+          </FilterEachCategory>
+          <FilterEachCategory onClick={onClickData}>데이터</FilterEachCategory>
+          <FilterEachCategory onClick={onClickDesign}>
+            디자인
+          </FilterEachCategory>
+          <FilterEachCategory onClick={onClickMarketing}>
+            마케팅∙홍보
+          </FilterEachCategory>
+          <FilterEachCategory onClick={onClickAccounting}>
+            회계
+          </FilterEachCategory>
+          <FilterEachCategory onClick={onClickHR}>HR</FilterEachCategory>
         </FilterCategory>
         <FilterTxt>필터</FilterTxt>
       </FilterComponent>
-      <FilterResultCardComponent>
-        {cardList}
-      </FilterResultCardComponent>
+      <FilterResultCardComponent>{cardList}</FilterResultCardComponent>
     </HomePageUnderComponent>
   );
 }

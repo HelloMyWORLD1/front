@@ -27,3 +27,16 @@ type logInType = {
   username: string;
   password: string;
 };
+
+type getPortFoiloLikeType = {
+  field: string;
+};
+
+type getPortFolioType = {
+  nickname: string;
+};
+
+type getPortFolioLatestType = {
+  field: string;
+  pageNum: number;
+};

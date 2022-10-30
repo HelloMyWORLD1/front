@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   UploadImg,
   NicknameInput,
@@ -15,13 +15,34 @@ import {
 import logo from "../img/logo.png";
 import mask from "../img/Mask group.png";
 import profileUpload from "../img/profileUpload.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function SignUpProfileForm() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const locationState = location.state as {
+    name: string;
+    birth: number;
+    email: string;
+    phone: string;
+    pw: string;
+  };
+  const { name, birth, email, phone, pw } = locationState;
+
+  useEffect(() => {
+    console.log(name);
+    console.log(birth);
+    console.log(email);
+    console.log(phone);
+    console.log(pw);
+  }, []);
 
   const [nickname, setNickname] = useState<string>("");
+  const [profileImage, setProfileImage] = useState<string>("imgTest");
 
+  const gotoHome = () => {
+    navigate("/");
+  };
   const nicknameHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setNickname(event.currentTarget.value);
   };
@@ -34,12 +55,14 @@ export default function SignUpProfileForm() {
     console.log("업로드 버튼 눌림");
   };
   const register = () => {
-    alert("회원가입 완료");
-    navigate("/login");
+    if (!nickname) {
+      alert("닉네임을 입력해주세요");
+    } else {
+      console.log(name, birth, email, phone, pw, nickname, profileImage);
+      navigate("/login");
+    }
   };
-  const gotoHome = () => {
-    navigate("/");
-  };
+
   return (
     <SignUpProfileComponent>
       <SignUpProfileBox>
@@ -54,7 +77,6 @@ export default function SignUpProfileForm() {
             <Mask src={mask} />
             <UploadImg src={profileUpload} onClick={upload}></UploadImg>
           </MaskBox>
-
           <NicknameInput
             value={nickname}
             onChange={nicknameHandler}
