@@ -1117,3 +1117,8 @@ export const FooterTxt3 = styled.div`
   letter-spacing: -0.1em;
   color: #ffffff;
 `;
+
+//imageUpload test
+export const ImageFileInput = styled.input`
+display:none;
+`;
