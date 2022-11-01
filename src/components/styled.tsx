@@ -252,7 +252,7 @@ export const SignUpTxt2 = styled.span`
 
   color: #999999;
 `;
-export const NameInput = styled.input`
+export const SignUpNormalInput = styled.input`
   box-sizing: border-box;
 
   //position: absolute;
@@ -275,51 +275,17 @@ export const NameInput = styled.input`
     color: #999999;
   }
 `;
-export const BirthInput = styled.input`
+export const FieldSignUpSelect = styled.select`
   box-sizing: border-box;
 
-  //position: absolute;
+  //position: absolute; 원본
   width: 600px;
   height: 60px;
-  //left: 660px; 원본
-  //top: 511px; 원본
-  //margin-left: 20px;
+  //left: 1053px; 원본
+  //top: 754px; 원본
   margin-top: 10px;
   background: #ffffff;
   border: 1px solid #e5e5e5;
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 23px;
-  letter-spacing: -0.1em;
-
-  &::placeholder {
-    color: #999999;
-  }
-`;
-export const PhoneInput = styled.input`
-  box-sizing: border-box;
-
-  //position: absolute;
-  width: 600px;
-  height: 60px;
-  //left: 660px;
-  //top: 632px;
-  //margin-left: 20px; //test
-  margin-top: 10px; //test
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 23px;
-  letter-spacing: -0.1em;
-
-  &::placeholder {
-    color: #999999;
-  }
 `;
 export const EmailSignUpInput = styled.input`
   box-sizing: border-box;
@@ -357,52 +323,6 @@ export const EmailSignUpSelect = styled.select`
   border: 1px solid #e5e5e5;
 `;
 
-export const PwSignUpInput = styled.input`
-  box-sizing: border-box;
-
-  //position: absolute; 원본
-  width: 600px;
-  height: 60px;
-  //left: 660px; 원본
-  //top: 895px; 원본
-  //margin-left: 20px;
-  margin-top: 10px;
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 23px;
-  letter-spacing: -0.1em;
-
-  &::placeholder {
-    color: #999999;
-  }
-`;
-export const PwCheckInput = styled.input`
-  box-sizing: border-box;
-
-  //position: absolute; 원본
-  width: 600px;
-  height: 60px;
-  //left: 660px; 원본
-  //top: 1009px; 원본
-  //margin-left: 20px;
-  margin-top: 10px;
-  background: #ffffff;
-  border: 1px solid #e5e5e5;
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 23px;
-  letter-spacing: -0.1em;
-
-  &::placeholder {
-    color: #999999;
-  }
-`;
 export const SignUpBtn = styled.button`
   //position: absolute;
   width: 600px;
@@ -441,7 +361,7 @@ export const ExplainTxt = styled.div`
   color: #333333;
 `;
 
-export const NameTxt = styled.span`
+export const CheckWarnTxt = styled.span`
   //position: absolute;
   // width: 316px;
   height: 23px;
@@ -449,88 +369,6 @@ export const NameTxt = styled.span`
   //top: 458px;
   //margin-left: 20px;
 
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 23px;
-  letter-spacing: -0.1em;
-
-  color: #ff0000;
-`;
-export const BirthTxt = styled.span`
-  //position: absolute; 원본
-  // width: 359px;
-  height: 23px;
-  //left: 660px; 원본
-  //top: 579px; 원본
-  //margin-left: 20px;
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 23px;
-  letter-spacing: -0.1em;
-
-  color: #ff0000;
-`;
-export const PhoneTxt = styled.span`
-  // position: absolute; 원본
-  // width: 359px;
-  height: 23px;
-  //left: 660px; 원본
-  //top: 700px; 원본
-  //margin-left: 20px;
-
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 23px;
-  letter-spacing: -0.1em;
-
-  color: #ff0000;
-`;
-export const EmailTxt = styled.span`
-  //position: absolute; 원본
-  // width: 359px;
-  height: 23px;
-  //left: 660px; 원본
-  //top: 822px; 원본
-  //margin-left: 20px;
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 23px;
-  letter-spacing: -0.1em;
-
-  color: #ff0000;
-`;
-export const PwTxt = styled.span`
-  //position: absolute; 원본
-  // width: 301px;
-  height: 23px;
-  //left: 660px; 원본
-  //top: 963px; 원본
-  //margin-left: 20px;
-
-  font-family: "Noto Sans CJK KR";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 23px;
-  letter-spacing: -0.1em;
-
-  color: #ff0000;
-`;
-export const PwCheckTxt = styled.span`
-  //position: absolute;
-  // width: 179px;
-  height: 23px;
-  //left: 660px;
-  //top: 1077px;
-  //margin-left: 20px;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 400;
