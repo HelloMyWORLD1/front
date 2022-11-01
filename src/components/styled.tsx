@@ -82,7 +82,7 @@ export const EmailInput = styled.input`
   //margin-left: 20px;
   margin-top: 60px;
   background: #ffffff;
-  border: 1px solid #333333;
+  border: 1px solid #e5e5e5;
 
   font-family: "Noto Sans CJK KR";
   font-style: normal;
