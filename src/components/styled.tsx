@@ -227,6 +227,7 @@ export const EmailSignUpInput = styled.input`
   font-size: 16px;
   line-height: 23px;
   letter-spacing: -0.1em;
+  padding-top: 0;
   &::placeholder {
     color: #999999;
   }
