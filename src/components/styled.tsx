@@ -637,7 +637,7 @@ export const FilterResultCardComponent = styled.div`
 `;
 export const FilterResultCard = styled.div`
   width: 23%;
-  height: 320px;
+  height: 40%;
   margin: 1%;
   background: #ffffff;
   color: black;
@@ -646,7 +646,7 @@ export const FilterResultCard = styled.div`
 
 //홈카드
 export const CardImg = styled.img`
-  margin-top: 15px;
+  margin-top: 60px;
   width: 150px;
   height: 150px;
   border-radius: 190px;
@@ -654,6 +654,7 @@ export const CardImg = styled.img`
 `;
 export const NicknameTxt = styled.div`
   height: 27px;
+  margin-top: 19px;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 700;
@@ -665,6 +666,7 @@ export const NicknameTxt = styled.div`
 export const FieldTxt = styled.div`
   height: 27px;
   font-family: "Noto Sans CJK KR";
+  margin-top: 5px;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -674,6 +676,7 @@ export const FieldTxt = styled.div`
 `;
 export const FollowTxt = styled.div`
   height: 27px;
+  margin-top: 15px;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 400;
@@ -684,11 +687,13 @@ export const FollowTxt = styled.div`
 `;
 export const BlogTitle = styled.div`
   font-family: "Noto Sans CJK KR";
+  margin-top: 15px;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 27px;
   letter-spacing: -0.1em;
+  margin-bottom: 60px;
   color: #999999;
 `;
 
