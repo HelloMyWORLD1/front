@@ -277,25 +277,16 @@ export const SignUpNormalInput = styled.input`
 `;
 export const FieldSignUpSelect = styled.select`
   box-sizing: border-box;
-
-  //position: absolute; 원본
   width: 600px;
   height: 60px;
-  //left: 1053px; 원본
-  //top: 754px; 원본
   margin-top: 10px;
   background: #ffffff;
   border: 1px solid #e5e5e5;
 `;
 export const EmailSignUpInput = styled.input`
   box-sizing: border-box;
-
-  //position: absolute;
   width: 383px;
   height: 60px;
-  //left: 660px;
-  //top: 754px;
-  //margin-left: 20px;
   margin-top: 10px;
   background: #ffffff;
   border: 1px solid #e5e5e5;
@@ -305,51 +296,37 @@ export const EmailSignUpInput = styled.input`
   font-size: 16px;
   line-height: 23px;
   letter-spacing: -0.1em;
-
   &::placeholder {
     color: #999999;
   }
 `;
 export const EmailSignUpSelect = styled.select`
   box-sizing: border-box;
-
-  //position: absolute; 원본
   width: 207px;
   height: 60px;
-  //left: 1053px; 원본
-  //top: 754px; 원본
   margin-left: 5px;
   background: #ffffff;
   border: 1px solid #e5e5e5;
 `;
 
 export const SignUpBtn = styled.button`
-  //position: absolute;
   width: 600px;
   height: 60px;
-  //left: 660px;
-  //top: 1140px;
-  //margin-left: 20px;
   margin-top: 40px;
   margin-bottom: 200px;
   background: #222222;
-
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
   line-height: 26px;
-  /* identical to box height */
-
   text-align: center;
   letter-spacing: -0.1em;
 
   color: #ffffff;
 `;
 export const ExplainTxt = styled.div`
-  //position: absolute;
   height: 20px;
-  //margin-left: 20px;
   margin-top: 40px;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
@@ -362,20 +339,13 @@ export const ExplainTxt = styled.div`
 `;
 
 export const CheckWarnTxt = styled.span`
-  //position: absolute;
-  // width: 316px;
   height: 23px;
-  //left: 660px;
-  //top: 458px;
-  //margin-left: 20px;
-
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 23px;
   letter-spacing: -0.1em;
-
   color: #ff0000;
 `;
 
@@ -394,46 +364,31 @@ export const SignUpProfileBox = styled.div`
   align-items: center;
 `;
 export const SignUpProfileTxt = styled.span`
-  //position: absolute;
   height: 67px;
-  //left: 863px;
-  //top: 252px;
-  //margin-left: 20px;
   margin-top: 40px;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 500;
   font-size: 46px;
   line-height: 67px;
-  /* identical to box height */
-
   display: flex;
   align-items: center;
   letter-spacing: -0.1em;
   text-transform: uppercase;
-
   color: #333333;
 `;
 export const SignUpProfileTxt2 = styled.span`
-  //position: absolute;
   height: 26px;
-
-  //left: 838px;
-  //top: 324px;
-  //margin-left: 20px;
   margin-top: 5px;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 26px;
-  /* identical to box height */
-
   display: flex;
   align-items: center;
   letter-spacing: -0.1em;
   text-transform: uppercase;
-
   color: #999999;
 `;
 export const MaskBox = styled.div`
@@ -442,38 +397,25 @@ export const MaskBox = styled.div`
 export const Mask = styled.img`
   width: 150px;
   height: 150px;
-  //left: 885px;
-  //top: 390px;
   margin-left: 187px;
   margin-top: 40px;
 `;
 export const UploadImg = styled.img`
   position: absolute;
-
   width: 40px;
   height: 40px;
-  //left: 940px;
-  //top: 435px;
-
   top: 50%;
   left: 45%;
-
   cursor: pointer;
 `;
 
 export const NicknameInput = styled.input`
   box-sizing: border-box;
-
-  //position: absolute;
   width: 500px;
   height: 60px;
-  //left: 710px;
-  //top: 570px;
-  //margin-left: 20px;
   margin-top: 30px;
   background: #ffffff;
   border: 1px solid #e5e5e5;
-
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 350;
@@ -485,24 +427,17 @@ export const NicknameInput = styled.input`
   }
 `;
 export const RegisterProfileBtn = styled.button`
-  //position: absolute;
   width: 502px;
   height: 60px;
-  //left: 710px;
-  //top: 640px;
   margin-top: 40px;
-  //margin-left: 20px;
   background: #222222;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
-  /* identical to box height */
-
   text-align: center;
   letter-spacing: -0.1em;
-
   color: #ffffff;
 `;
 
@@ -526,37 +461,26 @@ export const FindPasswordInsideBox = styled.div`
 `;
 
 export const FindPasswordTxt = styled.span`
-  //position: absolute;
   width: 124px;
   height: 35px;
-  //left: 1048px;
-  //top: 205px;
   margin-top: 53px;
-  //margin-left: 20px;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
   line-height: 35px;
-  /* identical to box height */
-
   display: flex;
   align-items: center;
   text-align: center;
   letter-spacing: -0.1em;
   text-transform: uppercase;
-
   color: #333333;
 `;
 
 export const FindPasswordInput = styled.input`
   box-sizing: border-box;
-
-  //position: absolute;
   width: 600px;
   height: 60px;
-  //left: 660px;
-  //top: 312px;
   &::placeholder {
     color: #999999;
   }
@@ -567,12 +491,8 @@ export const FindPasswordInput = styled.input`
 
 export const FindPasswordSubmitButton = styled.button`
   box-sizing: border-box;
-
-  //position: absolute;
   width: 600px;
   height: 60px;
-  //left: 660px;
-  //top: 412px;
   margin-top: 40px;
   background: #222222;
   border: 1px solid #e5e5e5;
@@ -581,8 +501,6 @@ export const FindPasswordSubmitButton = styled.button`
   font-weight: 400;
   font-size: 18px;
   line-height: 26px;
-  /* identical to box height */
-
   text-align: center;
   letter-spacing: -0.1em;
 
@@ -610,23 +528,16 @@ export const LinkCategory = styled.div`
 //홈 | 소개 | 커뮤니티 개별 카드
 export const LinkCategoryCard = styled.div`
   height: 20px;
-
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 300;
   font-size: 16px;
-  //line-height: 62px;
-  /* or 388% */
   margin-right: 30px;
   display: flex;
   align-items: center;
   text-align: center;
   letter-spacing: -0.1em;
-
   color: #333333;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -643,7 +554,6 @@ export const MakeMyBlogBtn = styled.button`
   font-size: 16px;
   line-height: 23px;
   letter-spacing: -0.1em;
-
   color: #ffffff;
 `;
 
@@ -679,10 +589,7 @@ export const HomePageMidTxt1 = styled.div`
 `;
 export const HomePageMidTxt2 = styled.div`
   position: absolute;
-  // width: 291px;
   height: 20px;
-  //left: 815px;
-  //top: 630px;
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -691,73 +598,48 @@ export const HomePageMidTxt2 = styled.div`
   font-weight: 300;
   font-size: 20px;
   line-height: 62px;
-
-  /* or 310% */
-
-  //display: flex;
-  //align-items: center;
   text-align: center;
   letter-spacing: -0.1em;
-
   color: #eeeeee;
 `;
 
 export const HomeCardIntroTxtComponent = styled.div`
   display: flex;
-
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
   gap: 10px;
-
-  //position: absolute;
   width: 94%;
   height: 64px;
 
   margin-top: 80px;
 `;
 export const HomeCardIntroTxt1 = styled.div`
-  // width: 220px;
   height: 36px;
-
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 500;
   font-size: 28px;
   line-height: 36px;
-  /* identical to box height, or 129% */
-
   display: flex;
   align-items: center;
   letter-spacing: -0.1em;
-
   color: #333333;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 0;
   flex-grow: 0;
 `;
 export const HomeCardIntroTxt2 = styled.div`
-  // width: 284px;
   height: 18px;
-
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 300;
   font-size: 16px;
   line-height: 62px;
-  /* or 388% */
-
   display: flex;
   align-items: center;
   letter-spacing: -0.1em;
-
   color: #999999;
-
-  /* Inside auto layout */
-
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -795,41 +677,29 @@ export const FilterCategory = styled.div`
 
 export const FilterEachCategory = styled.div`
   height: 36px;
-
   margin-right: 30px;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 36px;
-  /* identical to box height, or 200% */
-
   letter-spacing: -0.1em;
   cursor: pointer;
   color: #999999;
 `;
 export const FilterTxt = styled.div`
-  //position: absolute;
-  // width: 32px;
   height: 36px;
-  //left: 1829px;
-  //top: 1234px;
-
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 36px;
-  /* identical to box height, or 200% */
-
   letter-spacing: -0.1em;
-
   color: #999999;
 `;
 
 export const FilterResultCardComponent = styled.div`
   width: 96%;
-
   display: flex;
   flex-wrap: wrap;
   margin-top: 30px;
@@ -840,7 +710,6 @@ export const FilterResultCard = styled.div`
   margin: 1%;
   background: #ffffff;
   color: black;
-
   text-align: center;
 `;
 
@@ -859,7 +728,6 @@ export const NicknameTxt = styled.div`
   font-weight: 700;
   font-size: 22px;
   line-height: 27px;
-  /* identical to box height, or 123% */
   letter-spacing: -0.1em;
   color: #333333;
 `;
@@ -870,7 +738,6 @@ export const FieldTxt = styled.div`
   font-weight: 400;
   font-size: 16px;
   line-height: 27px;
-  /* identical to box height, or 169% */
   letter-spacing: -0.1em;
   color: #999999;
 `;
@@ -881,18 +748,15 @@ export const FollowTxt = styled.div`
   font-weight: 400;
   font-size: 14px;
   line-height: 27px;
-  /* identical to box height, or 193% */
   letter-spacing: -0.1em;
   color: #cccccc;
 `;
 export const BlogTitle = styled.div`
-  // width: 206px;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 27px;
-  /* or 169% */
   letter-spacing: -0.1em;
   color: #999999;
 `;
@@ -922,7 +786,6 @@ export const Footertxt1 = styled.div`
   font-weight: 350;
   font-size: 16px;
   line-height: 26px;
-  /* or 162% */
   letter-spacing: -0.1em;
   color: #666666;
 `;
