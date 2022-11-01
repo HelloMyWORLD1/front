@@ -30,6 +30,14 @@ body {
     width : 100%;
     //height : 100%;
     background : #F5F5F5;
-    
-}`;
+
+}
+
+input {
+  :focus {
+    outline: 1px solid #333333;
+  }
+}
+`;
+
 export default GlobalStyles;
