@@ -50,7 +50,7 @@ function LoginForm() {
       event.preventDefault();
       dispatch(
         logIn({
-          username: email,
+          email: email,
           password: pw,
         })
       );
