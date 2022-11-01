@@ -1,5 +1,5 @@
 import React, { useRef, useCallback, useState, useEffect } from "react";
-import defaulfImage from "../img/Mask group.png"
+import defaulfImage from "../img/Mask group.png";
 
 function ImageUpload() {
   const [preview, setPreview] = useState<string>(); // 파일 base64
@@ -14,6 +14,7 @@ function ImageUpload() {
       }
       setImage(e.target.files[0]);
       const formData = new FormData();
+      console.log(e.target.files[0]);
       formData.append("image", e.target.files[0]);
       //API호출(post방식으로 formData 보내기)
       console.log(e.target.files[0]);
@@ -41,8 +42,11 @@ function ImageUpload() {
 
   return (
     <div>
-       {preview ? (
-    <img src={preview} alt={"preview"} style={{ objectFit: "cover" }} />):(<img src={defaulfImage}></img>)}
+      {preview ? (
+        <img src={preview} alt={"preview"} style={{ objectFit: "cover" }} />
+      ) : (
+        <img src={defaulfImage}></img>
+      )}
       <input
         type="file"
         accept="image/*"
