@@ -636,6 +636,9 @@ export const FilterResultCardComponent = styled.div`
   margin-top: 30px;
 `;
 export const FilterResultCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 23%;
   height: 40%;
   margin: 1%;
@@ -688,6 +691,7 @@ export const FollowTxt = styled.div`
 export const BlogTitle = styled.div`
   font-family: "Noto Sans CJK KR";
   margin-top: 15px;
+  width: 206px;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
