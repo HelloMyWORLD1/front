@@ -161,6 +161,7 @@ function SignUpForm() {
               </option>
             ))}
           </FieldSignUpSelect>
+          <CheckWarnTxt>분야를 선택해주세요.</CheckWarnTxt>
           <ExplainTxt>생년월일</ExplainTxt>
           <SignUpNormalInput
             value={birth}
@@ -169,7 +170,7 @@ function SignUpForm() {
             placeholder="숫자 8자리를 입력해주세요  ex) 19001201"
           />
           <CheckWarnTxt>
-            한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)
+            숫자만 입력해주세요. (특수기호, 공백 사용 불가)
           </CheckWarnTxt>
           <ExplainTxt>휴대폰번호</ExplainTxt>
           <SignUpNormalInput
