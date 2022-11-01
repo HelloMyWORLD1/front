@@ -103,6 +103,9 @@ export const PwVector = styled.img`
 
 export const TagBox = styled.div`
   margin-top: 15px;
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
 `;
 export const SignupTag = styled.a`
   text-decoration: none;
@@ -118,8 +121,6 @@ export const SignupTag = styled.a`
 export const FingTag = styled.a`
   text-decoration: none;
   height: 23px;
-  margin-left: 216px;
-  margin-top: 30px;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 400;
