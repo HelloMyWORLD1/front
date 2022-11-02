@@ -2,7 +2,7 @@
 
 //회원 비동기처리 상태관리
 interface UserInitialState {
-  user: null | object;
+  user: any;
   //로그인
   logInLoading: boolean;
   logInDone: boolean;
@@ -15,7 +15,6 @@ interface UserInitialState {
   signUpLoading: boolean;
   signUpDone: boolean;
   signUpError: null | object;
-
   findPasswordLoading: boolean;
   findPasswordDone: boolean;
   findPasswordError: null | object;
