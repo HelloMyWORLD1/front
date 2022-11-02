@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { PayloadAction } from "@reduxjs/toolkit";
-
+axios.defaults.baseURL = "http://129.154.58.244:8001/api";
 const initialState: UserInitialState = {
   user: null,
   logInLoading: false, // 로그인
@@ -32,17 +32,13 @@ export const logIn = createAsyncThunk(
   //비동기 로직의 결과를 포함하고 있는 프로미스를 반환하는 비동기 함수
   async (data: logInType, { rejectWithValue }) => {
     try {
-      const res = await axios.post(
-        "http://129.154.58.244:8001/api/login",
-        data,
-        {
-          withCredentials: false, //클라이언트와 서버가 토큰 값을 공유하겠다는 소리(CORS 요청 -> 클라이언트와 서버 둘다 설정해줘야함)
-        }
-      );
-      localStorage.setItem("jwtToken", res.data.token); //로컬 스토리지에 쿠키 저장
+      const res = await axios.post("/login", data, {
+        withCredentials: false, //클라이언트와 서버가 토큰 값을 공유하겠다는 소리(CORS 요청 -> 클라이언트와 서버 둘다 설정해줘야함)
+      });
+      localStorage.setItem("jwtToken", res.data.tokenDto.token); //로컬 스토리지에 쿠키 저장
       const JWTTOKEN = localStorage.getItem("jwtToken");
       console.log(JWTTOKEN); // 로그인 후 쿠키가 local에 저장이 제대로 되어있는지 확인
-      return res.data;
+      return res.data.userDto;
     } catch (error: any) {
       console.error(error);
       return rejectWithValue(error.response.data); // 내부에서 요류 처리
@@ -54,13 +50,9 @@ export const signUp = createAsyncThunk(
   "signUp",
   async (data: signUpType, { rejectWithValue }) => {
     try {
-      const res = await axios.post(
-        "http://129.154.58.244:8001/api/signup",
-        data,
-        {
-          withCredentials: false,
-        }
-      );
+      const res = await axios.post("/signup", data, {
+        withCredentials: false,
+      });
       console.log(res.data);
     } catch (error: any) {
       console.error(error);
@@ -93,7 +85,9 @@ export const inquireMyInfo = createAsyncThunk("inquireMyInfo", async () => {
     axios.defaults.headers.common["Authorization"] = "";
     const JWTTOEKN = localStorage.getItem("jwtToken");
     axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
-    const res = await axios.get("/user/inquireMyInfo");
+    const res = await axios.get("/user", {
+      withCredentials: false,
+    });
     console.log(
       "로그인 후 본인 정보 조회 / 토큰을 이용한 프론트에서 로그인 유지에도 사용될 듯 함"
     );
