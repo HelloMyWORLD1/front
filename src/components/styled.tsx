@@ -103,6 +103,9 @@ export const PwVector = styled.img`
 
 export const TagBox = styled.div`
   margin-top: 15px;
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
 `;
 export const SignupTag = styled.a`
   text-decoration: none;
@@ -118,8 +121,6 @@ export const SignupTag = styled.a`
 export const FingTag = styled.a`
   text-decoration: none;
   height: 23px;
-  margin-left: 216px;
-  margin-top: 30px;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 400;
@@ -227,6 +228,7 @@ export const EmailSignUpInput = styled.input`
   font-size: 16px;
   line-height: 23px;
   letter-spacing: -0.1em;
+  padding-top: 0;
   &::placeholder {
     color: #999999;
   }
@@ -636,6 +638,9 @@ export const FilterResultCardComponent = styled.div`
   margin-top: 30px;
 `;
 export const FilterResultCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 23%;
   height: 40%;
   margin: 1%;
@@ -688,6 +693,7 @@ export const FollowTxt = styled.div`
 export const BlogTitle = styled.div`
   font-family: "Noto Sans CJK KR";
   margin-top: 15px;
+  width: 206px;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

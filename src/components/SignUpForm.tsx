@@ -27,6 +27,7 @@ function SignUpForm() {
   );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [nickname, setNickname] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [birth, setBirth] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
@@ -94,26 +95,40 @@ function SignUpForm() {
   const pwCheckHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setPwCheck(event.currentTarget.value);
   };
+  const nicknameHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setNickname(event.currentTarget.value);
+  };
 
   const onSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      console.log(name, birth, phone, email, domain, pw, pwCheck, field);
+      console.log(
+        name,
+        nickname,
+        birth,
+        phone,
+        email,
+        domain,
+        pw,
+        pwCheck,
+        field
+      );
       dispatch(
         signUp({
-          email: email,
+          email: `${email}${domain}`,
           password: pw,
           username: name,
           field: field,
           phone: phone,
           profileImage: "string",
           birth: birth,
-          nickname: "nickname",
+          nickname: nickname,
         })
       );
     },
-    [[dispatch, name, birth, phone, email, pw, pwCheck, field]]
+    [dispatch, name, birth, phone, email, domain, pw, pwCheck, field, nickname]
   );
+  /*
   useEffect(() => {
     console.log(signUpLoading, signUpDone, signUpError);
     if (signUpDone) {
@@ -134,7 +149,8 @@ function SignUpForm() {
       console.log(signUpError);
     }
   }, [signUpLoading, signUpDone, signUpError]);
-
+*/
+  // signUpProfile 화면을 없앨수도 있어서 일단 주석처리
   return (
     <SignUpComponent>
       <SignUpInsideBox>
@@ -153,6 +169,16 @@ function SignUpForm() {
           <CheckWarnTxt>
             한글을 사용해 입력해주세요. (특수기호, 공백 사용 불가)
           </CheckWarnTxt>
+          <ExplainTxt>닉네임</ExplainTxt>
+          <SignUpNormalInput
+            value={nickname}
+            onChange={nicknameHandler}
+            type="text"
+            placeholder="닉네임 입력해주세요."
+          />
+          <CheckWarnTxt>
+            한글과 영어를 입력해주세요. (특수기호, 공백 사용 불가)
+          </CheckWarnTxt>
           <ExplainTxt>분야 선택</ExplainTxt>
           <FieldSignUpSelect value={field} onChange={fieldHandler}>
             {fieldList.map((item) => (
@@ -161,6 +187,7 @@ function SignUpForm() {
               </option>
             ))}
           </FieldSignUpSelect>
+          <CheckWarnTxt>분야를 선택해주세요.</CheckWarnTxt>
           <ExplainTxt>생년월일</ExplainTxt>
           <SignUpNormalInput
             value={birth}
@@ -169,7 +196,7 @@ function SignUpForm() {
             placeholder="숫자 8자리를 입력해주세요  ex) 19001201"
           />
           <CheckWarnTxt>
-            한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)
+            숫자만 입력해주세요. (특수기호, 공백 사용 불가)
           </CheckWarnTxt>
           <ExplainTxt>휴대폰번호</ExplainTxt>
           <SignUpNormalInput

@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import {
   SearchImg,
   LinkCategoryCard,
@@ -11,12 +11,12 @@ import search from "../img/Search.png";
 import logo from "../img/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../hooks";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../hooks";
 import { RootState } from "../store/store";
 function Header() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { user } = useSelector((state: RootState) => state.user);
+  const { user } = useAppSelector((state: RootState) => state.user);
   const onClickSearch = () => {
     console.log("search button click");
   };
@@ -35,7 +35,9 @@ function Header() {
       navigate("/login");
     }
     if (user) {
-      console.log("user 있어요");
+      console.log(user);
+      console.log(typeof user);
+      console.log(user.email);
     }
   }, [user]);
 
@@ -61,7 +63,7 @@ function Header() {
       </div>
       <div>
         <MakeMyBlogBtn onClick={onClickMakePortFolioBtn}>
-          {user ? "user" : "블로그 만들기"}
+          {user ? user.nickname : "블로그 만들기"}
         </MakeMyBlogBtn>
       </div>
     </HeaderComponent>

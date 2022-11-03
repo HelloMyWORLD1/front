@@ -25,15 +25,18 @@ ${reset}
 }
 body {
     position: relative;
-    //width: 1920px;
     height: 1034px;
     width : 100%;
-    //height : 100%;
     background : #F5F5F5;
-
 }
-
+select {
+  text-indent : 30px;
+  :focus {
+    outline: 1px solid #333333;
+  }
+}
 input {
+  text-indent: 20px;
   :focus {
     outline: 1px solid #333333;
   }

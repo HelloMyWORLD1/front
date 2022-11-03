@@ -24,7 +24,7 @@ type portFolioRegisterType = {
 
 //수정해야함 백엔드와 username => email 변경해야함
 type logInType = {
-  username: string;
+  email: string;
   password: string;
 };
 
