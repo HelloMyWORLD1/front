@@ -88,18 +88,26 @@ function HomeCard() {
     { id: 12, profile: testImg12 },
   ]);
 
-  const cardList: JSX.Element[] = cards.map((card) => (
-    <FilterResultCard key={card.id}>
-      <CardImg src={card.profile}></CardImg>
-      <NicknameTxt>사라 김</NicknameTxt>
-      <FieldTxt>스타트업/5년차 프론트엔드 개발자</FieldTxt>
-      <FollowTxt>팔로워 1,525명 팔로잉 1,326명</FollowTxt>
-      <BlogTitle>
-        비전공자였지만, 이제는 어엿한 시니어 개발자로써 후배들에게 스토리를
-        전하고 싶어요
-      </BlogTitle>
-    </FilterResultCard>
-  ));
+  function overStringChange(txt: string) {
+    const number = 45;
+    if (txt.length <= number) return txt;
+    txt = txt.slice(0, number).concat("...");
+    return txt;
+  }
+  const cardList: JSX.Element[] = cards.map((card) => {
+    const txt = overStringChange(
+      "비전공자였지만, 이제는 어엿한 시니어 개발자로써 후배들에게 스토리를 전하고 싶어요"
+    );
+    return (
+      <FilterResultCard key={card.id}>
+        <CardImg src={card.profile}></CardImg>
+        <NicknameTxt>사라 김</NicknameTxt>
+        <FieldTxt>스타트업/5년차 프론트엔드 개발자</FieldTxt>
+        <FollowTxt>팔로워 1,525명 팔로잉 1,326명</FollowTxt>
+        <BlogTitle>{txt}</BlogTitle>
+      </FilterResultCard>
+    );
+  });
 
   return (
     <HomePageUnderComponent>

@@ -1,4 +1,5 @@
 import React, { useRef, useCallback, useState, useEffect } from "react";
+import imageCompression from "browser-image-compression";
 import defaulfImage from "../img/Mask group.png";
 
 function ImageUpload() {
@@ -12,6 +13,7 @@ function ImageUpload() {
 // FileReader.onload
 // FileReader가 성공적으로 파일을 읽어들였을 때 트리거 되는 이벤트 핸들러이다.
   useEffect(() => {
+    console.log(image);
     if (image) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -28,14 +30,32 @@ function ImageUpload() {
       if (!e.target.files) {
         return;
       }
-      setImage(e.target.files[0]);
       const formData = new FormData();
       formData.append("image", e.target.files[0]);
       //API호출(post방식으로 formData 보내기)
       console.log(e.target.files[0]);
+      actionImgCompress(e.target.files[0]); //압축함수 호출
     },
     []
   );
+
+  // 이미지 압축
+  const actionImgCompress = async (fileSrc : any) => {
+    console.log("압축 시작");
+
+    const options = {
+      maxSizeMB: 0.2,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+    };
+    try {
+      // 압축 결과
+      const compressedFile = await imageCompression(fileSrc, options);
+      setImage(compressedFile);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   //버튼 클릭 시 inputref 활용하여 인풋 요소에 접근하여 UploadImage함수 실행됨
   const onUploadImageButtonClick = useCallback(() => {
@@ -56,7 +76,7 @@ function ImageUpload() {
       {/* display:none으로 버튼만 보이도록 설정 */}
       <input
         type="file"
-        accept="image/*"
+        accept="image/jpeg,image/jpg,image/png"
         style={{ display: "none" }}
         ref={inputRef}
         onChange={onUploadImage}

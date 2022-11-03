@@ -2,19 +2,11 @@ import React, { useCallback, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   EmailSignUpInput,
+  FieldSignUpSelect,
   EmailSignUpSelect,
-  BirthInput,
-  PhoneInput,
-  NameInput,
-  PwCheckInput,
-  PwSignUpInput,
+  SignUpNormalInput,
   SignUpBtn,
-  NameTxt,
-  BirthTxt,
-  PhoneTxt,
-  EmailTxt,
-  PwTxt,
-  PwCheckTxt,
+  CheckWarnTxt,
   SignUpComponent,
   SignUpTxt,
   SignUpTxt2,
@@ -35,6 +27,7 @@ function SignUpForm() {
   );
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [nickname, setNickname] = useState<string>("");
   const [name, setName] = useState<string>("");
   const [birth, setBirth] = useState<string>("");
   const [phone, setPhone] = useState<string>("");
@@ -61,6 +54,7 @@ function SignUpForm() {
     "직접입력",
   ];
   const fieldList = [
+    "직업 분야 선택",
     "개발",
     "경영",
     "운영",
@@ -77,8 +71,8 @@ function SignUpForm() {
     navigate("/signUp/profile");
   };
 
-  const fieldHandler = (event: React.FormEvent<HTMLInputElement>) => {
-    setName(event.currentTarget.value);
+  const fieldHandler = (event: React.FormEvent<HTMLSelectElement>) => {
+    setField(event.currentTarget.value);
   };
   const nameHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setName(event.currentTarget.value);
@@ -101,35 +95,40 @@ function SignUpForm() {
   const pwCheckHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setPwCheck(event.currentTarget.value);
   };
+  const nicknameHandler = (event: React.FormEvent<HTMLInputElement>) => {
+    setNickname(event.currentTarget.value);
+  };
 
   const onSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       console.log(
         name,
+        nickname,
         birth,
         phone,
         email,
         domain,
         pw,
         pwCheck,
-        field,
+        field
       );
       dispatch(
         signUp({
-          email: email,
+          email: `${email}${domain}`,
           password: pw,
           username: name,
           field: field,
           phone: phone,
           profileImage: "string",
           birth: birth,
-          nickname: "nickname",
+          nickname: nickname,
         })
       );
     },
-    [[dispatch, name, birth, phone, email, pw, pwCheck, field]]
+    [dispatch, name, birth, phone, email, domain, pw, pwCheck, field, nickname]
   );
+  /*
   useEffect(() => {
     console.log(signUpLoading, signUpDone, signUpError);
     if (signUpDone) {
@@ -150,7 +149,8 @@ function SignUpForm() {
       console.log(signUpError);
     }
   }, [signUpLoading, signUpDone, signUpError]);
-
+*/
+  // signUpProfile 화면을 없앨수도 있어서 일단 주석처리
   return (
     <SignUpComponent>
       <SignUpInsideBox>
@@ -160,35 +160,54 @@ function SignUpForm() {
         <SignUpTxt2>회원가입에 필요한 정보를 입력해주세요</SignUpTxt2>
         <form onSubmit={onSubmit}>
           <ExplainTxt>실명</ExplainTxt>
-          <NameInput
+          <SignUpNormalInput
             value={name}
             onChange={nameHandler}
             type="text"
             placeholder="본인 이름을 입력해주세요."
           />
-          <NameTxt>
+          <CheckWarnTxt>
             한글을 사용해 입력해주세요. (특수기호, 공백 사용 불가)
-          </NameTxt>
+          </CheckWarnTxt>
+          <ExplainTxt>닉네임</ExplainTxt>
+          <SignUpNormalInput
+            value={nickname}
+            onChange={nicknameHandler}
+            type="text"
+            placeholder="닉네임 입력해주세요."
+          />
+          <CheckWarnTxt>
+            한글과 영어를 입력해주세요. (특수기호, 공백 사용 불가)
+          </CheckWarnTxt>
+          <ExplainTxt>분야 선택</ExplainTxt>
+          <FieldSignUpSelect value={field} onChange={fieldHandler}>
+            {fieldList.map((item) => (
+              <option value={item} key={item}>
+                {item}
+              </option>
+            ))}
+          </FieldSignUpSelect>
+          <CheckWarnTxt>분야를 선택해주세요.</CheckWarnTxt>
           <ExplainTxt>생년월일</ExplainTxt>
-          <BirthInput
+          <SignUpNormalInput
             value={birth}
             onChange={birthHandler}
             type="text"
             placeholder="숫자 8자리를 입력해주세요  ex) 19001201"
           />
-          <BirthTxt>
-            한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)
-          </BirthTxt>
+          <CheckWarnTxt>
+            숫자만 입력해주세요. (특수기호, 공백 사용 불가)
+          </CheckWarnTxt>
           <ExplainTxt>휴대폰번호</ExplainTxt>
-          <PhoneInput
+          <SignUpNormalInput
             value={phone}
             onChange={phoneHandler}
             type="text"
             placeholder="휴대전화번호 ‘-’를 제외하고 입력"
           />
-          <PhoneTxt>
+          <CheckWarnTxt>
             한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)
-          </PhoneTxt>
+          </CheckWarnTxt>
           <ExplainTxt>이메일</ExplainTxt>
           <EmailSignUpInput
             value={email}
@@ -203,25 +222,27 @@ function SignUpForm() {
               </option>
             ))}
           </EmailSignUpSelect>
-          <EmailTxt>
+          <CheckWarnTxt>
             한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)
-          </EmailTxt>
+          </CheckWarnTxt>
           <ExplainTxt>비밀번호</ExplainTxt>
-          <PwSignUpInput
+          <SignUpNormalInput
             value={pw}
             onChange={pwHandler}
             type="password"
             placeholder="비밀번호(영문/숫자/특수문자 조합 8~20자)"
           />
-          <PwTxt>8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.</PwTxt>
+          <CheckWarnTxt>
+            8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.
+          </CheckWarnTxt>
           <ExplainTxt>비밀번호 확인</ExplainTxt>
-          <PwCheckInput
+          <SignUpNormalInput
             value={pwCheck}
             onChange={pwCheckHandler}
             type="password"
             placeholder="비밀번호를 다시 입력해주세요"
           />
-          <PwCheckTxt>비밀번호가 일치하지 않습니다.</PwCheckTxt>
+          <CheckWarnTxt>비밀번호가 일치하지 않습니다.</CheckWarnTxt>
           <SignUpBtn>회원가입</SignUpBtn>
         </form>
       </SignUpInsideBox>
