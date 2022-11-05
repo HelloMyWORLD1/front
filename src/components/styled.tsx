@@ -581,8 +581,8 @@ export const HomeCardIntroTxt2 = styled.div`
 export const RedCircle = styled.img`
   width: 7px;
   height: 7px;
-  margin-left: 10px;
-  margin-bottom: 10px;
+  margin-left: 2px;
+  margin-bottom: 22px;
 `;
 export const HomePageUnderComponent = styled.div`
   display: flex;
@@ -595,10 +595,11 @@ export const HomePageUnderComponent = styled.div`
 `;
 export const FilterComponent = styled.div`
   margin-top: 30px;
-  height: 36px;
+  height: 44px;
   width: 94%;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid #cccccc;
 `;
 export const FilterCategory = styled.div`
   display: flex;
@@ -608,9 +609,8 @@ export const FilterCategory = styled.div`
   padding: 0px;
 `;
 
-export const FilterEachCategory = styled.div`
-  height: 36px;
-  margin-right: 30px;
+export const FilterEachCategory = styled.div<{ click?: boolean }>`
+  height: 43px;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 400;
@@ -619,6 +619,9 @@ export const FilterEachCategory = styled.div`
   letter-spacing: -0.1em;
   cursor: pointer;
   color: #999999;
+
+  border-bottom: ${(props) =>
+    props.click === true ? `3px solid #333333` : ``};
 `;
 export const FilterTxt = styled.div`
   height: 36px;
