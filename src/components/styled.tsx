@@ -609,7 +609,7 @@ export const FilterCategory = styled.div`
   padding: 0px;
 `;
 
-export const FilterEachCategory = styled.div<{ click?: boolean }>`
+export const FilterEachCategory = styled.div<{ click: boolean }>`
   height: 43px;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
@@ -618,7 +618,7 @@ export const FilterEachCategory = styled.div<{ click?: boolean }>`
   line-height: 36px;
   letter-spacing: -0.1em;
   cursor: pointer;
-  color: #999999;
+  color: ${(props) => (props.click === true ? `#333333` : `#999999`)};
 
   border-bottom: ${(props) =>
     props.click === true ? `3px solid #333333` : ``};
