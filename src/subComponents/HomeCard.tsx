@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   HomeCardIntroTxtComponent,
   HomeCardIntroTxt1,
@@ -37,40 +37,77 @@ interface Cards {
   id: number;
   profile: string;
 }
-
 function HomeCard() {
   const dispatch = useAppDispatch();
+  const [click, setClick] = useState<Array<boolean>>(
+    new Array(8).fill(false)
+    //develop
+    //manage
+    //oper
+    //data
+    //design
+    //marketing
+    //accounting
+    //HR
+  );
 
+  function clickAfterValue(sequence: number, click: Array<boolean>) {
+    const afterValue = click.map((item, index) => {
+      if (index === sequence) return true;
+      if (item) {
+        return !item;
+      }
+      return item;
+    });
+    return afterValue;
+  }
   function onClickDeveloper(event: React.MouseEvent<HTMLInputElement>) {
     console.log("개발");
+    const afterValue = clickAfterValue(0, click);
+    console.log(afterValue);
+    setClick(afterValue);
     //dispatch(getPortFoiloLike("개발"));
   }
   function onClickManagement(event: React.MouseEvent<HTMLInputElement>) {
     console.log("경영");
+    const afterValue = clickAfterValue(1, click);
+    setClick(afterValue);
     //dispatch(getPortFoiloLike("경영"));
   }
   function onClickOperate(event: React.MouseEvent<HTMLInputElement>) {
     console.log("운영");
+    const afterValue = clickAfterValue(2, click);
+    setClick(afterValue);
     //dispatch(getPortFoiloLike("운영"));
   }
   function onClickData(event: React.MouseEvent<HTMLInputElement>) {
     console.log("데이터");
+    const afterValue = clickAfterValue(3, click);
+    setClick(afterValue);
     //dispatch(getPortFoiloLike("데이터"));
   }
   function onClickDesign(event: React.MouseEvent<HTMLInputElement>) {
     console.log("디자인");
+    const afterValue = clickAfterValue(4, click);
+    setClick(afterValue);
     //dispatch(getPortFoiloLike("디자인"));
   }
   function onClickMarketing(event: React.MouseEvent<HTMLInputElement>) {
     console.log("마케팅");
+    const afterValue = clickAfterValue(5, click);
+    setClick(afterValue);
     //dispatch(getPortFoiloLike("마케팅"));
   }
   function onClickAccounting(event: React.MouseEvent<HTMLInputElement>) {
     console.log("회계");
+    const afterValue = clickAfterValue(6, click);
+    setClick(afterValue);
     //dispatch(getPortFoiloLike("회계"));
   }
   function onClickHR(event: React.MouseEvent<HTMLInputElement>) {
     console.log("HR");
+    const afterValue = clickAfterValue(7, click);
+    setClick(afterValue);
     //dispatch(getPortFoiloLike("HR"));
   }
   const [cards, setCards] = React.useState<Cards[]>([
@@ -124,26 +161,30 @@ function HomeCard() {
       </HomeCardIntroTxtComponent>
       <FilterComponent>
         <FilterCategory>
-          <FilterEachCategory onClick={onClickDeveloper}>
+          <FilterEachCategory onClick={onClickDeveloper} click={click[0]}>
             개발
           </FilterEachCategory>
-          <FilterEachCategory onClick={onClickManagement}>
+          <FilterEachCategory onClick={onClickManagement} click={click[1]}>
             경영∙비즈니스
           </FilterEachCategory>
-          <FilterEachCategory onClick={onClickOperate}>
+          <FilterEachCategory onClick={onClickOperate} click={click[2]}>
             운영∙서비스기획
           </FilterEachCategory>
-          <FilterEachCategory onClick={onClickData}>데이터</FilterEachCategory>
-          <FilterEachCategory onClick={onClickDesign}>
+          <FilterEachCategory onClick={onClickData} click={click[3]}>
+            데이터
+          </FilterEachCategory>
+          <FilterEachCategory onClick={onClickDesign} click={click[4]}>
             디자인
           </FilterEachCategory>
-          <FilterEachCategory onClick={onClickMarketing}>
+          <FilterEachCategory onClick={onClickMarketing} click={click[5]}>
             마케팅∙홍보
           </FilterEachCategory>
-          <FilterEachCategory onClick={onClickAccounting}>
+          <FilterEachCategory onClick={onClickAccounting} click={click[6]}>
             회계
           </FilterEachCategory>
-          <FilterEachCategory onClick={onClickHR}>HR</FilterEachCategory>
+          <FilterEachCategory onClick={onClickHR} click={click[7]}>
+            HR
+          </FilterEachCategory>
         </FilterCategory>
         <FilterTxt>필터</FilterTxt>
       </FilterComponent>
