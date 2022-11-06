@@ -128,29 +128,7 @@ function SignUpForm() {
     },
     [dispatch, name, birth, phone, email, domain, pw, pwCheck, field, nickname]
   );
-  /*
-  useEffect(() => {
-    console.log(signUpLoading, signUpDone, signUpError);
-    if (signUpDone) {
-      navigate("/signUp/profile", {
-        state: {
-          name,
-          birth,
-          phone,
-          email: `${email}@${domain}`,
-          pw,
-          pwCheck,
-          field,
-        },
-      });
-    } else if (signUpLoading) {
-      console.log("회원가입 전");
-    } else if (signUpError) {
-      console.log(signUpError);
-    }
-  }, [signUpLoading, signUpDone, signUpError]);
-*/
-  // signUpProfile 화면을 없앨수도 있어서 일단 주석처리
+
   return (
     <SignUpComponent>
       <SignUpInsideBox>
