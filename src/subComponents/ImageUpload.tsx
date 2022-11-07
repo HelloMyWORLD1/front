@@ -52,6 +52,7 @@ function ImageUpload() {
     // 서버에서는 이미지를 받을 때, FormData가 아니면 받지 않도록 세팅해야합니다.
     const formData = new FormData();
     formData.append("image", file);
+    console.log(file);
 
     //dispatch
   };
@@ -89,21 +90,7 @@ function ImageUpload() {
       return;
     }
     inputRef.current.click();
-
-    // var block = (preview ||'').split(";");
-    // // Get the content type
-    // var contentType = block[0].split(":")[1]; // In this case "image/gif"
-    // // get the real base64 content of the file
-    // var realData = block[1].split(",")[1]; // In this case "iVBORw0KGg...."
-
-    // // Convert to blob
-    // var blob = b64toBlob(realData, contentType);
-
-    // // Create a FormData and append the file
-    // var formData = new FormData();
-    // formData.append("image", blob);
   }, [preview]);
-
   return (
     <div>
       {/* 미리보기할 사진 있으면 보여주고 아니면 기본 이미지 보이도록 설정 */}
