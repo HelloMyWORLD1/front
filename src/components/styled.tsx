@@ -20,16 +20,11 @@ export const BlackLine = styled.div<{ marginTop?: number }>`
   border: 1px solid #e5e5e5;
 `;
 export const Vector = styled.img`
-  //position: absolute;
-  //left: 34.38%;
-  //right: 63.75%;
-  //top: 2.22%;
-  //bottom: 96.12%;
   position: absolute;
   margin-top: 40px;
   cursor: pointer;
-  //margin-left: 20px;
 `;
+
 //LoginPage 스타일
 export const LogInComponent = styled.div`
   display: flex;
