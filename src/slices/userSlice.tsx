@@ -56,6 +56,7 @@ export const signUp = createAsyncThunk(
       console.log(res.data);
     } catch (error: any) {
       console.error(error);
+      alert(error.response.data.errorMessage);
       return rejectWithValue(error.response.data);
     }
   }

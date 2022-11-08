@@ -220,7 +220,7 @@ function SignUpForm() {
       ) {
         dispatch(
           signUp({
-            email: `${email}${domain}`,
+            email: `${email}@${domain}`,
             password: pw,
             username: name,
             field: field,
