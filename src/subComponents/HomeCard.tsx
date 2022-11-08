@@ -66,7 +66,7 @@ function HomeCard() {
     const afterValue = clickAfterValue(0, click);
     console.log(afterValue);
     setClick(afterValue);
-    //dispatch(getPortFoiloLike("개발"));
+    dispatch(getPortFoiloLike({ field: "개발" }));
   }
   function onClickManagement(event: React.MouseEvent<HTMLInputElement>) {
     console.log("경영");

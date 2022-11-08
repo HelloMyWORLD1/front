@@ -89,12 +89,6 @@ export const getPortFolioLatest = createAsyncThunk(
   "getPortFolioLatest",
   async (data: getPortFolioLatestType) => {
     try {
-      // const res = await axios.get(`/portfolio/${data.field}?${data.pageNum}`);
-      // 분야별 최신순 받아야 하는데 notion에 자세히 작성이 안되있어서 백엔드쪽에서 착각하신듯함
-      // 그냥 최신순 모든 데이터로 되있는듯
-      // 일단 커뮤니티 기능과 디자인이 나와야 할 수 있는 기능이라 추후 수정하면 될듯함
-      // 아래가 현재 백엔드 주소임
-      // 주석 상단에 있는 형식로 변경해달라고 하면 될듯함
       const res = await axios.get(`/portfolio/latest?page=${data.pageNum}`);
       console.log(res.data);
       return res.data;

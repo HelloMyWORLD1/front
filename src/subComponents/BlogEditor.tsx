@@ -31,7 +31,7 @@ function BlogEditor() {
   const handleRegisterButton = () => {
     console.log(contents);
     setEditor(contents)
-    console.log(editor);
+    console.log(editor); 
     console.log(typeof editor);
   };
 
