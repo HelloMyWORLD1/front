@@ -12,6 +12,8 @@ import {
   AutoLoginImg,
   AutoLoginTxt,
   TagBox,
+  PwInputBox,
+  AutoBox,
 } from "./styled";
 import pwCheck from "../img/Vector-2.svg";
 import { useNavigate } from "react-router-dom";
@@ -23,10 +25,6 @@ import { logIn } from "../slices/userSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 
-const AutoBox = styled.div`
-  display: flex;
-  align-items: center;
-`;
 function LoginForm() {
   const { user, logInDone, logInError, logInLoading } = useSelector(
     (state: RootState) => state.user
@@ -36,11 +34,17 @@ function LoginForm() {
   const gotoHome = () => {
     navigate("/");
   };
+
   const [email, setEmail] = useState<string>("");
+
   const [pw, setPw] = useState<string>("");
+
+  const [vector, setVector] = useState<boolean>(false);
+
   const emailHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setEmail(event.currentTarget.value);
   };
+
   const pwHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setPw(event.currentTarget.value);
   };
@@ -57,6 +61,11 @@ function LoginForm() {
     },
     [dispatch, email, pw]
   );
+  const onClickVector = useCallback(() => {
+    setVector(!vector);
+    console.log(vector);
+  }, [vector]);
+
   useEffect(() => {
     console.log(user, logInDone, logInLoading, logInError);
     if (logInDone) {
@@ -79,18 +88,23 @@ function LoginForm() {
             type="text"
             placeholder="이메일"
           />
-          <PwInput
-            value={pw}
-            onChange={pwHandler}
-            type="password"
-            placeholder="비밀번호"
-          />
+          <PwInputBox>
+            <PwInput
+              value={pw}
+              onChange={pwHandler}
+              type={vector === false ? "password" : "text"}
+              placeholder="비밀번호"
+            />
+            <div onClick={onClickVector}>
+              <PwVector color="black"></PwVector>
+            </div>
+          </PwInputBox>
+
           <AutoBox>
             <AutoLoginImg src={circleFill}></AutoLoginImg>
             <AutoLoginTxt>이메일 기억하기</AutoLoginTxt>
           </AutoBox>
 
-          <PwVector src={pwCheck}></PwVector>
           <LoginBtn>로그인</LoginBtn>
           <TagBox>
             <SignupTag href="/signUp">회원가입</SignupTag>

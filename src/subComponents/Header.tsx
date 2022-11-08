@@ -29,7 +29,10 @@ function Header() {
   const onClickCommunity = () => {
     console.log("commu");
   };
-
+  const onClickLogOut = () => {
+    console.log("로그아웃");
+    localStorage.removeItem("jwtToken");
+  };
   const onClickMakePortFolioBtn = useCallback(() => {
     if (!user) {
       navigate("/login");
@@ -62,6 +65,7 @@ function Header() {
         ></LogoImg>
       </div>
       <div>
+        <button onClick={onClickLogOut}>로그아웃 </button>
         <MakeMyBlogBtn onClick={onClickMakePortFolioBtn}>
           {user ? user.nickname : "블로그 만들기"}
         </MakeMyBlogBtn>

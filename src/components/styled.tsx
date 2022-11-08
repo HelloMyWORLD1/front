@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import mid from "../img/Rectangle.png";
+import { ReactComponent as MySvg } from "../img/Vector-2.svg";
+
 // 중첩 사용 스타일
 export const LogoImg = styled.img<{
   width?: number;
@@ -18,16 +20,11 @@ export const BlackLine = styled.div<{ marginTop?: number }>`
   border: 1px solid #e5e5e5;
 `;
 export const Vector = styled.img`
-  //position: absolute;
-  //left: 34.38%;
-  //right: 63.75%;
-  //top: 2.22%;
-  //bottom: 96.12%;
   position: absolute;
   margin-top: 40px;
   cursor: pointer;
-  //margin-left: 20px;
 `;
+
 //LoginPage 스타일
 export const LogInComponent = styled.div`
   display: flex;
@@ -55,6 +52,11 @@ export const LoginBtn = styled.button`
   text-align: center;
   letter-spacing: -0.1em;
   color: #ffffff;
+`;
+
+export const AutoBox = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 export const EmailInput = styled.input`
@@ -91,14 +93,27 @@ export const PwInput = styled.input`
     color: #333333;
   }
 `;
-export const PwVector = styled.img`
+export const PwInputBox = styled.div`
+  display: flex;
+  z-index: 1;
+  opacity: 1;
+  position: relative;
+`;
+
+export const PwVector = styled(MySvg)`
   position: absolute;
-  left: 58.33%;
-  right: 40.57%;
-  top: 29.59%;
-  bottom: 69.25%;
-  background: #999999;
-  opacity: 0.3;
+  right: 24px;
+  top: 33px;
+  cursor: pointer;
+  background: auto;
+  opacity: 0.7;
+  & path {
+    fill: ${({ color }) => color || ""};
+  }
+  &:hover path {
+    fill: ${({ color }) => color || "#333333"};
+    opacity: 1;
+  }
 `;
 
 export const TagBox = styled.div`

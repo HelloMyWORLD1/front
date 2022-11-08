@@ -32,9 +32,9 @@ interface UserInitialState {
 //포트폴리오 비동기 처리 상태관리
 interface PortFolioInitalState {
   //개인 포폴
-  portFolio: null | object;
+  portFolio: any;
   //메인페이지|커뮤니티용 포폴
-  portFolios: null | object;
+  portFolios: any;
   //개인 포폴 등록
   registerPortFolioLoading: boolean;
   registerPortFolioDone: boolean;
