@@ -6,7 +6,7 @@ function BlogEditor() {
   // Editor DOM 선택용
   const QuillRef = useRef<ReactQuill>();
   const [contents, setContents] = useState<string>("");
-  const [editor, setEditor] = useState<string>("")
+  const [editor, setEditor] = useState<string>("");
 
   const modules = useMemo(
     () => ({
@@ -30,8 +30,8 @@ function BlogEditor() {
   // 등록 버튼 핸들러
   const handleRegisterButton = () => {
     console.log(contents);
-    setEditor(contents)
-    console.log(editor); 
+    setEditor(contents);
+    console.log(editor);
     console.log(typeof editor);
   };
 
@@ -39,7 +39,7 @@ function BlogEditor() {
     <div>
       <h3>### Editor Quill</h3>
       <ReactQuill
-        ref={(element) => {
+        ref={(element: any) => {
           if (element !== null) {
             QuillRef.current = element;
           }
