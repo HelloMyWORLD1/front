@@ -22,11 +22,11 @@ function ImageUpload() {
     console.log(preview);
     if (preview != "") {
       handlingDataForm(preview);
-      console.log("handlingDataForm 실행!")
+      console.log("handlingDataForm 실행!");
     }
   }, [image, preview]);
   //blob객체에 답아 통신
-  const handlingDataForm = (preview : string) => {
+  const handlingDataForm = (preview: string) => {
     console.log(typeof preview);
     // dataURL 값이 data:image/jpeg:base64,~~~~~~~ 이므로 ','를 기점으로 잘라서 ~~~~~인 부분만 다시 인코딩
     const block = preview.split(";");
@@ -44,7 +44,7 @@ function ImageUpload() {
       ia[i] = byteString.charCodeAt(i);
     }
     const blob = new Blob([ia], {
-      type: contentType
+      type: contentType,
     });
     const file = new File([blob], contentType);
 
