@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useEffect } from "react";
 import ImageUpload from "../subComponents/ImageUpload";
 import BlogEditor from "../subComponents/BlogEditor";
 import { useRef } from "react";
+import defaulfImage from "../img/Mask group.png";
 
 export default function TestPage() {
   const API_KEY = process.env.REACT_APP_API_KEY;
@@ -12,6 +13,14 @@ export default function TestPage() {
 
   const editorRef = useRef();
 
+  const [profile,setProfile] = useState(false);
+  const PROFILE_TEST = localStorage.getItem("profileImageTest");
+  useEffect(() => {
+    console.log(PROFILE_TEST);
+    setProfile(true)
+
+  },[PROFILE_TEST])
+
   useEffect(() => {
       console.log(url);
   },[]);
@@ -20,6 +29,8 @@ export default function TestPage() {
       테스트페이지
       <ImageUpload /> 
       <BlogEditor />
-
+      {/* {profile ? (<img src={PROFILE_TEST}></img>):( <img src={defaulfImage}></img>
+)} */}
+     
       </div>);
 }

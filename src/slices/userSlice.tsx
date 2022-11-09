@@ -41,6 +41,7 @@ export const logIn = createAsyncThunk(
       return res.data.userDto;
     } catch (error: any) {
       console.error(error);
+      alert(error.response.data.errorMessage);
       return rejectWithValue(error.response.data); // 내부에서 요류 처리
     }
   }
