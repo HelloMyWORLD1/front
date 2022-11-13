@@ -52,7 +52,8 @@ export default function MakeBlogComponent() {
         </div>
         <div></div>
       </HeaderComponent>
-      
+      <form>
+        <input type="text" placeholder="제목을 입력하세요" ></input>
       <ReactQuill
         value={editorValue}
         onChange={setEditorValue}
@@ -60,6 +61,8 @@ export default function MakeBlogComponent() {
         theme="snow"
         placeholder="내용을 입력해주세요."
       />
+      <button>등록하기</button>
+      </form>
     </div>
   );
 }

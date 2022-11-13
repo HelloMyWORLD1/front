@@ -40,3 +40,9 @@ type getPortFolioLatestType = {
   field: string;
   pageNum: number;
 };
+
+//blog 데이터 타입
+type postBlogType = {
+  title: string;
+  content: string;
+}
