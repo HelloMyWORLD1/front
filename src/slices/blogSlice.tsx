@@ -39,7 +39,7 @@ export const registerBlog = createAsyncThunk(
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
       const res = await axios.post("/blog", data, {
-        withCredentials: true,
+        // withCredentials: true,
       });
       console.log(res.data);
       return res.data;
