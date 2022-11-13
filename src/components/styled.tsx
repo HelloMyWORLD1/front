@@ -798,7 +798,7 @@ export const MakePortfolioInsideBox = styled.div`
 `;
 
 export const MakePortfolioHeadTxt = styled.div`
-  margin-top: 100px;
+  margin-top: 40px;
   width: 260px;
   height: 67px;
   font-family: "Noto Sans CJK KR";
@@ -872,7 +872,8 @@ export const SnsBox = styled.div`
 `;
 export const SnsSelectField = styled.select`
   box-sizing: border-box;
-  width: 204px;
+  width: 214px;
+  margin-right: 2px;
   height: 60px;
   margin-top: 10px;
   background: #ffffff;

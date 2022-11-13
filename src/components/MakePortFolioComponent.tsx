@@ -11,11 +11,15 @@ import {
   SnsBox,
   MakePortFolioNextBtn,
   UnderUserInputBox,
+  LogoImg,
   UnderUserInput,
+  BlackLine,
 } from "./styled";
+import logo from "../img/logo.png";
 import { useState, useCallback } from "react";
 import { useAppDispatch } from "../hooks";
 import { snsArray } from "../utils/array";
+import { useNavigate } from "react-router-dom";
 
 function MakePortFolioComponent() {
   const dispatch = useAppDispatch();
@@ -35,6 +39,12 @@ function MakePortFolioComponent() {
   const [showCertificate, setShowCertificate] = useState<string[]>([]);
   const [showForeign, setShowForeign] = useState<string[]>([]);
   const [showIntroduce, setShowIntroduce] = useState<string>("");
+
+  const navigate = useNavigate();
+
+  const gotoHome = () => {
+    navigate("/");
+  };
 
   const onChangeDetailJob = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDetailJob(event.currentTarget.value);
@@ -131,6 +141,58 @@ function MakePortFolioComponent() {
     [snsField, snsTxt]
   );
 
+  const onClickDeleteDetailJob = (event: React.MouseEvent<HTMLElement>) => {
+    setShowDetailJob("");
+  };
+  const onClickDeleteBlogTitle = (event: React.MouseEvent<HTMLElement>) => {
+    setShowBlogTitle("");
+  };
+  const onClickDeleteSns = useCallback(
+    (index: number) => {
+      setSnsObjectArray(
+        [...snsObjectArray].filter((item: string, i: number) => {
+          if (i !== index) {
+            return item;
+          }
+        })
+      );
+    },
+    [snsObjectArray]
+  );
+  const onClickDeleteEducation = (event: React.MouseEvent<HTMLElement>) => {
+    setShowEducation("");
+  };
+
+  const onClickDeleteCertificate = useCallback(
+    (index: number) => {
+      setShowCertificate(
+        [...showCertificate].filter((item: string, i: number) => {
+          if (i !== index) {
+            return item;
+          }
+        })
+      );
+    },
+    [showCertificate]
+  );
+
+  const onClickDeleteForeign = useCallback(
+    (index: number) => {
+      setShowForeign(
+        [...showForeign].filter((item: string, i: number) => {
+          if (i !== index) {
+            return item;
+          }
+        })
+      );
+    },
+    [showForeign]
+  );
+
+  const onClickDeleteIntroduce = (event: React.MouseEvent<HTMLElement>) => {
+    setShowIntroduce("");
+  };
+
   const onClickNextPage = useCallback(() => {
     console.log(
       showDetailJob,
@@ -154,6 +216,8 @@ function MakePortFolioComponent() {
   return (
     <MakePortfolioBox>
       <MakePortfolioInsideBox>
+        <LogoImg src={logo} onClick={gotoHome}></LogoImg>
+        <BlackLine></BlackLine>
         <MakePortfolioHeadTxt>포트폴리오 등록</MakePortfolioHeadTxt>
         <GrayExplainTxt>필요한 기본 정보를 입력해주세요</GrayExplainTxt>
 
@@ -168,7 +232,7 @@ function MakePortFolioComponent() {
         {showDetailJob ? (
           <UnderUserInput>
             {showDetailJob}
-            <button>X</button>
+            <button onClick={onClickDeleteDetailJob}>X</button>
           </UnderUserInput>
         ) : (
           ""
@@ -185,7 +249,7 @@ function MakePortFolioComponent() {
         {showBlogTitle ? (
           <UnderUserInput>
             {showBlogTitle}
-            <button>X</button>
+            <button onClick={onClickDeleteBlogTitle}>X</button>
           </UnderUserInput>
         ) : (
           ""
@@ -212,7 +276,7 @@ function MakePortFolioComponent() {
             return (
               <UnderUserInput key={index}>
                 {item}
-                <button>X</button>
+                <button onClick={() => onClickDeleteSns(index)}>X</button>
               </UnderUserInput>
             );
           })}
@@ -227,7 +291,7 @@ function MakePortFolioComponent() {
         {showEducation && (
           <UnderUserInput>
             {showEducation}
-            <button>X</button>
+            <button onClick={onClickDeleteEducation}>X</button>
           </UnderUserInput>
         )}
         <DetailJobTxt>자격증</DetailJobTxt>
@@ -243,7 +307,9 @@ function MakePortFolioComponent() {
             return (
               <UnderUserInput key={index}>
                 {item}
-                <button>X</button>
+                <button onClick={() => onClickDeleteCertificate(index)}>
+                  X
+                </button>
               </UnderUserInput>
             );
           })}
@@ -260,7 +326,7 @@ function MakePortFolioComponent() {
             return (
               <UnderUserInput key={index}>
                 {item}
-                <button>X</button>
+                <button onClick={() => onClickDeleteForeign(index)}>X</button>
               </UnderUserInput>
             );
           })}
@@ -275,7 +341,7 @@ function MakePortFolioComponent() {
         {showIntroduce && (
           <UnderUserInput>
             {showIntroduce}
-            <button>X</button>
+            <button onClick={onClickDeleteIntroduce}>X</button>
           </UnderUserInput>
         )}
         <MakePortFolioNextBtn onClick={onClickNextPage}>
