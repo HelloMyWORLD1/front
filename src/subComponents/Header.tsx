@@ -65,7 +65,7 @@ function Header() {
         ></LogoImg>
       </div>
       <div>
-        <button onClick={onClickLogOut}>로그아웃 </button>
+        {/* <button onClick={onClickLogOut}>로그아웃 </button> */}
         <MakeMyBlogBtn onClick={onClickMakePortFolioBtn}>
           {user ? user.nickname : "블로그 만들기"}
         </MakeMyBlogBtn>
