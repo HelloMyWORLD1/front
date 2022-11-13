@@ -81,15 +81,11 @@ function Header() {
         ></LogoImg>
       </div>
       <div>
-<<<<<<< HEAD
-        {/* <button onClick={onClickLogOut}>로그아웃 </button> */}
-=======
         {user ? (
           <MakeMyBlogBtn onClick={onClickLogOut}>로그아웃</MakeMyBlogBtn>
         ) : (
           <MakeMyBlogBtn onClick={onClickLogIn}>로그인</MakeMyBlogBtn>
         )}
->>>>>>> 065bb18721cb39576389ec6b3a3e07a10b684c19
         <MakeMyBlogBtn onClick={onClickMakePortFolioBtn}>
           포트폴리오
         </MakeMyBlogBtn>

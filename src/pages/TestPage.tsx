@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import ImageUpload from "../subComponents/ImageUpload";
-import BlogEditor from "../subComponents/BlogEditor";
 import { useRef } from "react";
 import defaulfImage from "../img/Mask group.png";
 
@@ -28,7 +27,7 @@ export default function TestPage() {
   return (<div>
       테스트페이지
       <ImageUpload /> 
-      <BlogEditor />
+      {/* <BlogEditor /> */}
       {/* {profile ? (<img src={PROFILE_TEST}></img>):( <img src={defaulfImage}></img>
 )} */}
      

@@ -69,3 +69,4 @@ declare module "*png" {
 declare module "*svg";
 //폰트 모듈 선언
 declare module "*woff";
+

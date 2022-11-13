@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import mid from "../img/Rectangle.png";
 import { ReactComponent as MySvg } from "../img/Vector-2.svg";
+import ReactQuill from 'react-quill';
+
 
 // 중첩 사용 스타일
 export const LogoImg = styled.img<{
@@ -932,3 +934,5 @@ export const MakePortFolioNextBtn = styled.button`
   margin-bottom: 200px;
   color: #ffffff;
 `;
+
+//blogEditor
