@@ -101,7 +101,11 @@ export const inquireMyInfo = createAsyncThunk("inquireMyInfo", async () => {
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    simpleLogOut: (state) => {
+      state.user = null;
+    },
+  },
   // 비동기 통신을 위한 리듀서
   extraReducers: {
     //logIn 로직
