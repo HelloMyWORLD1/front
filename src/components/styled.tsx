@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import mid from "../img/Rectangle.png";
 import { ReactComponent as MySvg } from "../img/Vector-2.svg";
-import ReactQuill from 'react-quill';
-
+import ReactQuill from "react-quill";
 
 // 중첩 사용 스타일
 export const LogoImg = styled.img<{
@@ -936,3 +935,17 @@ export const MakePortFolioNextBtn = styled.button`
 `;
 
 //blogEditor
+
+export const MakePortfolioSecondBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const MakePortfolioSecondInsideBox = styled.div`
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
