@@ -459,6 +459,7 @@ export const FindPasswordSubmitButton = styled.button`
 
 export const HeaderComponent = styled.div`
   top: 0;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -493,16 +494,18 @@ export const LinkCategoryCard = styled.div`
 `;
 
 export const MakeMyBlogBtn = styled.button`
-  width: 176px;
-  height: 80px;
+  width: 90px;
+  height: 40px;
+  margin-right: 5px;
   background: #222222;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 23px;
   letter-spacing: -0.1em;
   color: #ffffff;
+  border-radius: 50px;
 `;
 
 //HomePage
@@ -776,5 +779,156 @@ export const FooterTxt3 = styled.div`
   font-size: 16px;
   line-height: 14px;
   letter-spacing: -0.1em;
+  color: #ffffff;
+`;
+
+//makePortfolio
+export const MakePortfolioBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const MakePortfolioInsideBox = styled.div`
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const MakePortfolioHeadTxt = styled.div`
+  margin-top: 40px;
+  width: 260px;
+  height: 67px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 46px;
+  line-height: 67px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.1em;
+  text-transform: uppercase;
+
+  color: #333333;
+`;
+
+export const GrayExplainTxt = styled.div`
+  margin-top: 5px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  width: 216px;
+  height: 26px;
+  font-size: 18px;
+  line-height: 26px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.1em;
+  text-transform: uppercase;
+
+  color: #999999;
+`;
+
+export const DetailJobTxt = styled.div`
+  height: 20px;
+  width: 600px;
+  margin-top: 30px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.1em;
+
+  color: #333333;
+`;
+
+export const MakePortFolioNormalInput = styled.input`
+  box-sizing: border-box;
+  width: 600px;
+  height: 60px;
+  margin-top: 10px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  letter-spacing: -0.1em;
+  &::placeholder {
+    color: #999999;
+  }
+`;
+
+export const SnsBox = styled.div`
+  display: flex;
+`;
+export const SnsSelectField = styled.select`
+  box-sizing: border-box;
+  width: 214px;
+  margin-right: 2px;
+  height: 60px;
+  margin-top: 10px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+`;
+
+export const SnsInput = styled.input`
+  box-sizing: border-box;
+  width: 384px;
+  height: 60px;
+  margin-top: 10px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-size: 16px;
+  line-height: 23px;
+  letter-spacing: -0.1em;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  padding-top: 0;
+  &::placeholder {
+    color: #999999;
+  }
+`;
+
+export const UnderUserInputBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const UnderUserInput = styled.div`
+  margin-top: 10px;
+  width: 600px;
+  height: 23px;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const MakePortFolioNextBtn = styled.button`
+  width: 600px;
+  height: 60px;
+  margin-top: 40px;
+  background: #222222;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  /* identical to box height */
+
+  text-align: center;
+  letter-spacing: -0.1em;
+  margin-bottom: 200px;
   color: #ffffff;
 `;

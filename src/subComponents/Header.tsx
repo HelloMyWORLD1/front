@@ -13,29 +13,44 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../hooks";
 import { useAppSelector } from "../hooks";
 import { RootState } from "../store/store";
+import { userSliceActions } from "../slices/userSlice";
+
 function Header() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state: RootState) => state.user);
+
   const onClickSearch = () => {
     console.log("search button click");
   };
+
   const onClickHome = () => {
     console.log("home");
   };
+
   const onClickIntro = () => {
     console.log("intro");
   };
+
   const onClickCommunity = () => {
     console.log("commu");
   };
-  const onClickLogOut = () => {
+
+  const onClickLogOut = useCallback(() => {
     console.log("로그아웃");
     localStorage.removeItem("jwtToken");
+    dispatch(userSliceActions.simpleLogOut());
+  }, [user]);
+
+  const onClickLogIn = () => {
+    console.log("로그인");
+    navigate("/login");
   };
+
   const onClickMakePortFolioBtn = useCallback(() => {
     if (!user) {
       navigate("/login");
+      return;
     }
     if (user) {
       console.log(user);
@@ -47,6 +62,7 @@ function Header() {
   const onClickLogo = () => {
     navigate("/");
   };
+
   return (
     <HeaderComponent>
       <LinkCategory>
@@ -65,9 +81,17 @@ function Header() {
         ></LogoImg>
       </div>
       <div>
+<<<<<<< HEAD
         {/* <button onClick={onClickLogOut}>로그아웃 </button> */}
+=======
+        {user ? (
+          <MakeMyBlogBtn onClick={onClickLogOut}>로그아웃</MakeMyBlogBtn>
+        ) : (
+          <MakeMyBlogBtn onClick={onClickLogIn}>로그인</MakeMyBlogBtn>
+        )}
+>>>>>>> 065bb18721cb39576389ec6b3a3e07a10b684c19
         <MakeMyBlogBtn onClick={onClickMakePortFolioBtn}>
-          {user ? user.nickname : "블로그 만들기"}
+          포트폴리오
         </MakeMyBlogBtn>
       </div>
     </HeaderComponent>
