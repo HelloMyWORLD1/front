@@ -46,3 +46,13 @@ type postBlogType = {
   title: string;
   content: string;
 }
+type getBlogDetailType = {
+  blogId : number;
+}
+type getBlogAllType = {
+  nickname : string;
+}
+type searchBlogType = {
+  nickname: string;
+  keyword: string;
+}
