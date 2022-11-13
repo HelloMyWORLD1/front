@@ -207,7 +207,7 @@ function SignUpForm() {
       ) {
         alert("유효성 검사를 확인해주세요.");
       }
-
+      console.log(nameError,nicknameError,fieldError,birthError,phoneError,emailError,pwError,pwCheckError);
       if (
         !nameError &&
         !nicknameError &&
@@ -218,6 +218,7 @@ function SignUpForm() {
         !pwError &&
         !pwCheckError
       ) {
+        console.log('dd');
         dispatch(
           signUp({
             email: `${email}@${domain}`,
