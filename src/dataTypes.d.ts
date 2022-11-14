@@ -22,6 +22,12 @@ type portFolioRegisterType = {
   career: { year: string; title: string; content: string }[];
 };
 
+type CareerArrayType = {
+  title: string;
+  year: string;
+  content: string;
+};
+
 //수정해야함 백엔드와 username => email 변경해야함
 type logInType = {
   email: string;
