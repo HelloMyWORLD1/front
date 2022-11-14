@@ -934,6 +934,7 @@ export const MakePortFolioNextBtn = styled.button`
   color: #ffffff;
 `;
 
+
 //MakePortfolioSecondComponent
 export const CareerInputBox = styled.div`
   width: 600px;
@@ -954,3 +955,94 @@ export const CareerInput = styled.input`
 `;
 
 //blogEditor
+
+//MakeBlogComponent
+export const MakeBlogHeader = styled.div`
+  top: 0;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FFFFFF;
+border-bottom: 1px solid #E5E5E5;
+`;
+export const MakeBlogTable = styled.table`
+margin-top : 20px;
+display: flex;
+flex-wrap: wrap;
+flex-direction: column; /*수직 정렬*/
+align-items: center;
+justify-content: center;
+
+`;
+
+export const TableLine = styled.div`
+width: 50vw;
+height: 0px;
+
+border: 1px solid #E5E5E5;
+`;
+
+export const TableTr = styled.tr`
+width: 50vw;
+margin-top:20px;
+`;
+
+export const MakeBlogTitleInput = styled.input`
+width: 50vw;
+height: 5vh;
+background : #F5F5F5;
+border: none;
+&:focus {
+  outline: none;
+};
+
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 500;
+font-size: 36px;
+line-height: 39px;
+/* identical to box height, or 108% */
+
+letter-spacing: -0.1em;
+
+color: #CCCCCC;
+`;
+
+export const CustomReactQuill = styled(ReactQuill)`
+width: 50vw;
+height : 60vh;
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 33px;
+/* or 183% */
+
+letter-spacing: -0.1em;
+
+color: #222222;
+
+`
+export const MakeBlogBtn = styled.button`
+margin-right : 20px;
+width: 88px;
+height: 33px;
+background: #333333;
+border-radius: 56px;
+
+
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 400;
+font-size: 13px;
+line-height: 39px;
+/* identical to box height, or 300% */
+color: #FFFFFF;
+display: flex;
+
+align-items: center;
+justify-content: center;
+`;
+
+

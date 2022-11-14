@@ -3,7 +3,7 @@ import axios from "axios";
 import type { PayloadAction } from "@reduxjs/toolkit";
 axios.defaults.baseURL = "http://129.154.58.244:8001/api";
 
-const initialState = {
+const initialState :BlogInitialState= {
   blogs: null, // 사람의 전체 블로그(페이지네이션5개)를 받아올 변수
   blog: null, // 블로그의 게시글 하나를 받아올 변수
   //게시글 등록
@@ -31,12 +31,99 @@ const initialState = {
   searchBlogDone: false,
   searchBlogError: null,
 };
+//블로그 등록
+export const registerBlog = createAsyncThunk(
+  "registerBlog",
+  async (data: postBlogType, { rejectWithValue }) => {
+    try {
+      axios.defaults.headers.common["Authorization"] = "";
+      const JWTTOEKN = localStorage.getItem("jwtToken");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
+      const res = await axios.post("/blog", data, {
+        // withCredentials: true,
+      });
+      console.log(res.data);
+      return res.data;
+    } catch (error: any) {
+      console.log(error);
+      return rejectWithValue(error.response.data); //내부 에러처리
+    }
+  }
+);
+//블로그 전체 조회
+export const getBlogAll = createAsyncThunk(
+  "getBlogAll",
+  async (data: getBlogAllType, { rejectWithValue }) => {
+    try {
+      //get 요청시 닉네임 받기 위함
+      const res = await axios.get(`/blogs/${data.nickname}?page=${data.pageNum}`);
+      console.log(res.data);
+      return res.data;
+    } catch (error: any) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 const blogSlice = createSlice({
   name: "blog",
   initialState,
   reducers: {},
-  extraReducers: {},
+  extraReducers: {
+    //registerBlog 로직
+    [registerBlog.pending.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.registerBlogLoading = true;
+      state.registerBlogDone = false;
+      state.registerBlogError = null;
+    },
+    [registerBlog.fulfilled.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.registerBlogLoading = false;
+      state.registerBlogDone = true;
+      state.registerBlogError = null;
+      state.blog = action.payload;
+    },
+    [registerBlog.rejected.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.registerBlogLoading = false;
+      state.registerBlogDone = false;
+      state.registerBlogError = action.payload;
+    },
+    //getBlogAll 로직
+    [getBlogAll.pending.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.inquireBlogsLoading = true;
+      state.inquireBlogDone = false;
+      state.inquireBlogError = null;
+    },
+    [getBlogAll.fulfilled.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.inquireBlogsLoading = false;
+      state.inquireBlogDone = true;
+      state.inquireBlogError = null;
+      state.blogs = action.payload;
+    },
+    [getBlogAll.rejected.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.inquireBlogsLoading = false;
+      state.inquireBlogDone = false;
+      state.inquireBlogError = action.payload;
+    },
+  },
 });
 
 export const blogSliceActions = blogSlice.actions;
