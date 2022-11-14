@@ -56,7 +56,7 @@ export const getBlogAll = createAsyncThunk(
   async (data: getBlogAllType, { rejectWithValue }) => {
     try {
       //get 요청시 닉네임 받기 위함
-      const res = await axios.get(`/portfolio/${data.nickname}`);
+      const res = await axios.get(`/blogs/${data.nickname}?page=${data.pageNum}`);
       console.log(res.data);
       return res.data;
     } catch (error: any) {

@@ -51,6 +51,7 @@ type getBlogDetailType = {
 }
 type getBlogAllType = {
   nickname : string;
+  pageNum: number;
 }
 type searchBlogType = {
   nickname: string;
