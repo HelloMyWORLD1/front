@@ -934,7 +934,6 @@ export const MakePortFolioNextBtn = styled.button`
   color: #ffffff;
 `;
 
-
 //MakePortfolioSecondComponent
 export const CareerInputBox = styled.div`
   width: 600px;
@@ -963,234 +962,234 @@ export const MakeBlogHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #FFFFFF;
-border-bottom: 1px solid #E5E5E5;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
 `;
-export const MakeBlogTable = styled.table`
-margin-top : 20px;
-display: flex;
-flex-wrap: wrap;
-flex-direction: column; /*수직 정렬*/
-align-items: center;
-justify-content: center;
 
+export const WhiteBox = styled.div`
+  width: 88px;
+  margin-left: 20px;
+`;
+
+export const MakeBlogTable = styled.table`
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column; /*수직 정렬*/
+  align-items: center;
+  justify-content: center;
 `;
 
 export const TableLine = styled.div`
-width: 50vw;
-height: 0px;
+  width: 50vw;
+  height: 0px;
 
-border: 1px solid #E5E5E5;
+  border: 1px solid #e5e5e5;
 `;
 
 export const TableTr = styled.tr`
-width: 50vw;
-margin-top:20px;
+  width: 50vw;
+  margin-top: 20px;
 `;
 
 export const MakeBlogTitleInput = styled.input`
-width: 50vw;
-height: 5vh;
-background : #F5F5F5;
-border: none;
-&:focus {
-  outline: none;
-};
+  width: 50vw;
+  height: 5vh;
+  background: #f5f5f5;
+  border: none;
+  &:focus {
+    outline: none;
+  }
 
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 500;
-font-size: 36px;
-line-height: 39px;
-/* identical to box height, or 108% */
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 39px;
+  /* identical to box height, or 108% */
 
-letter-spacing: -0.1em;
-color: #CCCCCC;
+  letter-spacing: -0.1em;
+  color: #cccccc;
 `;
 
 export const CustomReactQuill = styled(ReactQuill)`
-width: 50vw;
-height : 60vh;
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-line-height: 33px;
-/* or 183% */
+  width: 50vw;
+  height: 60vh;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 33px;
+  /* or 183% */
 
-letter-spacing: -0.1em;
+  letter-spacing: -0.1em;
 
-color: #222222;
-
-`
+  color: #222222;
+`;
 export const MakeBlogBtn = styled.button`
-margin-right : 20px;
-width: 88px;
-height: 33px;
-background: #333333;
-border-radius: 56px;
+  margin-right: 20px;
+  width: 88px;
+  height: 33px;
+  background: #333333;
+  border-radius: 56px;
 
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 39px;
+  /* identical to box height, or 300% */
+  color: #ffffff;
+  display: flex;
 
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 400;
-font-size: 13px;
-line-height: 39px;
-/* identical to box height, or 300% */
-color: #FFFFFF;
-display: flex;
-
-align-items: center;
-justify-content: center;
+  align-items: center;
+  justify-content: center;
 `;
 
 //blogHeader
 export const BlogHeaderProfile = styled.img`
-width: 34px;
-height: 34px;
+  width: 34px;
+  height: 34px;
 
-background: #EEEEEE;
-border: 13px solid #F5F5F5;
-border-radius: 321.5px;
+  background: #eeeeee;
+  border: 13px solid #f5f5f5;
+  border-radius: 321.5px;
 `;
 
 export const BlogHeaderDetailWrapper = styled.div`
-display: flex;
-align-items: center;
-justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const BlogHeaderNavigateDiv = styled.div`
-margin-right: 10px;
-height: 27px;
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 500;
-font-size: 16px;
-line-height: 27px;
-/* identical to box height, or 169% */
+  margin-right: 10px;
+  height: 27px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 27px;
+  /* identical to box height, or 169% */
 
-text-align: center;
-letter-spacing: -0.1em;
+  text-align: center;
+  letter-spacing: -0.1em;
 
-color: #999999;
-
-`
+  color: #999999;
+`;
 //GetBlogAllComponent
 export const GetBlogAllTableLine = styled.div`
-width: 100vw;
-height: 0px;
-border: 1px solid #CCCCCC;
-`
+  width: 100vw;
+  height: 0px;
+  border: 1px solid #cccccc;
+`;
 
 export const GetBlogAllTable = styled.table`
-display: flex;
-flex-wrap: wrap;
-flex-direction: column; /*수직 정렬*/
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column; /*수직 정렬*/
 
-align-items: center;
-justify-content: center;
+  align-items: center;
+  justify-content: center;
 
-border-collapse: separate;
-	border-spacing: 0 10px;
-`
+  border-collapse: separate;
+  border-spacing: 0 10px;
+`;
 export const GetBlogAllTr = styled.tr`
-width: 50vw;
-margin-top:20px;
-`
+  width: 50vw;
+  margin-top: 20px;
+`;
 
 export const GetBlogAllHeader = styled.td`
-top:0;
-height: 80px;
-display: flex;
-justify-content: space-between;
-align-items: center;
+  top: 0;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 export const GetBlogMoreBtn = styled.button`
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-text-align: center;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
 
-color: #666666;
-width: 167px;
-height: 50px;
-left: 877px;
-top: 1193px;
+  color: #666666;
+  width: 167px;
+  height: 50px;
+  left: 877px;
+  top: 1193px;
 
-background: #FFFFFF;
-border: 1px solid #E5E5E5;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
 `;
 
 export const PostBlogBtn = styled.button`
-width: 147.81px;
-height: 50px;
-background: #FFFFFF;
-border: 1px solid #E5E5E5;
-border-radius: 56px;
+  width: 147.81px;
+  height: 50px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 56px;
 
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-text-align: center;
-color: #333333;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+  color: #333333;
 `;
 export const PostBlogImg = styled.img`
-width:16px;
-height: 16px;
+  width: 16px;
+  height: 16px;
 `;
 export const SearchBlogInput = styled.input`
-width: 232px;
-height: 50px;
-border: none;
-border-bottom: 1px solid #333333;
-&:focus {
-  outline: none;
-};
-background : #F5F5F5;
-`
+  width: 232px;
+  height: 50px;
+  border: none;
+  border-bottom: 1px solid #333333;
+  &:focus {
+    outline: none;
+  }
+  background: #f5f5f5;
+`;
 export const SearchBlogImg = styled.img`
-width:16px;
-height: 16px;`;
+  width: 16px;
+  height: 16px;
+`;
 
 export const GetBlogAllTitle = styled.div`
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 500;
-font-size: 18px;
-color: #222222;
-margin-left : 10px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #222222;
+  margin-left: 10px;
 `;
 export const GetBlogAllContent = styled.div`
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 350;
-font-size: 16px;
-color: #9A9A9A;
-margin : 10px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 350;
+  font-size: 16px;
+  color: #9a9a9a;
+  margin: 10px;
 `;
 export const GetBlogAllCreated = styled.div`
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 400;
-font-size: 14px;
-color: #999999;
-margin-right:10px;
-
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #999999;
+  margin-right: 10px;
 `;
 
 export const GetBlogAllBox = styled.div`
-width: 50vw;
-height: 20vh;
-background: #FFFFFF;
-border-radius: 15px;
-overflow:hidden;
-padding:10px;
-text-overflow: ellipsis;
-line-height: 33px;
+  width: 50vw;
+  height: 20vh;
+  background: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  padding: 10px;
+  text-overflow: ellipsis;
+  line-height: 33px;
 `;
-
-

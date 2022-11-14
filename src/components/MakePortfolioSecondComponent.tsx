@@ -14,7 +14,6 @@ import {
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAppDispatch } from "../hooks";
 import logo from "../img/logo.png";
-import { onKeyUpYearValidate } from "../validate/validate";
 
 function MakePortfolioSecondComponent() {
   const navigate = useNavigate();
