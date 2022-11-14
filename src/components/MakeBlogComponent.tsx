@@ -44,10 +44,10 @@ export default function MakeBlogComponent() {
     setTitle(event.currentTarget.value);
   }
 
-  useEffect(() => {
-    console.log("제목",title)
-    console.log("내용",editorValue);
-  }, [editorValue,title]);
+//   useEffect(() => {
+//     console.log("제목",title)
+//     console.log("내용",editorValue);
+//   }, [editorValue,title]);
 
   const onSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
@@ -57,7 +57,6 @@ export default function MakeBlogComponent() {
                 title: title,
                 content: editorValue
             })
-
         )
 
     },[dispatch,title,editorValue]
