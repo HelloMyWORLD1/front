@@ -31,6 +31,7 @@ const initialState :BlogInitialState= {
   searchBlogDone: false,
   searchBlogError: null,
 };
+//블로그 등록
 export const registerBlog = createAsyncThunk(
   "registerBlog",
   async (data: postBlogType, { rejectWithValue }) => {
@@ -46,6 +47,21 @@ export const registerBlog = createAsyncThunk(
     } catch (error: any) {
       console.log(error);
       return rejectWithValue(error.response.data); //내부 에러처리
+    }
+  }
+);
+//블로그 전체 조회
+export const getBlogAll = createAsyncThunk(
+  "getBlogAll",
+  async (data: getBlogAllType, { rejectWithValue }) => {
+    try {
+      //get 요청시 닉네임 받기 위함
+      const res = await axios.get(`/portfolio/${data.nickname}`);
+      console.log(res.data);
+      return res.data;
+    } catch (error: any) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -80,6 +96,32 @@ const blogSlice = createSlice({
       state.registerBlogLoading = false;
       state.registerBlogDone = false;
       state.registerBlogError = action.payload;
+    },
+    //getBlogAll 로직
+    [getBlogAll.pending.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.inquireBlogsLoading = true;
+      state.inquireBlogDone = false;
+      state.inquireBlogError = null;
+    },
+    [getBlogAll.fulfilled.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.inquireBlogsLoading = false;
+      state.inquireBlogDone = true;
+      state.inquireBlogError = null;
+      state.blogs = action.payload;
+    },
+    [getBlogAll.rejected.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.inquireBlogsLoading = false;
+      state.inquireBlogDone = false;
+      state.inquireBlogError = action.payload;
     },
   },
 });
