@@ -934,18 +934,23 @@ export const MakePortFolioNextBtn = styled.button`
   color: #ffffff;
 `;
 
-//blogEditor
-
-export const MakePortfolioSecondBox = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const MakePortfolioSecondInsideBox = styled.div`
+//MakePortfolioSecondComponent
+export const CareerInputBox = styled.div`
   width: 600px;
+  height: 60px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 `;
+
+export const CareerInput = styled.input`
+  margin-right: 16px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  letter-spacing: -0.1em;
+
+  color: #999999;
+`;
+
+//blogEditor
