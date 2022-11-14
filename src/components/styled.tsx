@@ -1192,6 +1192,5 @@ padding:10px;
 text-overflow: ellipsis;
 line-height: 33px;
 `;
-=======
->>>>>>> 9ae80c2050af143c8a9f11f53dff71b152c7e96b
+
 
