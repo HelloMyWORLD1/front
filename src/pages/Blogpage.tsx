@@ -6,7 +6,6 @@ export default function BlogPage(){
     return(
         <div>
             <BlogHeader/>
-            블로그 페이지
             <GetBlogAllComponent/>
         </div>
     )

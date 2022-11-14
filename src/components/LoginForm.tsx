@@ -19,6 +19,7 @@ import pwCheck from "../img/Vector-2.svg";
 import { useNavigate } from "react-router-dom";
 import logo from "../img/logo.png";
 import circleFill from "../img/akar-icons_circle-check-fill.svg";
+import styled from "styled-components";
 import { useAppDispatch } from "../hooks";
 import { logIn } from "../slices/userSlice";
 import { useSelector } from "react-redux";
