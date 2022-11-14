@@ -14,9 +14,12 @@ import {
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAppDispatch } from "../hooks";
 import logo from "../img/logo.png";
+import { onKeyUpYearValidate } from "../validate/validate";
 
 function MakePortfolioSecondComponent() {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const location = useLocation();
 
   const [year, setYear] = useState<string>("");
   const [company, setCompany] = useState<string>("");
@@ -25,7 +28,12 @@ function MakePortfolioSecondComponent() {
   const [showCareer, setShowCareer] = useState<CareerArrayType[]>([]);
 
   const handleYear = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setYear(event.currentTarget.value);
+    const { value } = event.target;
+    const onlyNumber = value.replace(/[^0-9]/g, "");
+    if (value !== onlyNumber) {
+      alert("[Error] : 숫자만 입력가능합니다.");
+    }
+    setYear(onlyNumber);
   };
 
   const handleCompany = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -80,7 +88,7 @@ function MakePortfolioSecondComponent() {
 
         <DetailJobTxt>커리어패스</DetailJobTxt>
         <CareerInputBox>
-          <CareerInput placeholder="년도" onChange={handleYear} />
+          <CareerInput placeholder="년도" onChange={handleYear} value={year} />
           <CareerInput placeholder="회사명" onChange={handleCompany} />
           <CareerInput
             placeholder="맡은직무"
