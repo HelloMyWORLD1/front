@@ -984,7 +984,6 @@ line-height: 39px;
 /* identical to box height, or 108% */
 
 letter-spacing: -0.1em;
-
 color: #CCCCCC;
 `;
 
@@ -1023,4 +1022,37 @@ display: flex;
 align-items: center;
 justify-content: center;
 `;
+
+//blogHeader
+export const BlogHeaderProfile = styled.img`
+width: 34px;
+height: 34px;
+
+background: #EEEEEE;
+border: 13px solid #F5F5F5;
+border-radius: 321.5px;
+`;
+
+export const BlogHeaderDetailWrapper = styled.div`
+display: flex;
+align-items: center;
+justify-content: center;
+`;
+
+export const BlogHeaderNavigateDiv = styled.div`
+margin-right: 10px;
+height: 27px;
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 27px;
+/* identical to box height, or 169% */
+
+text-align: center;
+letter-spacing: -0.1em;
+
+color: #999999;
+
+`
 
