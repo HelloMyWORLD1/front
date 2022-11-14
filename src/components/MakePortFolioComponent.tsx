@@ -10,7 +10,6 @@ import {
   SnsInput,
   SnsBox,
   MakePortFolioNextBtn,
-  UnderUserInputBox,
   LogoImg,
   UnderUserInput,
   BlackLine,

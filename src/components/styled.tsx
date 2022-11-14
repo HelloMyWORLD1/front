@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import mid from "../img/Rectangle.png";
 import { ReactComponent as MySvg } from "../img/Vector-2.svg";
-import ReactQuill from 'react-quill';
-
+import ReactQuill from "react-quill";
 
 // 중첩 사용 스타일
 export const LogoImg = styled.img<{
@@ -935,6 +934,28 @@ export const MakePortFolioNextBtn = styled.button`
   color: #ffffff;
 `;
 
+
+//MakePortfolioSecondComponent
+export const CareerInputBox = styled.div`
+  width: 600px;
+  height: 60px;
+  display: flex;
+`;
+
+export const CareerInput = styled.input`
+  margin-right: 16px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  letter-spacing: -0.1em;
+
+  color: #999999;
+`;
+
+//blogEditor
+
 //MakeBlogComponent
 export const MakeBlogHeader = styled.div`
   top: 0;
@@ -1171,4 +1192,6 @@ padding:10px;
 text-overflow: ellipsis;
 line-height: 33px;
 `;
+=======
+>>>>>>> 9ae80c2050af143c8a9f11f53dff71b152c7e96b
 
