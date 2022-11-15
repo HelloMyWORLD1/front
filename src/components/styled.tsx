@@ -1018,7 +1018,7 @@ export const TextAreaStyled = styled.textarea`
 
 export const ResultPortfolioTextArea = styled.textarea`
   margin-top: 10px;
-  padding-top: 10px;
+
   box-sizing: border-box;
   width: 600px;
   height: 186px;
