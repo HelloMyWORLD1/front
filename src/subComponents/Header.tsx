@@ -53,9 +53,7 @@ function Header() {
       return;
     }
     if (user) {
-      console.log(user);
-      console.log(typeof user);
-      console.log(user.email);
+      navigate("/makePortfolio");
     }
   }, [user]);
 
