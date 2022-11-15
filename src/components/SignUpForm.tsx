@@ -206,8 +206,8 @@ function SignUpForm() {
         pwCheckError
       ) {
         alert("유효성 검사를 확인해주세요.");
+        return;
       }
-      console.log(nameError,nicknameError,fieldError,birthError,phoneError,emailError,pwError,pwCheckError);
       if (
         !nameError &&
         !nicknameError &&
@@ -218,7 +218,6 @@ function SignUpForm() {
         !pwError &&
         !pwCheckError
       ) {
-        console.log('dd');
         dispatch(
           signUp({
             email: `${email}@${domain}`,
@@ -254,6 +253,12 @@ function SignUpForm() {
       pwCheckError,
     ]
   );
+
+  useEffect(() => {
+    if (signUpDone === true) {
+      navigate("/login");
+    }
+  }, [signUpDone]);
 
   return (
     <SignUpComponent>
