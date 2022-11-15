@@ -35,7 +35,7 @@ select {
     outline: 1px solid #333333;
   }
 }
-input {
+textarea,input {
   text-indent: 20px;
   :focus {
     outline: 1px solid #333333;
