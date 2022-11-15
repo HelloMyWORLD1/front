@@ -14,12 +14,18 @@ export const LogoImg = styled.img<{
   margin-top: ${(props) => (props.marginTop ? `${props.marginTop}px` : "91px")};
   cursor: pointer;
 `;
-export const BlackLine = styled.div<{ marginTop?: number }>`
-  width: 300px;
+export const BlackLine = styled.div<{
+  marginTop?: number;
+  width?: number;
+  checkColor?: string;
+}>`
+  width: ${(props) => (props.width ? `${props.width}px` : "300px")};
   height: 0px;
   margin-top: ${(props) => (props.marginTop ? `${props.marginTop}px` : "60px")};
-  border: 1px solid #e5e5e5;
+  border: ${(props) =>
+    props.checkColor ? `1px solid ${props.checkColor}` : `1px solid #e5e5e5`};
 `;
+
 export const Vector = styled.img`
   position: absolute;
   margin-top: 40px;
@@ -788,6 +794,7 @@ export const MakePortfolioBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 150px;
 `;
 
 export const MakePortfolioInsideBox = styled.div`
@@ -926,14 +933,29 @@ export const MakePortFolioNextBtn = styled.button`
   font-weight: 700;
   font-size: 18px;
   line-height: 26px;
-  /* identical to box height */
-
   text-align: center;
   letter-spacing: -0.1em;
   margin-bottom: 200px;
+  cursor: pointer;
   color: #ffffff;
 `;
 
+export const DeletePortfolioButton = styled.button`
+  width: 600px;
+  height: 60px;
+  margin-top: 10px;
+  cursor: pointer;
+  background: #222222;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  text-align: center;
+  letter-spacing: -0.1em;
+  margin-bottom: 10px;
+  color: #ffffff;
+`;
 //MakePortfolioSecondComponent
 export const CareerInputBox = styled.div`
   width: 600px;
@@ -942,7 +964,83 @@ export const CareerInputBox = styled.div`
 `;
 
 export const CareerInput = styled.input`
-  margin-right: 16px;
+  box-sizing: border-box;
+  border: 1px solid #e5e5e5;
+  width: 193px;
+  height: 60px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  letter-spacing: -0.1em;
+  & + input {
+    margin-left: 16px;
+  }
+  color: #999999;
+`;
+
+export const ResultPortfolioInput = styled.input`
+  box-sizing: border-box;
+  border: 1px solid #e5e5e5;
+  margin-top: 10px;
+  width: 600px;
+  height: 60px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  letter-spacing: -0.1em;
+  color: black;
+  & + textarea {
+    //margin-top: 10px;
+  }
+`;
+
+export const TextAreaStyled = styled.textarea`
+  margin-top: 10px;
+  padding-top: 10px;
+  box-sizing: border-box;
+  width: 600px;
+  height: 186px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.1em;
+
+  color: #999999;
+`;
+
+export const ResultPortfolioTextArea = styled.textarea`
+  margin-top: 10px;
+  padding-top: 10px;
+  box-sizing: border-box;
+  width: 600px;
+  height: 186px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.1em;
+
+  color: black;
+`;
+
+export const MakePortfolioAddButton = styled.div`
+  cursor: pointer;
+  margin-top: 20px;
+  width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 400;
@@ -950,9 +1048,8 @@ export const CareerInput = styled.input`
   line-height: 23px;
   letter-spacing: -0.1em;
 
-  color: #999999;
+  color: #333333;
 `;
-
 //blogEditor
 
 //MakeBlogComponent
