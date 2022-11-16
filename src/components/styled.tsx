@@ -1368,3 +1368,28 @@ text-align: center;
 letter-spacing: -0.1em;
 color: #222222;
 `
+//getComments
+export const GetCommentsHeaderBox = styled.td`
+top: 0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+`
+export const GetCommentsDiv = styled.div`
+width: 50vw;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 10px;
+  line-height: 33px;
+`
+export const GetCommentsProfile = styled.img`
+width: 30px;
+height: 30px;
+background:#ffffff;
+border-radius: 321.5px;
+`
+export const GetCommentsMoreBtn = styled.button`
+background: #ffffff;
+border:none;
+
+`

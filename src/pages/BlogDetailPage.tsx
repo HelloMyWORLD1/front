@@ -5,6 +5,7 @@ import {
     BlogHeaderDetailWrapper,
     BlogHeaderNavigateDiv,
  } from "../components/styled";
+import GetComments from "../components/GetComments";
 
 export default function BlogDetailpage() {
   return (
@@ -19,6 +20,7 @@ export default function BlogDetailpage() {
         </BlogHeaderDetailWrapper>
     </HeaderComponent>
     <GetBlogComponenet />
+    <GetComments />
     </div>
   );
 }
