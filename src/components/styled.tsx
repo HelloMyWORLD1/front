@@ -1290,3 +1290,77 @@ export const GetBlogAllBox = styled.div`
   text-overflow: ellipsis;
   line-height: 33px;
 `;
+
+//GetBlogComponent
+export const GetBlogUserBox = styled.div`
+display: flex;
+align-items: center;
+`
+export const GetBlogUser = styled.div`
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 27px;
+color: #22222
+
+`;
+export const GetBlogUserImg = styled.img`
+width: 34px;
+height: 34px;
+background:#EEEEEE;
+border: 13px solid #F5F5F5;
+border-radius: 321.5px;
+`;
+export const GetBlogCreated = styled.div`
+margin-left:5px;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 39px;
+letter-spacing: -0.1em;
+color: #999999;
+`;
+export const GetBlogTitle = styled.div`
+height: 39px;
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 700;
+font-size: 46px;
+line-height: 39px;
+/* identical to box height, or 85% */
+letter-spacing: -0.1em;
+color: #333333;
+`;
+
+export const GetBlogContent = styled.div`
+width: 900px;
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 33px;
+/* or 183% */
+letter-spacing: -0.1em;
+color: #222222;
+`;
+export const GetBlogBtnTd = styled.td`
+`
+export const GetBlogBtn = styled.button`
+margin-right:5px;
+width: 102px;
+height: 45px;
+left: 1196px;
+border: 1px solid #CCCCCC;
+border-radius: 56px;
+
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 39px;
+text-align: center;
+letter-spacing: -0.1em;
+color: #222222;
+`
