@@ -1213,7 +1213,7 @@ export const GetBlogMoreBtn = styled.button`
   text-align: center;
 
   color: #666666;
-  width: 167px;
+  width: 50px;
   height: 50px;
   left: 877px;
   top: 1193px;
@@ -1289,6 +1289,10 @@ export const GetBlogAllBox = styled.div`
   padding: 10px;
   text-overflow: ellipsis;
   line-height: 33px;
+`;
+export const GetBlogNextImg = styled.img`
+width: 15px;
+height: 15px;
 `;
 
 //GetBlogComponent

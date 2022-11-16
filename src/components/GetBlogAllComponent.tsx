@@ -4,7 +4,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { getBlogAll } from "../slices/blogSlice";
 import search from "../img/Search.png";
-import registerImg from "../img/register.png"
+import registerImg from "../img/register.png";
+import arrowLeft from "../img/arrowLeft.png";
+import arrowRight from "../img/arrowRight.png";
 import {
   GetBlogAllTableLine,
   GetBlogAllTable,
@@ -19,7 +21,8 @@ import {
   GetBlogAllTitle,
   GetBlogAllCreated,
   GetBlogAllContent,
-  GetBlogAllBox
+  GetBlogAllBox,
+  GetBlogNextImg,
 } from "./styled";
 interface Posts {
   title: string;
@@ -79,7 +82,8 @@ export default function GetBlogAllComponent() {
               </tr>
               <tr>
                 <td colSpan={2}>
-                    <GetBlogAllContent>{post.content}</GetBlogAllContent></td>
+                  <GetBlogAllContent>{post.content}</GetBlogAllContent>
+                </td>
               </tr>
             </table>
           </GetBlogAllBox>
@@ -99,8 +103,9 @@ export default function GetBlogAllComponent() {
           <div></div>
           <div>
             <PostBlogBtn>
-                <PostBlogImg src={registerImg}></PostBlogImg>
-                글쓰기</PostBlogBtn>
+              <PostBlogImg src={registerImg}></PostBlogImg>
+              글쓰기
+            </PostBlogBtn>
           </div>
         </GetBlogAllHeader>
       </GetBlogAllTr>
@@ -109,7 +114,13 @@ export default function GetBlogAllComponent() {
       {postLists}
       <tr>
         <td>
-          <GetBlogMoreBtn>더보기</GetBlogMoreBtn>
+          <GetBlogMoreBtn>
+            <GetBlogNextImg src={arrowLeft}></GetBlogNextImg>
+          </GetBlogMoreBtn>
+          <GetBlogMoreBtn>1</GetBlogMoreBtn>
+          <GetBlogMoreBtn>
+            <GetBlogNextImg src={arrowRight}></GetBlogNextImg>
+          </GetBlogMoreBtn>
         </td>
       </tr>
     </GetBlogAllTable>
