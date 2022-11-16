@@ -43,7 +43,7 @@ export const registerPortFolio = createAsyncThunk(
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
       const res = await axios.post("/portfolio", data, {
-        withCredentials: true,
+        withCredentials: false,
       });
       console.log(res.data);
       return res.data;
