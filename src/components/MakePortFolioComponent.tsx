@@ -202,6 +202,18 @@ function MakePortFolioComponent() {
       showForeign,
       showIntroduce
     );
+
+    navigate("/makePortfolioSecond", {
+      state: {
+        showDetailJob,
+        showBlogTitle,
+        snsObjectArray,
+        showEducation,
+        showCertificate,
+        showForeign,
+        showIntroduce,
+      },
+    });
   }, [
     showDetailJob,
     showBlogTitle,

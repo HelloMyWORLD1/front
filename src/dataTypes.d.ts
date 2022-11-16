@@ -51,15 +51,25 @@ type getPortFolioLatestType = {
 type postBlogType = {
   title: string;
   content: string;
-}
+};
 type getBlogDetailType = {
-  blogId : number;
-}
+  blogId: number;
+};
 type getBlogAllType = {
-  nickname : string;
+  nickname: string;
   pageNum: number;
-}
+};
 type searchBlogType = {
   nickname: string;
   keyword: string;
-}
+};
+
+type portfolioProjectType = {
+  title: string;
+  content: string;
+};
+
+type techNique = {
+  name: string;
+  content: string;
+};

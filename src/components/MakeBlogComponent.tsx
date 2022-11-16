@@ -3,6 +3,7 @@ import logo from "../img/logo.png";
 import {
   MakeBlogHeader,
   LogoImg,
+  WhiteBox,
   MakeBlogTable,
   TableLine,
   TableTr,
@@ -60,7 +61,7 @@ export default function MakeBlogComponent() {
   const onSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      if (title == "" || editorValue == "" || editorValue == "<p><br></p>") {
+      if (title === "" || editorValue === "" || editorValue === "<p><br></p>") {
         alert("제목과 내용 모두 입력해주세요!");
       } else {
         dispatch(
@@ -78,7 +79,7 @@ export default function MakeBlogComponent() {
     <div>
       <form onSubmit={onSubmit}>
         <MakeBlogHeader>
-          <div></div>
+          <WhiteBox />
           <div>
             <LogoImg
               onClick={onClickLogo}
