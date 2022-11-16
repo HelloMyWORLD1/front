@@ -23,8 +23,8 @@ type portFolioRegisterType = {
 };
 
 type CareerArrayType = {
-  title: string;
   year: string;
+  title: string;
   content: string;
 };
 
@@ -70,6 +70,6 @@ type portfolioProjectType = {
 };
 
 type techNique = {
-  name: string;
+  techName: string;
   content: string;
 };
