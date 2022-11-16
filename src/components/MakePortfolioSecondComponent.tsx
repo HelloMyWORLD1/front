@@ -18,7 +18,7 @@ import {
   MakePortFolioNextBtn,
   DeletePortfolioButton,
 } from "./styled";
-
+import { registerPortFolio } from "../slices/portFolioSlice";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAppDispatch } from "../hooks";
 import logo from "../img/logo.png";
@@ -89,7 +89,7 @@ function MakePortfolioSecondComponent() {
 
   const addTechnique = useCallback(() => {
     setTechnique(
-      [...technique].concat({ name: techName, content: techContent })
+      [...technique].concat({ techName: techName, content: techContent })
     );
   }, [techName, techContent]);
 
@@ -123,9 +123,63 @@ function MakePortfolioSecondComponent() {
     [showCareer]
   );
 
+  const deleteProject = useCallback(
+    (index: number) => {
+      setProject(
+        [...project].filter((item: portfolioProjectType, i: number) => {
+          if (index !== i) {
+            return item;
+          }
+        })
+      );
+    },
+    [project]
+  );
+
+  const deleteTechnique = useCallback(
+    (index: number) => {
+      setTechnique(
+        [...technique].filter((item: techNique, i: number) => {
+          if (index !== i) {
+            return item;
+          }
+        })
+      );
+    },
+    [technique]
+  );
+
   const gotoHome = () => {
     navigate("/");
   };
+
+  const onClickRegisterPortfolio = useCallback(() => {
+    dispatch(
+      registerPortFolio({
+        detailJob: showDetailJob,
+        title: showBlogTitle,
+        sns: snsObjectArray,
+        introduce: showIntroduce,
+        education: showEducation,
+        certificate: showCertificate,
+        foreignLanguage: showForeign,
+        tech: technique,
+        project: project,
+        career: showCareer,
+      })
+    );
+  }, [
+    showDetailJob,
+    showBlogTitle,
+    snsObjectArray,
+    showIntroduce,
+    showEducation,
+    showCertificate,
+    showForeign,
+    technique,
+    project,
+    showCareer,
+  ]);
 
   return (
     <MakePortfolioBox>
@@ -175,7 +229,9 @@ function MakePortfolioSecondComponent() {
                 <DetailJobTxt>프로젝트 {index + 1}</DetailJobTxt>
                 <ResultPortfolioInput value={item.title} readOnly />
                 <ResultPortfolioTextArea value={item.content} readOnly />
-                <DeletePortfolioButton>삭제하기</DeletePortfolioButton>
+                <DeletePortfolioButton onClick={() => deleteProject(index)}>
+                  삭제하기
+                </DeletePortfolioButton>
                 <BlackLine width={600} marginTop={10} />
               </>
             );
@@ -200,15 +256,18 @@ function MakePortfolioSecondComponent() {
             return (
               <>
                 <DetailJobTxt>기술 스택 {index + 1}</DetailJobTxt>
-
-                <ResultPortfolioInput value={item.name} readOnly />
+                <ResultPortfolioInput value={item.techName} readOnly />
                 <ResultPortfolioTextArea value={item.content} readOnly />
-                <DeletePortfolioButton>삭제하기</DeletePortfolioButton>
+                <DeletePortfolioButton onClick={() => deleteTechnique(index)}>
+                  삭제하기
+                </DeletePortfolioButton>
                 <BlackLine width={600} marginTop={10} />
               </>
             );
           })}
-        <MakePortFolioNextBtn>등록하기</MakePortFolioNextBtn>
+        <MakePortFolioNextBtn onClick={onClickRegisterPortfolio}>
+          등록하기
+        </MakePortFolioNextBtn>
       </MakePortfolioInsideBox>
     </MakePortfolioBox>
   );
