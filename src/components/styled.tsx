@@ -1213,7 +1213,7 @@ export const GetBlogMoreBtn = styled.button`
   text-align: center;
 
   color: #666666;
-  width: 167px;
+  width: 50px;
   height: 50px;
   left: 877px;
   top: 1193px;
@@ -1290,3 +1290,106 @@ export const GetBlogAllBox = styled.div`
   text-overflow: ellipsis;
   line-height: 33px;
 `;
+export const GetBlogNextImg = styled.img`
+width: 15px;
+height: 15px;
+`;
+
+//GetBlogComponent
+export const GetBlogUserBox = styled.div`
+display: flex;
+align-items: center;
+`
+export const GetBlogUser = styled.div`
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 27px;
+color: #22222
+
+`;
+export const GetBlogUserImg = styled.img`
+width: 34px;
+height: 34px;
+background:#EEEEEE;
+border: 13px solid #F5F5F5;
+border-radius: 321.5px;
+`;
+export const GetBlogCreated = styled.div`
+margin-left:5px;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 39px;
+letter-spacing: -0.1em;
+color: #999999;
+`;
+export const GetBlogTitle = styled.div`
+height: 39px;
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 700;
+font-size: 46px;
+line-height: 39px;
+/* identical to box height, or 85% */
+letter-spacing: -0.1em;
+color: #333333;
+`;
+
+export const GetBlogContent = styled.div`
+width: 900px;
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 33px;
+/* or 183% */
+letter-spacing: -0.1em;
+color: #222222;
+`;
+export const GetBlogBtnTd = styled.td`
+`
+export const GetBlogBtn = styled.button`
+margin-right:5px;
+width: 102px;
+height: 45px;
+left: 1196px;
+border: 1px solid #CCCCCC;
+border-radius: 56px;
+
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 39px;
+text-align: center;
+letter-spacing: -0.1em;
+color: #222222;
+`
+//getComments
+export const GetCommentsHeaderBox = styled.td`
+top: 0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+`
+export const GetCommentsDiv = styled.div`
+width: 50vw;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 10px;
+  line-height: 33px;
+`
+export const GetCommentsProfile = styled.img`
+width: 30px;
+height: 30px;
+background:#ffffff;
+border-radius: 321.5px;
+`
+export const GetCommentsMoreBtn = styled.button`
+background: #ffffff;
+border:none;
+
+`

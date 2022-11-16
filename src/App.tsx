@@ -12,6 +12,7 @@ import MakePortFolioPage from "./pages/MakePortFolioPage";
 import MakeBlogPage from "./pages/MakeBlogPage";
 import MakePortFolioSecondPage from "./pages/MakePortFolioSecondPage";
 import BlogPage from "./pages/Blogpage";
+import BlogDetailpage from "./pages/BlogDetailPage";
 
 //Route 설정.
 
@@ -42,6 +43,8 @@ function App() {
         <Route path="/makeBlog" element={<MakeBlogPage />}></Route>
         {/* 블로그 페이지 */}
         <Route path="/blog/get/:nickname" element={<BlogPage />}></Route>
+        {/* 상세 블로그 페이지  */}
+        <Route path="blog/:blogId" element={<BlogDetailpage />}></Route>
 
         {/* url 주소 테스트 페이지 */}
         <Route path="/test" element={<TestPage />}></Route>
