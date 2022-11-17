@@ -685,6 +685,15 @@ export const CardImg = styled.img`
   border-radius: 190px;
   background: #eeeeee;
 `;
+
+export const PortfolioProfileImg = styled.img`
+  margin-top: 60px;
+  width: 196px;
+  height: 196px;
+  border-radius: 321.5px;
+  border: 13px solid #f5f5f5;
+  background: #eeeeee;
+`;
 export const NicknameTxt = styled.div`
   height: 27px;
   margin-top: 19px;
@@ -1050,6 +1059,170 @@ export const MakePortfolioAddButton = styled.div`
 
   color: #333333;
 `;
+
+export const PortfolioNavDiv = styled.div`
+  display: flex;
+  width: 150px;
+  justify-content: space-around;
+  align-items: center;
+`;
+
+export const PortfolioNav = styled.div`
+  margin-right: 10px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: -0.1em;
+  color: #999999;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  cursor: pointer;
+  &:hover {
+    color: black;
+  }
+`;
+
+export const PortfolioNameTxt = styled.div`
+  margin-top: 20px;
+  width: 296px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 27px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: -0.1em;
+  color: #222222;
+`;
+
+export const PortfolioDetailJobTxt = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 163px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 39px;
+  letter-spacing: -0.1em;
+  color: #999999;
+`;
+
+export const PortfolioFollowButton = styled.div`
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  margin-top: 20px;
+  background: #222222;
+  border-radius: 50px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 39px;
+  text-align: center;
+  letter-spacing: -0.1em;
+  color: #ffffff;
+`;
+
+export const PortfolioIntroduceTxt = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 899px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 56px;
+  letter-spacing: -0.1em;
+  color: #222222;
+`;
+
+export const PortfolioEduCareerSnsHeaderBox = styled.div`
+  display: flex;
+
+  width: 899px;
+  margin-top: 10px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 39px;
+  letter-spacing: -0.1em;
+  color: #999999;
+`;
+
+export const PortfolioEduHeader = styled.div`
+  width: 32px;
+  margin-right: 218px;
+`;
+
+export const PortfolioCareerHeader = styled.div`
+  width: 76px;
+  margin-right: 335px;
+`;
+
+export const PortfolioSnsHeader = styled.div`
+  width: 47px;
+`;
+export const PortfolioEduCareerSnsContentBox = styled.div`
+  display: flex;
+  width: 899px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 39px;
+  letter-spacing: -0.1em;
+  color: #222222;
+`;
+
+export const PortfolioEduBox = styled.div`
+  width: 150px;
+  margin-right: 130px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const PortfolioCareerBox = styled.div`
+  width: 300px;
+  margin-right: 170px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const PortfolioSnsBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+`;
+//PortfolioPage
+
+export const PortfolioBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 150px;
+`;
+
+export const PortfolioInsideBox = styled.div`
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 //blogEditor
 
 //MakeBlogComponent
@@ -1157,6 +1330,7 @@ export const BlogHeaderDetailWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 150px;
 `;
 
 export const BlogHeaderNavigateDiv = styled.div`
