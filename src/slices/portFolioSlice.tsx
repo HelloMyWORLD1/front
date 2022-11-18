@@ -43,7 +43,7 @@ export const registerPortFolio = createAsyncThunk(
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
       const res = await axios.post("/portfolio", data, {
-        withCredentials: true,
+        withCredentials: false,
       });
       console.log(res.data);
       return res.data;
@@ -61,7 +61,7 @@ export const getPortFolio = createAsyncThunk(
       //get 요청시 닉네임 받기 위함
       const res = await axios.get(`/portfolio/${data.nickname}`);
       console.log(res.data);
-      return res.data;
+      return res.data.data;
     } catch (error: any) {
       console.log(error);
       return rejectWithValue(error.response.data);
