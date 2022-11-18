@@ -45,10 +45,10 @@ export default function GetBlogAllComponent() {
   });
 
     useEffect(() => {
-        dispatch(getBlogAll(getBlogsData));
-        console.log(blogs);
-        setPosts(blogs.data.blogs);
-      }, [blogs]);
+        dispatch(getBlogAll(getBlogsData)).then(
+            (res) => (setPosts(res.payload.data.blogs))
+        ) 
+      }, []);
   
 
   const postLists: JSX.Element[] = posts.map((post) => {
