@@ -25,47 +25,56 @@ import {
   GetBlogNextImg,
 } from "./styled";
 interface Posts {
+  blogId: number;
   title: string;
   content: string;
   createdAt: string;
+  blogUserImg: string;
 }
 
 export default function GetBlogAllComponent() {
-  const { blogs } = useSelector((state: RootState) => state.blog);
+  const { blogs, inquireBlogDone } = useSelector(
+    (state: RootState) => state.blog
+  );
 
   const dispatch = useAppDispatch();
-  const [posts, setPosts] = React.useState<Posts[]>([
-    {
-      title: "블로그 글 제목",
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard my text ever since the 1500s, hen an unknown printer took a galley of type and scrambled it to make a type pecimen book. n an unknown printer took a galley of type and scrambled",
-      createdAt: "2022.11.10",
-    },
-    {
-      title: "블로그 글 제목",
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard my text ever since the 1500s, hen an unknown printer took a galley of type and scrambled it to make a type pecimen book.  n an unknown printer took a galley of type and scrambled it to ake a type specimen book. crambled it to make ad.o make o make ambled it to make a type pecimen book. ake ambled it to make a type pecimen book. ddd",
-      createdAt: "2022.11.10",
-    },
-    {
-      title: "블로그 글 제목",
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard my text ever since the 1500s, hen an unknown printer took a galley of type and scrambled it to make a type pecimen book.  n an unknown printer took a galley of type and scrambled it to ake a type specimen book. crambled it to make ad.o make o make ambled it to make a type pecimen book. ake ambled it to make a type pecimen book. ddd",
-      createdAt: "2022.11.10",
-    },
-    {
-      title: "블로그 글 제목",
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard my text ever since the 1500s, hen an unknown printer took a galley of type and scrambled it to make a type pecimen book.  n an unknown printer took a galley of type and scrambled it to ake a type specimen book. crambled it to make ad.o make o make ambled it to make a type pecimen book. ake ambled it to make a type pecimen book. ddd",
-      createdAt: "2022.11.10",
-    },
-    {
-      title: "블로그 글 제목",
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard my text ever since the 1500s, hen an unknown printer took a galley of type and scrambled it to make a type pecimen book.  n an unknown printer took a galley of type and scrambled it to ake a type specimen book. crambled it to make ad.o make o make ambled it to make a type pecimen book. ake ambled it to make a type pecimen book. ddd",
-      createdAt: "2022.11.10",
-    },
-  ]);
+  const [posts, setPosts] = React.useState<Posts[]>([]);
+  const [getBlogsData, setGetBlogsData] = React.useState<getBlogAllType>({
+    nickname: "Jaewon",
+    pageNum: 0,
+  });
+
+  useEffect(() => {
+    dispatch(getBlogAll(getBlogsData)).then((res) =>
+      setPosts(res.payload.data.blogs)
+    );
+  }, []);
+  const GetBlogMinus = () => {
+    if (getBlogsData.pageNum === 0) {
+      alert("더이상 뒤로 갈수 없습니다!");
+    } else {
+      getBlogsData.pageNum = getBlogsData.pageNum - 1;
+      dispatch(getBlogAll(getBlogsData)).then((res) =>
+        setPosts(res.payload.data.blogs)
+      );
+    }
+    console.log(getBlogsData);
+  };
+
+  const GetBlogPlus = () => {
+    console.log((blogs.data.length)%5);
+    getBlogsData.pageNum = getBlogsData.pageNum + 1;
+    if((getBlogsData.pageNum) >((blogs.data.length)%5)){
+        getBlogsData.pageNum = getBlogsData.pageNum - 1;
+        alert("더이상 보여질 내용이 없습니다!")
+    }else{
+    console.log(getBlogsData);
+    dispatch(getBlogAll(getBlogsData)).then((res) =>
+      setPosts(res.payload.data.blogs)
+    );
+    }
+    
+  };
 
   const postLists: JSX.Element[] = posts.map((post) => {
     return (
@@ -114,11 +123,11 @@ export default function GetBlogAllComponent() {
       {postLists}
       <tr>
         <td>
-          <GetBlogMoreBtn>
+          <GetBlogMoreBtn onClick={GetBlogMinus}>
             <GetBlogNextImg src={arrowLeft}></GetBlogNextImg>
           </GetBlogMoreBtn>
-          <GetBlogMoreBtn>1</GetBlogMoreBtn>
-          <GetBlogMoreBtn>
+          <GetBlogMoreBtn>{getBlogsData.pageNum + 1}</GetBlogMoreBtn>
+          <GetBlogMoreBtn onClick={GetBlogPlus}>
             <GetBlogNextImg src={arrowRight}></GetBlogNextImg>
           </GetBlogMoreBtn>
         </td>
