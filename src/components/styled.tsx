@@ -731,6 +731,7 @@ export const FollowTxt = styled.div`
 export const BlogTitle = styled.div`
   font-family: "Noto Sans CJK KR";
   margin-top: 15px;
+  height: 100px;
   width: 206px;
   font-style: normal;
   font-weight: 400;
