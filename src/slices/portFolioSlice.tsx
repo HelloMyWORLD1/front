@@ -75,8 +75,8 @@ export const getPortFoiloLike = createAsyncThunk(
   async (data: getPortFoiloLikeType, { rejectWithValue }) => {
     try {
       const res = await axios.get(`/portfolio/${data.field}/like`);
-      console.log(res.data);
-      return res.data;
+      console.log(res.data.data);
+      return res.data.data;
     } catch (error: any) {
       console.log(error);
       return rejectWithValue(error.response.data);
