@@ -41,7 +41,7 @@ function PortfolioComponent() {
           <PortfolioProfileImg src={testImg}></PortfolioProfileImg>
           <PortfolioNameTxt>{userNickname}</PortfolioNameTxt>
           <PortfolioDetailJobTxt>{portFolio.detailJob}</PortfolioDetailJobTxt>
-          {user.nickname !== userNickname && (
+          {user && user.nickname !== userNickname && (
             <PortfolioFollowButton>팔로우</PortfolioFollowButton>
           )}
           <PortfolioIntroduceTxt>{portFolio.introduce}</PortfolioIntroduceTxt>
