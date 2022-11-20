@@ -162,7 +162,7 @@ function HomeCard() {
             <FollowTxt>
               팔로워 {item.followers.length} 팔로잉 {item.followings.length}
             </FollowTxt>
-            <BlogTitle>{txt}</BlogTitle>
+            <BlogTitle>{txt ? txt : "-"}</BlogTitle>
           </FilterResultCard>
         );
       })
