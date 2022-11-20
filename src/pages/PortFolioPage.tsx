@@ -3,6 +3,7 @@ import { useAppDispatch } from "../hooks";
 import { inquireMyInfo } from "../slices/userSlice";
 import PortfolioComponent from "../components/PortfolioComponent";
 import PortfolioHeader from "../subComponents/PortfolioHeader";
+import Footer from "../subComponents/Footer";
 
 function PortFolioPage() {
   const jwtToken = localStorage.getItem("jwtToken");
@@ -16,6 +17,7 @@ function PortFolioPage() {
     <div>
       <PortfolioHeader />
       <PortfolioComponent />
+      <Footer />
     </div>
   );
 }
