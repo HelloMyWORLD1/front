@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   HomeCardIntroTxtComponent,
   HomeCardIntroTxt1,
@@ -31,7 +31,9 @@ import testImg10 from "../img/testImg10.png";
 import testImg11 from "../img/testImg11.png";
 import testImg12 from "../img/testImg12.png";
 import { getPortFoiloLike } from "../slices/portFolioSlice";
-import { useAppDispatch } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 interface Cards {
   id: number;
@@ -39,6 +41,8 @@ interface Cards {
 }
 function HomeCard() {
   const dispatch = useAppDispatch();
+  const { portFolios } = useAppSelector((state: RootState) => state.portFolio);
+
   const [click, setClick] = useState<Array<boolean>>(
     new Array(8).fill(false)
     //develop
@@ -50,6 +54,13 @@ function HomeCard() {
     //accounting
     //HR
   );
+
+  useEffect(() => {
+    const afterValue = clickAfterValue(0, click);
+    console.log(afterValue);
+    setClick(afterValue);
+    dispatch(getPortFoiloLike({ field: "개발" }));
+  }, []);
 
   function clickAfterValue(sequence: number, click: Array<boolean>) {
     const afterValue = click.map((item, index) => {
@@ -72,13 +83,13 @@ function HomeCard() {
     console.log("경영");
     const afterValue = clickAfterValue(1, click);
     setClick(afterValue);
-    //dispatch(getPortFoiloLike("경영"));
+    dispatch(getPortFoiloLike({ field: "경영" }));
   }
   function onClickOperate(event: React.MouseEvent<HTMLInputElement>) {
     console.log("운영");
     const afterValue = clickAfterValue(2, click);
     setClick(afterValue);
-    //dispatch(getPortFoiloLike("운영"));
+    dispatch(getPortFoiloLike({ field: "운영" }));
   }
   function onClickData(event: React.MouseEvent<HTMLInputElement>) {
     console.log("데이터");
@@ -145,6 +156,22 @@ function HomeCard() {
       </FilterResultCard>
     );
   });
+  const testList = portFolios
+    ? portFolios.map((item: any) => {
+        const txt = overStringChange(item.introduce);
+        return (
+          <FilterResultCard>
+            <CardImg src=""></CardImg>
+            <NicknameTxt>{item.nickname}</NicknameTxt>
+            <FieldTxt>{item.detailJob}</FieldTxt>
+            <FollowTxt>
+              팔로워 {item.followers.length} 팔로잉 {item.followings.length}
+            </FollowTxt>
+            <BlogTitle>{txt}</BlogTitle>
+          </FilterResultCard>
+        );
+      })
+    : "";
 
   return (
     <HomePageUnderComponent>
@@ -188,7 +215,9 @@ function HomeCard() {
         </FilterCategory>
         <FilterTxt>필터</FilterTxt>
       </FilterComponent>
-      <FilterResultCardComponent>{cardList}</FilterResultCardComponent>
+      <FilterResultCardComponent>
+        {testList ? testList : ""}
+      </FilterResultCardComponent>
     </HomePageUnderComponent>
   );
 }
