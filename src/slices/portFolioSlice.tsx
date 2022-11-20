@@ -59,7 +59,9 @@ export const getPortFolio = createAsyncThunk(
   async (data: getPortFolioType, { rejectWithValue }) => {
     try {
       //get 요청시 닉네임 받기 위함
-      const res = await axios.get(`/portfolio/${data.nickname}`);
+      const res = await axios.get(`/portfolio/${data.nickname}`, {
+        withCredentials: false,
+      });
       console.log(res.data);
       return res.data.data;
     } catch (error: any) {
