@@ -675,6 +675,7 @@ export const FilterResultCard = styled.div`
   background: #ffffff;
   color: black;
   text-align: center;
+  cursor: pointer;
 `;
 
 //홈카드
