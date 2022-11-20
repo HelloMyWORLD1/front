@@ -34,26 +34,18 @@ import { getPortFoiloLike } from "../slices/portFolioSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import { useNavigate } from "react-router-dom";
 
 interface Cards {
   id: number;
   profile: string;
 }
 function HomeCard() {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { portFolios } = useAppSelector((state: RootState) => state.portFolio);
 
-  const [click, setClick] = useState<Array<boolean>>(
-    new Array(8).fill(false)
-    //develop
-    //manage
-    //oper
-    //data
-    //design
-    //marketing
-    //accounting
-    //HR
-  );
+  const [click, setClick] = useState<Array<boolean>>(new Array(8).fill(false));
 
   useEffect(() => {
     const afterValue = clickAfterValue(0, click);
@@ -95,31 +87,31 @@ function HomeCard() {
     console.log("데이터");
     const afterValue = clickAfterValue(3, click);
     setClick(afterValue);
-    //dispatch(getPortFoiloLike("데이터"));
+    dispatch(getPortFoiloLike({ field: "데이터" }));
   }
   function onClickDesign(event: React.MouseEvent<HTMLInputElement>) {
     console.log("디자인");
     const afterValue = clickAfterValue(4, click);
     setClick(afterValue);
-    //dispatch(getPortFoiloLike("디자인"));
+    dispatch(getPortFoiloLike({ field: "디자인" }));
   }
   function onClickMarketing(event: React.MouseEvent<HTMLInputElement>) {
     console.log("마케팅");
     const afterValue = clickAfterValue(5, click);
     setClick(afterValue);
-    //dispatch(getPortFoiloLike("마케팅"));
+    dispatch(getPortFoiloLike({ field: "마케팅" }));
   }
   function onClickAccounting(event: React.MouseEvent<HTMLInputElement>) {
     console.log("회계");
     const afterValue = clickAfterValue(6, click);
     setClick(afterValue);
-    //dispatch(getPortFoiloLike("회계"));
+    dispatch(getPortFoiloLike({ field: "회계" }));
   }
   function onClickHR(event: React.MouseEvent<HTMLInputElement>) {
     console.log("HR");
     const afterValue = clickAfterValue(7, click);
     setClick(afterValue);
-    //dispatch(getPortFoiloLike("HR"));
+    dispatch(getPortFoiloLike({ field: "HR" }));
   }
   const [cards, setCards] = React.useState<Cards[]>([
     { id: 1, profile: testImg },
@@ -136,6 +128,9 @@ function HomeCard() {
     { id: 12, profile: testImg12 },
   ]);
 
+  const handlingClickCard = (nickname: string) => {
+    navigate(`/portfolio/get/:${nickname}`);
+  };
   function overStringChange(txt: string) {
     const number = 45;
     if (txt.length <= number) return txt;
@@ -160,7 +155,7 @@ function HomeCard() {
     ? portFolios.map((item: any) => {
         const txt = overStringChange(item.introduce);
         return (
-          <FilterResultCard>
+          <FilterResultCard onClick={() => handlingClickCard(item.nickname)}>
             <CardImg src=""></CardImg>
             <NicknameTxt>{item.nickname}</NicknameTxt>
             <FieldTxt>{item.detailJob}</FieldTxt>
