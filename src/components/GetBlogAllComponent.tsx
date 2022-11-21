@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useAppDispatch } from "../hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { getBlogAll } from "../slices/blogSlice";
+import { searchBlog } from "../slices/blogSlice";
 import search from "../img/Search.png";
 import registerImg from "../img/register.png";
 import arrowLeft from "../img/arrowLeft.png";
@@ -24,6 +25,7 @@ import {
   GetBlogAllBox,
   GetBlogNextImg,
 } from "./styled";
+import { useNavigate } from "react-router-dom";
 interface Posts {
   blogId: number;
   title: string;
@@ -33,14 +35,19 @@ interface Posts {
 }
 
 export default function GetBlogAllComponent() {
+  const { user } = useSelector((state: RootState) => state.user);
   const { blogs, inquireBlogDone } = useSelector(
     (state: RootState) => state.blog
   );
+  const navigate = useNavigate();
+  const userNickname = document.location.href.split("/:")[1];
+  console.log(document.location.href);
+  console.log(userNickname);
 
   const dispatch = useAppDispatch();
   const [posts, setPosts] = React.useState<Posts[]>([]);
   const [getBlogsData, setGetBlogsData] = React.useState<getBlogAllType>({
-    nickname: "Jaewon",
+    nickname: userNickname,
     pageNum: 0,
   });
 
@@ -62,27 +69,42 @@ export default function GetBlogAllComponent() {
   };
 
   const GetBlogPlus = () => {
-    console.log((blogs.data.length)%5);
+    console.log(blogs.data.length % 5);
     getBlogsData.pageNum = getBlogsData.pageNum + 1;
-    if((getBlogsData.pageNum) >((blogs.data.length)%5)){
-        getBlogsData.pageNum = getBlogsData.pageNum - 1;
-        alert("더이상 보여질 내용이 없습니다!")
-    }else{
-    console.log(getBlogsData);
-    dispatch(getBlogAll(getBlogsData)).then((res) =>
-      setPosts(res.payload.data.blogs)
-    );
+    if (getBlogsData.pageNum > blogs.data.length % 5) {
+      getBlogsData.pageNum = getBlogsData.pageNum - 1;
+      alert("더이상 보여질 내용이 없습니다!");
+    } else {
+      console.log(getBlogsData);
+      dispatch(getBlogAll(getBlogsData)).then((res) =>
+        setPosts(res.payload.data.blogs)
+      );
     }
-    
+  };
+  const blogInput = useRef<HTMLTableRowElement>(null);
+  const blogClick = () => {
+    console.log(Number(blogInput.current?.getElementsByTagName("tr")[0].id)); //선택된 블로그 아이디 추출;
+    navigate(
+      `/blog/:${Number(blogInput.current?.getElementsByTagName("tr")[0].id)}`
+    );
+  };
+  const registerBlogClick = () => {
+    console.log(userNickname);
+    console.log(user.nickname);
+    if (userNickname === user.nickname) {
+      navigate("/makeBlog");
+    } else {
+      alert("본인 블로그에서만 글작성이 가능합니다!");
+    }
   };
 
   const postLists: JSX.Element[] = posts.map((post) => {
     return (
-      <GetBlogAllTr>
+      <GetBlogAllTr ref={blogInput}>
         <td>
-          <GetBlogAllBox>
+          <GetBlogAllBox onClick={blogClick}>
             <table>
-              <tr>
+              <tr id={post.blogId.toString()}>
                 <GetBlogAllHeader>
                   <GetBlogAllTitle>{post.title}</GetBlogAllTitle>
                   <div></div>
@@ -101,17 +123,45 @@ export default function GetBlogAllComponent() {
     );
   });
 
+  const [keywords, setKeywords] = React.useState<searchBlogType>({
+    nickname: userNickname,
+    keyword: "",
+  });
+  const searchBlogs = (event: React.FormEvent<HTMLInputElement>) => {
+    // 변화한 값 받아서 setKeywords 호출
+    setKeywords({
+      nickname: userNickname,
+      keyword: event.currentTarget.value,
+    });
+    console.log(event.currentTarget.value);
+    console.log(keywords);
+  };
+
+  const onSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      console.log(keywords);
+      dispatch(searchBlog(keywords)).then((res) => setPosts(res.payload.data));
+    },
+    [dispatch, keywords]
+  );
+
   return (
     <GetBlogAllTable>
       <GetBlogAllTr>
         <GetBlogAllHeader>
           <div>
-            <SearchBlogInput type="text"></SearchBlogInput>
-            <SearchBlogImg src={search}></SearchBlogImg>
+            <form onSubmit={onSubmit}>
+              <SearchBlogInput
+                type="text"
+                onChange={searchBlogs}
+              ></SearchBlogInput>
+              <SearchBlogImg src={search}></SearchBlogImg>
+            </form>
           </div>
           <div></div>
           <div>
-            <PostBlogBtn>
+            <PostBlogBtn onClick={registerBlogClick}>
               <PostBlogImg src={registerImg}></PostBlogImg>
               글쓰기
             </PostBlogBtn>

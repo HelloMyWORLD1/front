@@ -66,6 +66,50 @@ export const getBlogAll = createAsyncThunk(
   }
 );
 
+//블로그 상세 조회
+export const getBlog = createAsyncThunk(
+  "getBlog",
+  async (data:getBlogDetailType, {rejectWithValue}) => {
+    try{
+      const res = await axios.get(`/blog/${data.blogId}`);
+      console.log(res.data);
+      return res.data;
+    }catch(error: any){
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+)
+//블로그 검색
+export const searchBlog = createAsyncThunk(
+  "searchBlog",
+  async(data:searchBlogType,{rejectWithValue}) =>{
+    try {
+      const res = await axios.get(`/blogs/search?nickname=${data.nickname}&keyword=${data.keyword}`);
+      console.log(res.data);
+      return res.data;
+    } catch (error: any) {
+      console.log(error);
+      return rejectWithValue(error.response.data); //내부 에러처리
+  }
+})
+//블로그 삭제
+export const deleteBlog = createAsyncThunk(
+  "deleteBlog",
+  async(data:deleteBlogType,{rejectWithValue})=> {
+    try {
+      axios.defaults.headers.common["Authorization"] = "";
+      const JWTTOEKN = localStorage.getItem("jwtToken");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
+      const res = await axios.delete(`/blog/${data.blogId}`)
+      console.log(res.data);
+      return res.data;
+    } catch (error: any) {
+      console.log(error);
+      return rejectWithValue(error.response.data); //내부 에러처리
+    }
+  }
+)
 const blogSlice = createSlice({
   name: "blog",
   initialState,
@@ -103,16 +147,16 @@ const blogSlice = createSlice({
       action: PayloadAction<object>
     ) => {
       state.inquireBlogsLoading = true;
-      state.inquireBlogDone = false;
-      state.inquireBlogError = null;
+      state.inquireBlogsDone = false;
+      state.inquireBlogsError = null;
     },
     [getBlogAll.fulfilled.type]: (
       state,
       action: PayloadAction<object>
     ) => {
       state.inquireBlogsLoading = false;
-      state.inquireBlogDone = true;
-      state.inquireBlogError = null;
+      state.inquireBlogsDone = true;
+      state.inquireBlogsError = null;
       state.blogs = action.payload;
     },
     [getBlogAll.rejected.type]: (
@@ -120,9 +164,87 @@ const blogSlice = createSlice({
       action: PayloadAction<object>
     ) => {
       state.inquireBlogsLoading = false;
+      state.inquireBlogsDone = false;
+      state.inquireBlogsError = action.payload;
+    },
+    //getBlog로직
+    [ getBlog.pending.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.inquireBlogLoading = true;
+      state.inquireBlogDone = false;
+      state.inquireBlogError = null;
+    },
+    [getBlog.fulfilled.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.inquireBlogLoading = false;
+      state.inquireBlogDone = true;
+      state.inquireBlogError = null;
+      state.blog = action.payload;
+    },
+    [getBlog.rejected.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.inquireBlogLoading = false;
       state.inquireBlogDone = false;
       state.inquireBlogError = action.payload;
     },
+    //searchBlog 로직
+    [deleteBlog.pending.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.searchBlogLoading = true;
+      state.searchBlogDone = false;
+      state.searchBlogError = null;
+    },
+    [deleteBlog.fulfilled.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.searchBlogLoading = false;
+      state.searchBlogDone = true;
+      state.searchBlogError = null;
+      state.blogs = action.payload;
+    },
+    [deleteBlog.rejected.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.searchBlogLoading = false;
+      state.searchBlogDone = false;
+      state.searchBlogError = action.payload;
+    },
+    //deleteBlog 로직
+    [searchBlog.pending.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.deleteBlogLoading = true;
+      state.deleteBlogDone = false;
+      state.deleteBlogError = null;
+    },
+    [searchBlog.fulfilled.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.deleteBlogLoading = false;
+      state.deleteBlogDone = true;
+      state.deleteBlogError = null;
+    },
+    [searchBlog.rejected.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.deleteBlogLoading = false;
+      state.deleteBlogDone = false;
+      state.deleteBlogError = action.payload;
+    },
+
   },
 });
 
