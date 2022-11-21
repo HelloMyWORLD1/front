@@ -35,6 +35,9 @@ interface Posts {
 }
 
 export default function GetBlogAllComponent() {
+    const {user} = useSelector(
+        (state:RootState) => state.user
+    );
   const { blogs, inquireBlogDone } = useSelector(
     (state: RootState) => state.blog
   );
@@ -87,7 +90,14 @@ export default function GetBlogAllComponent() {
     navigate(`/blog/:${Number(blogInput.current?.getElementsByTagName("tr")[0].id)}`);
   }
 const registerBlogClick =() => {
-    navigate("/makeBlog")
+    console.log(userNickname);
+    console.log(user.nickname);
+    if(userNickname===(user.nickname)){
+        navigate("/makeBlog")
+    }else{
+        alert("본인 블로그에서만 글작성이 가능합니다!")
+    }
+    
 }
 
   const postLists: JSX.Element[] = posts.map((post) => {
