@@ -28,6 +28,7 @@ interface Post {
 }
 
 export default function GetBlogComponenet() {
+  const { user } = useSelector((state: RootState) => state.user);
   const { blog } = useSelector((state: RootState) => state.blog);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -46,14 +47,20 @@ export default function GetBlogComponenet() {
     blogUserImg: "test",
   });
 
-  const deleteBlogClick = () =>{
-    dispatch(deleteBlog(blogId)).then(()=> (
-        navigate(-1)
-    ))
-  }
+  const deleteBlogClick = () => {
+    console.log(post.blogUser);
+    console.log(user.nickname);
+    if(blog.blogUser===user.nickname){
+        dispatch(deleteBlog(blogId)).then(()=> (
+            navigate(-1)
+        ))
+    }else{
+        alert("본인 블로그에서만 삭제가 가능합니다.")
+    }  
+  };
 
   useEffect(() => {
-    dispatch(getBlog(blogId)).then((res)=>(setPost(res.payload.data)));
+    dispatch(getBlog(blogId)).then((res) => setPost(res.payload.data));
   }, []);
 
   return (
@@ -80,7 +87,7 @@ export default function GetBlogComponenet() {
         </GetBlogAllTr>
         <GetBlogAllTr>
           <GetBlogBtnTd>
-            <GetBlogBtn >수정하기</GetBlogBtn>
+            <GetBlogBtn>수정하기</GetBlogBtn>
             <GetBlogBtn onClick={deleteBlogClick}>삭제하기</GetBlogBtn>
           </GetBlogBtnTd>
         </GetBlogAllTr>

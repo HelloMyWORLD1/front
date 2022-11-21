@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useCallback, useRef } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import { useAppDispatch } from "../hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
@@ -35,9 +35,7 @@ interface Posts {
 }
 
 export default function GetBlogAllComponent() {
-    const {user} = useSelector(
-        (state:RootState) => state.user
-    );
+  const { user } = useSelector((state: RootState) => state.user);
   const { blogs, inquireBlogDone } = useSelector(
     (state: RootState) => state.blog
   );
@@ -71,41 +69,41 @@ export default function GetBlogAllComponent() {
   };
 
   const GetBlogPlus = () => {
-    console.log((blogs.data.length)%5);
+    console.log(blogs.data.length % 5);
     getBlogsData.pageNum = getBlogsData.pageNum + 1;
-    if((getBlogsData.pageNum) >((blogs.data.length)%5)){
-        getBlogsData.pageNum = getBlogsData.pageNum - 1;
-        alert("더이상 보여질 내용이 없습니다!")
-    }else{
-    console.log(getBlogsData);
-    dispatch(getBlogAll(getBlogsData)).then((res) =>
-      setPosts(res.payload.data.blogs)
-    );
+    if (getBlogsData.pageNum > blogs.data.length % 5) {
+      getBlogsData.pageNum = getBlogsData.pageNum - 1;
+      alert("더이상 보여질 내용이 없습니다!");
+    } else {
+      console.log(getBlogsData);
+      dispatch(getBlogAll(getBlogsData)).then((res) =>
+        setPosts(res.payload.data.blogs)
+      );
     }
-    
   };
   const blogInput = useRef<HTMLTableRowElement>(null);
   const blogClick = () => {
     console.log(Number(blogInput.current?.getElementsByTagName("tr")[0].id)); //선택된 블로그 아이디 추출;
-    navigate(`/blog/:${Number(blogInput.current?.getElementsByTagName("tr")[0].id)}`);
-  }
-const registerBlogClick =() => {
+    navigate(
+      `/blog/:${Number(blogInput.current?.getElementsByTagName("tr")[0].id)}`
+    );
+  };
+  const registerBlogClick = () => {
     console.log(userNickname);
     console.log(user.nickname);
-    if(userNickname===(user.nickname)){
-        navigate("/makeBlog")
-    }else{
-        alert("본인 블로그에서만 글작성이 가능합니다!")
+    if (userNickname === user.nickname) {
+      navigate("/makeBlog");
+    } else {
+      alert("본인 블로그에서만 글작성이 가능합니다!");
     }
-    
-}
+  };
 
   const postLists: JSX.Element[] = posts.map((post) => {
     return (
-      <GetBlogAllTr  ref={blogInput} >
-        <td >
+      <GetBlogAllTr ref={blogInput}>
+        <td>
           <GetBlogAllBox onClick={blogClick}>
-            <table >
+            <table>
               <tr id={post.blogId.toString()}>
                 <GetBlogAllHeader>
                   <GetBlogAllTitle>{post.title}</GetBlogAllTitle>
@@ -125,28 +123,27 @@ const registerBlogClick =() => {
     );
   });
 
-  const [keywords,setKeywords] = React.useState<searchBlogType>({
+  const [keywords, setKeywords] = React.useState<searchBlogType>({
     nickname: userNickname,
-    keyword: ""
-  })
+    keyword: "",
+  });
   const searchBlogs = (event: React.FormEvent<HTMLInputElement>) => {
     // 변화한 값 받아서 setKeywords 호출
     setKeywords({
-        nickname: userNickname,
-        keyword: event.currentTarget.value
-    })
+      nickname: userNickname,
+      keyword: event.currentTarget.value,
+    });
     console.log(event.currentTarget.value);
     console.log(keywords);
   };
 
   const onSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log(keywords);
-        dispatch(
-            searchBlog(keywords)
-        ).then((res)=>(setPosts(res.payload.data)));
-    },[dispatch,keywords]
+      event.preventDefault();
+      console.log(keywords);
+      dispatch(searchBlog(keywords)).then((res) => setPosts(res.payload.data));
+    },
+    [dispatch, keywords]
   );
 
   return (
@@ -155,8 +152,11 @@ const registerBlogClick =() => {
         <GetBlogAllHeader>
           <div>
             <form onSubmit={onSubmit}>
-                <SearchBlogInput type="text" onChange={searchBlogs} ></SearchBlogInput>
-                <SearchBlogImg src={search}></SearchBlogImg>
+              <SearchBlogInput
+                type="text"
+                onChange={searchBlogs}
+              ></SearchBlogInput>
+              <SearchBlogImg src={search}></SearchBlogImg>
             </form>
           </div>
           <div></div>
