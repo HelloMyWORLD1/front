@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import testImg from "../img/testImg.png";
 import {
   GetBlogAllTable,
@@ -12,8 +12,13 @@ import {
   GetBlogBtn,
   GetBlogBtnTd,
 } from "./styled";
+import { useAppDispatch } from "../hooks";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import { getBlog } from "../slices/blogSlice";
 
 interface Post {
+  blogId: number;
   title: string;
   content: string;
   createdAt: string;
@@ -22,14 +27,23 @@ interface Post {
 }
 
 export default function GetBlogComponenet() {
-  const [post, setPost] = React.useState<Post>({
-    title: "게시글 제목입니다.",
-    content:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  n an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  n an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  n an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.  n an unknown printer took a galley of type and scrambled it to make a type specimen book. ",
-    createdAt: "2020.10.08",
-    blogUser: "Jaewon",
-    blogUserImg: testImg,
+  const { blog } = useSelector((state: RootState) => state.blog);
+  const dispatch = useAppDispatch();
+  const [blogId, setBlogId] = React.useState<getBlogDetailType>({
+    blogId: 150,
   });
+  const [post, setPost] = React.useState<Post>({
+    blogId: 1,
+    title: "test",
+    content: "test",
+    createdAt: "test",
+    blogUser: "test",
+    blogUserImg: "test",
+  });
+
+  useEffect(() => {
+    dispatch(getBlog(blogId)).then((res)=>(setPost(res.payload.data)));
+  }, []);
 
   return (
     <div>
@@ -61,6 +75,5 @@ export default function GetBlogComponenet() {
         </GetBlogAllTr>
       </GetBlogAllTable>
     </div>
-    
   );
 }

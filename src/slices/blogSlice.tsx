@@ -71,7 +71,7 @@ export const getBlog = createAsyncThunk(
   "getBlog",
   async (data:getBlogDetailType, {rejectWithValue}) => {
     try{
-      const res = await axios.get(`/blog/${data}`);
+      const res = await axios.get(`/blog/${data.blogId}`);
       console.log(res.data);
       return res.data;
     }catch(error: any){
