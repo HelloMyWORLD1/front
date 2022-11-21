@@ -73,3 +73,15 @@ type techNique = {
   techName: string;
   content: string;
 };
+
+type portFoliosType = {
+  nickname: string;
+  detailJob: string;
+  name: string;
+  field: string;
+  profileImage: string;
+  title: string;
+  introduce: string;
+  followers: string[];
+  followings: string[];
+};

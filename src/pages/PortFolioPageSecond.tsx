@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useAppDispatch } from "../hooks";
 import { inquireMyInfo } from "../slices/userSlice";
-import PortfolioComponent from "../components/PortfolioComponent";
+import PortfolioPageSecondComponent from "../components/PortfolioPageSecondComponent";
 import PortfolioHeader from "../subComponents/PortfolioHeader";
 import Footer from "../subComponents/Footer";
 
-function PortFolioPage() {
+function PortFolioPageSecond() {
   const jwtToken = localStorage.getItem("jwtToken");
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -16,10 +16,10 @@ function PortFolioPage() {
   return (
     <div>
       <PortfolioHeader />
-      <PortfolioComponent />
+      <PortfolioPageSecondComponent />
       <Footer />
     </div>
   );
 }
 
-export default PortFolioPage;
+export default PortFolioPageSecond;

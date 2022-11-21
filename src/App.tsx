@@ -13,7 +13,7 @@ import MakeBlogPage from "./pages/MakeBlogPage";
 import MakePortFolioSecondPage from "./pages/MakePortFolioSecondPage";
 import BlogPage from "./pages/Blogpage";
 import BlogDetailpage from "./pages/BlogDetailPage";
-
+import PortFolioPageSecond from "./pages/PortFolioPageSecond";
 //Route 설정.
 
 function App() {
@@ -37,8 +37,14 @@ function App() {
           element={<MakePortFolioSecondPage />}
         ></Route>
         {/* 포트폴리오 페이지 */}
-        <Route path="/portfolio/get/:nickname" element={<PortFolioPage />}></Route>
-
+        <Route
+          path="/portfolio/get/:nickname"
+          element={<PortFolioPage />}
+        ></Route>
+        <Route
+          path="/portfolio/get/second/:nickname"
+          element={<PortFolioPageSecond />}
+        ></Route>
         {/* 블로그 등록 페이지 */}
         <Route path="/makeBlog" element={<MakeBlogPage />}></Route>
         {/* 블로그 페이지 */}

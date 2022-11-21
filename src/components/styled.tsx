@@ -675,6 +675,7 @@ export const FilterResultCard = styled.div`
   background: #ffffff;
   color: black;
   text-align: center;
+  cursor: pointer;
 `;
 
 //홈카드
@@ -730,6 +731,7 @@ export const FollowTxt = styled.div`
 export const BlogTitle = styled.div`
   font-family: "Noto Sans CJK KR";
   margin-top: 15px;
+  height: 100px;
   width: 206px;
   font-style: normal;
   font-weight: 400;

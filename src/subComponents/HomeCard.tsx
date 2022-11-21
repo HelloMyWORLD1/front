@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   HomeCardIntroTxtComponent,
   HomeCardIntroTxt1,
@@ -31,25 +31,28 @@ import testImg10 from "../img/testImg10.png";
 import testImg11 from "../img/testImg11.png";
 import testImg12 from "../img/testImg12.png";
 import { getPortFoiloLike } from "../slices/portFolioSlice";
-import { useAppDispatch } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
+import { useNavigate } from "react-router-dom";
 
 interface Cards {
   id: number;
   profile: string;
 }
 function HomeCard() {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const [click, setClick] = useState<Array<boolean>>(
-    new Array(8).fill(false)
-    //develop
-    //manage
-    //oper
-    //data
-    //design
-    //marketing
-    //accounting
-    //HR
-  );
+  const { portFolios } = useAppSelector((state: RootState) => state.portFolio);
+
+  const [click, setClick] = useState<Array<boolean>>(new Array(8).fill(false));
+
+  useEffect(() => {
+    const afterValue = clickAfterValue(0, click);
+    console.log(afterValue);
+    setClick(afterValue);
+    dispatch(getPortFoiloLike({ field: "개발" }));
+  }, []);
 
   function clickAfterValue(sequence: number, click: Array<boolean>) {
     const afterValue = click.map((item, index) => {
@@ -72,43 +75,43 @@ function HomeCard() {
     console.log("경영");
     const afterValue = clickAfterValue(1, click);
     setClick(afterValue);
-    //dispatch(getPortFoiloLike("경영"));
+    dispatch(getPortFoiloLike({ field: "경영" }));
   }
   function onClickOperate(event: React.MouseEvent<HTMLInputElement>) {
     console.log("운영");
     const afterValue = clickAfterValue(2, click);
     setClick(afterValue);
-    //dispatch(getPortFoiloLike("운영"));
+    dispatch(getPortFoiloLike({ field: "운영" }));
   }
   function onClickData(event: React.MouseEvent<HTMLInputElement>) {
     console.log("데이터");
     const afterValue = clickAfterValue(3, click);
     setClick(afterValue);
-    //dispatch(getPortFoiloLike("데이터"));
+    dispatch(getPortFoiloLike({ field: "데이터" }));
   }
   function onClickDesign(event: React.MouseEvent<HTMLInputElement>) {
     console.log("디자인");
     const afterValue = clickAfterValue(4, click);
     setClick(afterValue);
-    //dispatch(getPortFoiloLike("디자인"));
+    dispatch(getPortFoiloLike({ field: "디자인" }));
   }
   function onClickMarketing(event: React.MouseEvent<HTMLInputElement>) {
     console.log("마케팅");
     const afterValue = clickAfterValue(5, click);
     setClick(afterValue);
-    //dispatch(getPortFoiloLike("마케팅"));
+    dispatch(getPortFoiloLike({ field: "마케팅" }));
   }
   function onClickAccounting(event: React.MouseEvent<HTMLInputElement>) {
     console.log("회계");
     const afterValue = clickAfterValue(6, click);
     setClick(afterValue);
-    //dispatch(getPortFoiloLike("회계"));
+    dispatch(getPortFoiloLike({ field: "회계" }));
   }
   function onClickHR(event: React.MouseEvent<HTMLInputElement>) {
     console.log("HR");
     const afterValue = clickAfterValue(7, click);
     setClick(afterValue);
-    //dispatch(getPortFoiloLike("HR"));
+    dispatch(getPortFoiloLike({ field: "HR" }));
   }
   const [cards, setCards] = React.useState<Cards[]>([
     { id: 1, profile: testImg },
@@ -125,6 +128,9 @@ function HomeCard() {
     { id: 12, profile: testImg12 },
   ]);
 
+  const handlingClickCard = (nickname: string) => {
+    navigate(`/portfolio/get/:${nickname}`);
+  };
   function overStringChange(txt: string) {
     const number = 45;
     if (txt.length <= number) return txt;
@@ -145,6 +151,22 @@ function HomeCard() {
       </FilterResultCard>
     );
   });
+  const testList = portFolios
+    ? portFolios.map((item: any) => {
+        const txt = overStringChange(item.introduce);
+        return (
+          <FilterResultCard onClick={() => handlingClickCard(item.nickname)}>
+            <CardImg src=""></CardImg>
+            <NicknameTxt>{item.nickname}</NicknameTxt>
+            <FieldTxt>{item.detailJob}</FieldTxt>
+            <FollowTxt>
+              팔로워 {item.followers.length} 팔로잉 {item.followings.length}
+            </FollowTxt>
+            <BlogTitle>{txt ? txt : "-"}</BlogTitle>
+          </FilterResultCard>
+        );
+      })
+    : "";
 
   return (
     <HomePageUnderComponent>
@@ -188,7 +210,9 @@ function HomeCard() {
         </FilterCategory>
         <FilterTxt>필터</FilterTxt>
       </FilterComponent>
-      <FilterResultCardComponent>{cardList}</FilterResultCardComponent>
+      <FilterResultCardComponent>
+        {testList ? testList : ""}
+      </FilterResultCardComponent>
     </HomePageUnderComponent>
   );
 }
