@@ -50,13 +50,11 @@ export default function GetBlogComponenet() {
   const deleteBlogClick = () => {
     console.log(post.blogUser);
     console.log(user.nickname);
-    if(blog.blogUser===user.nickname){
-        dispatch(deleteBlog(blogId)).then(()=> (
-            navigate(-1)
-        ))
-    }else{
-        alert("본인 블로그에서만 삭제가 가능합니다.")
-    }  
+    if (post.blogUser === user.nickname) {
+      dispatch(deleteBlog(blogId)).then(() => navigate(-1));
+    } else {
+      alert("본인 블로그에서만 삭제가 가능합니다.");
+    }
   };
 
   useEffect(() => {
