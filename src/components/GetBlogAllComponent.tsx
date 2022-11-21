@@ -38,7 +38,9 @@ export default function GetBlogAllComponent() {
     (state: RootState) => state.blog
   );
   const navigate = useNavigate();
-  const userNickname = document.location.href.split("/:")[1];
+  const userNickname = document.location.href.split("/")[5];
+//   console.log(document.location.href);
+//   console.log(userNickname);
 
   const dispatch = useAppDispatch();
   const [posts, setPosts] = React.useState<Posts[]>([]);
