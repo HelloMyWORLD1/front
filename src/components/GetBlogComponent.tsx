@@ -60,7 +60,11 @@ export default function GetBlogComponenet() {
     console.log(post.blogUser);
     console.log(user.nickname);
     if (post.blogUser === user.nickname) {
-      navigate("/updateBlog")
+      navigate("/updateBlog",{
+        state:{
+            blogId:blogIdNum
+        }
+      })
     } else {
       alert("본인 블로그에서만 수정이 가능합니다.");
     }

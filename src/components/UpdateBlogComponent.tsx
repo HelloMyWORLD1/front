@@ -11,12 +11,12 @@ import {
   CustomReactQuill,
   MakeBlogBtn,
 } from "./styled";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useMemo, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useAppDispatch } from "../hooks";
-import { registerBlog } from "../slices/blogSlice";
+import { updateBlog } from "../slices/blogSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 
@@ -58,6 +58,9 @@ export default function UpdateBlogComponent() {
     console.log("내용", editorValue);
   }, [editorValue, title]);
 
+  const location = useLocation();
+  console.log(location.state.blogId); //블로그 아이디 값 전달받기 위함
+
   const onSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -65,9 +68,12 @@ export default function UpdateBlogComponent() {
         alert("제목과 내용 모두 입력해주세요!");
       } else {
         dispatch(
-          registerBlog({
-            title: title,
-            content: editorValue,
+            updateBlog({
+                blogId: location.state.blogId,
+                request: {
+                    title: title,
+                    content: editorValue,
+                }
           })
         ).then(()=>(
           navigate(-1)
