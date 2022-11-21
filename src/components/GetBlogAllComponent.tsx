@@ -24,6 +24,7 @@ import {
   GetBlogAllBox,
   GetBlogNextImg,
 } from "./styled";
+import { useNavigate } from "react-router-dom";
 interface Posts {
   blogId: number;
   title: string;
@@ -36,6 +37,7 @@ export default function GetBlogAllComponent() {
   const { blogs, inquireBlogDone } = useSelector(
     (state: RootState) => state.blog
   );
+  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
   const [posts, setPosts] = React.useState<Posts[]>([]);
@@ -75,6 +77,9 @@ export default function GetBlogAllComponent() {
     }
     
   };
+//   const blogClick = () => {
+//     console.log(post.postId)
+//   }
 
   const postLists: JSX.Element[] = posts.map((post) => {
     return (

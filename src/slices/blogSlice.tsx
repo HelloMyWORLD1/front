@@ -66,6 +66,20 @@ export const getBlogAll = createAsyncThunk(
   }
 );
 
+//블로그 상세 조회
+export const getBlog = createAsyncThunk(
+  "getBlog",
+  async (data:getBlogDetailType, {rejectWithValue}) => {
+    try{
+      const res = await axios.get(`/blog/${data}`);
+      console.log(res.data);
+      return res.data;
+    }catch(error: any){
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+)
 const blogSlice = createSlice({
   name: "blog",
   initialState,
@@ -103,16 +117,16 @@ const blogSlice = createSlice({
       action: PayloadAction<object>
     ) => {
       state.inquireBlogsLoading = true;
-      state.inquireBlogDone = false;
-      state.inquireBlogError = null;
+      state.inquireBlogsDone = false;
+      state.inquireBlogsError = null;
     },
     [getBlogAll.fulfilled.type]: (
       state,
       action: PayloadAction<object>
     ) => {
       state.inquireBlogsLoading = false;
-      state.inquireBlogDone = true;
-      state.inquireBlogError = null;
+      state.inquireBlogsDone = true;
+      state.inquireBlogsError = null;
       state.blogs = action.payload;
     },
     [getBlogAll.rejected.type]: (
@@ -120,6 +134,32 @@ const blogSlice = createSlice({
       action: PayloadAction<object>
     ) => {
       state.inquireBlogsLoading = false;
+      state.inquireBlogsDone = false;
+      state.inquireBlogsError = action.payload;
+    },
+    //getBlog로직
+    [ getBlog.pending.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.inquireBlogLoading = true;
+      state.inquireBlogDone = false;
+      state.inquireBlogError = null;
+    },
+    [getBlog.fulfilled.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.inquireBlogLoading = false;
+      state.inquireBlogDone = true;
+      state.inquireBlogError = null;
+      state.blog = action.payload;
+    },
+    [getBlog.rejected.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.inquireBlogLoading = false;
       state.inquireBlogDone = false;
       state.inquireBlogError = action.payload;
     },
