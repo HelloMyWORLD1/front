@@ -93,6 +93,23 @@ export const searchBlog = createAsyncThunk(
       return rejectWithValue(error.response.data); //내부 에러처리
   }
 })
+//블로그 삭제
+export const deleteBlog = createAsyncThunk(
+  "deleteBlog",
+  async(data:deleteBlogType,{rejectWithValue})=> {
+    try {
+      axios.defaults.headers.common["Authorization"] = "";
+      const JWTTOEKN = localStorage.getItem("jwtToken");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
+      const res = await axios.delete(`/blog/${data.blogId}`)
+      console.log(res.data);
+      return res.data;
+    } catch (error: any) {
+      console.log(error);
+      return rejectWithValue(error.response.data); //내부 에러처리
+    }
+  }
+)
 const blogSlice = createSlice({
   name: "blog",
   initialState,
@@ -177,7 +194,7 @@ const blogSlice = createSlice({
       state.inquireBlogError = action.payload;
     },
     //searchBlog 로직
-    [searchBlog.pending.type]: (
+    [deleteBlog.pending.type]: (
       state,
       action: PayloadAction<object>
     ) => {
@@ -185,7 +202,7 @@ const blogSlice = createSlice({
       state.searchBlogDone = false;
       state.searchBlogError = null;
     },
-    [searchBlog.fulfilled.type]: (
+    [deleteBlog.fulfilled.type]: (
       state,
       action: PayloadAction<object>
     ) => {
@@ -194,13 +211,38 @@ const blogSlice = createSlice({
       state.searchBlogError = null;
       state.blogs = action.payload;
     },
-    [searchBlog.rejected.type]: (
+    [deleteBlog.rejected.type]: (
       state,
       action: PayloadAction<object>
     ) => {
       state.searchBlogLoading = false;
       state.searchBlogDone = false;
       state.searchBlogError = action.payload;
+    },
+    //deleteBlog 로직
+    [searchBlog.pending.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.deleteBlogLoading = true;
+      state.deleteBlogDone = false;
+      state.deleteBlogError = null;
+    },
+    [searchBlog.fulfilled.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.deleteBlogLoading = false;
+      state.deleteBlogDone = true;
+      state.deleteBlogError = null;
+    },
+    [searchBlog.rejected.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.deleteBlogLoading = false;
+      state.deleteBlogDone = false;
+      state.deleteBlogError = action.payload;
     },
 
   },

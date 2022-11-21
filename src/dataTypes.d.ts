@@ -63,6 +63,10 @@ type searchBlogType = {
   nickname: string;
   keyword: string;
 };
+type deleteBlogType = {
+  blogId: number;
+}
+
 
 type portfolioProjectType = {
   title: string;
