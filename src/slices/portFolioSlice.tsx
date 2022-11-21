@@ -145,7 +145,13 @@ export const unFollowPortFolio = createAsyncThunk(
 const portFolioSlice = createSlice({
   name: "portFolio",
   initialState,
-  reducers: {},
+  reducers: {
+    registerInitialize: (state) => {
+      state.registerPortFolioLoading = false;
+      state.registerPortFolioDone = false;
+      state.registerPortFolioError = null;
+    },
+  },
   //비동기 통신을 위한 리듀서
   extraReducers: {
     //registerPortFolio 로직
