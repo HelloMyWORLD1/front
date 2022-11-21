@@ -56,6 +56,15 @@ export default function GetBlogComponenet() {
       alert("본인 블로그에서만 삭제가 가능합니다.");
     }
   };
+  const updateBlogClick = ()=>{
+    console.log(post.blogUser);
+    console.log(user.nickname);
+    if (post.blogUser === user.nickname) {
+      navigate("/updateBlog")
+    } else {
+      alert("본인 블로그에서만 수정이 가능합니다.");
+    }
+  }
 
   useEffect(() => {
     dispatch(getBlog(blogId)).then((res) => setPost(res.payload.data));
@@ -85,7 +94,7 @@ export default function GetBlogComponenet() {
         </GetBlogAllTr>
         <GetBlogAllTr>
           <GetBlogBtnTd>
-            <GetBlogBtn>수정하기</GetBlogBtn>
+            <GetBlogBtn onClick={updateBlogClick}>수정하기</GetBlogBtn>
             <GetBlogBtn onClick={deleteBlogClick}>삭제하기</GetBlogBtn>
           </GetBlogBtnTd>
         </GetBlogAllTr>

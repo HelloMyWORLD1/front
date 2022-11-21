@@ -66,7 +66,13 @@ type searchBlogType = {
 type deleteBlogType = {
   blogId: number;
 }
-
+type updateBlogType = {
+  blogId:number;
+  request:{
+    title: string;
+    content: string;
+  }
+}
 
 type portfolioProjectType = {
   title: string;
