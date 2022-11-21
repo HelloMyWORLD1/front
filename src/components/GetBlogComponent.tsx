@@ -29,8 +29,9 @@ interface Post {
 export default function GetBlogComponenet() {
   const { blog } = useSelector((state: RootState) => state.blog);
   const dispatch = useAppDispatch();
+  const blogIdNum = Number(document.location.href.split("/:")[1]);
   const [blogId, setBlogId] = React.useState<getBlogDetailType>({
-    blogId: 150,
+    blogId: blogIdNum,
   });
   const [post, setPost] = React.useState<Post>({
     blogId: 1,

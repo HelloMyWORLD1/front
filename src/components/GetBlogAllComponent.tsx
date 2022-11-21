@@ -38,11 +38,12 @@ export default function GetBlogAllComponent() {
     (state: RootState) => state.blog
   );
   const navigate = useNavigate();
+  const userNickname = document.location.href.split("/:")[1];
 
   const dispatch = useAppDispatch();
   const [posts, setPosts] = React.useState<Posts[]>([]);
   const [getBlogsData, setGetBlogsData] = React.useState<getBlogAllType>({
-    nickname: "Jaewon",
+    nickname: userNickname,
     pageNum: 0,
   });
 
