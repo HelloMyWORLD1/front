@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useCallback } from "react";
+import React, { useEffect, useState,useCallback, useRef } from "react";
 import { useAppDispatch } from "../hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
@@ -81,20 +81,22 @@ export default function GetBlogAllComponent() {
     }
     
   };
-//   const blogClick = () => {
-//     console.log(post.postId)
-//   }
+  const blogInput = useRef<HTMLTableRowElement>(null);
+  const blogClick = () => {
+    console.log(Number(blogInput.current?.getElementsByTagName("tr")[0].id)); //선택된 블로그 아이디 추출;
+    navigate(`/blog/:${Number(blogInput.current?.getElementsByTagName("tr")[0].id)}`);
+  }
 const registerBlogClick =() => {
     navigate("/makeBlog")
 }
 
   const postLists: JSX.Element[] = posts.map((post) => {
     return (
-      <GetBlogAllTr>
-        <td>
-          <GetBlogAllBox>
-            <table>
-              <tr>
+      <GetBlogAllTr  ref={blogInput} >
+        <td >
+          <GetBlogAllBox onClick={blogClick}>
+            <table >
+              <tr id={post.blogId.toString()}>
                 <GetBlogAllHeader>
                   <GetBlogAllTitle>{post.title}</GetBlogAllTitle>
                   <div></div>

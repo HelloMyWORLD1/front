@@ -48,7 +48,7 @@ export default function GetBlogComponenet() {
 
   const deleteBlogClick = () =>{
     dispatch(deleteBlog(blogId)).then(()=> (
-        navigate("/")
+        navigate(-1)
     ))
   }
 
