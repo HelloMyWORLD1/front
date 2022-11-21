@@ -80,6 +80,21 @@ export const getBlog = createAsyncThunk(
     }
   }
 )
+//블로그 검색
+export const searchBlog = createAsyncThunk(
+  "searchBlog",
+  async(data:searchBlogType,{rejectWithValue}) =>{
+    try {
+      const res = await axios.post(`/blogs/search?${data.nickname}&keyword=${data.keyword}`, data, {
+        // withCredentials: true,
+      });
+      console.log(res.data);
+      return res.data;
+    } catch (error: any) {
+      console.log(error);
+      return rejectWithValue(error.response.data); //내부 에러처리
+  }
+})
 const blogSlice = createSlice({
   name: "blog",
   initialState,
@@ -163,6 +178,33 @@ const blogSlice = createSlice({
       state.inquireBlogDone = false;
       state.inquireBlogError = action.payload;
     },
+    //searchBlog 로직
+    [searchBlog.pending.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.searchBlogLoading = true;
+      state.searchBlogDone = false;
+      state.searchBlogError = null;
+    },
+    [searchBlog.fulfilled.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.searchBlogLoading = false;
+      state.searchBlogDone = true;
+      state.searchBlogError = null;
+      state.blogs = action.payload;
+    },
+    [searchBlog.rejected.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.searchBlogLoading = false;
+      state.searchBlogDone = false;
+      state.searchBlogError = action.payload;
+    },
+
   },
 });
 
