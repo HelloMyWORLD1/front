@@ -54,10 +54,16 @@ function PortfolioComponent() {
           <BlackLine width={900} marginTop={10}></BlackLine>
           <PortfolioEduCareerSnsContentBox>
             <PortfolioEduBox>{portFolio.education}</PortfolioEduBox>
-            {portFolio.career.map((item: any, index: number) => {
-              const str = `${item.year} ${item.title} ${item.content}`;
-              return <PortfolioCareerBox>{str}</PortfolioCareerBox>;
-            })}
+            {!(
+              portFolio.career.length === 0 && Array.isArray(portFolio.career)
+            ) ? (
+              portFolio.career.map((item: any, index: number) => {
+                const str = `${item.year} ${item.title} ${item.content}`;
+                return <PortfolioCareerBox>{str}</PortfolioCareerBox>;
+              })
+            ) : (
+              <PortfolioCareerBox> -</PortfolioCareerBox>
+            )}
             {portFolio.sns.map((item: any, index: number) => {
               const str = `${item.replace("-", " ")}`;
               return <PortfolioSnsBox>{str}</PortfolioSnsBox>;
