@@ -18,15 +18,25 @@ import {
   MakePortFolioNextBtn,
   DeletePortfolioButton,
 } from "./styled";
-import { registerPortFolio } from "../slices/portFolioSlice";
+import {
+  portFolioSliceActions,
+  registerPortFolio,
+} from "../slices/portFolioSlice";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAppDispatch } from "../hooks";
 import logo from "../img/logo.png";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 function MakePortfolioSecondComponent() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const location = useLocation();
+  const {
+    registerPortFolioLoading,
+    registerPortFolioDone,
+    registerPortFolioError,
+  } = useSelector((state: RootState) => state.portFolio);
 
   const {
     showDetailJob,
@@ -37,8 +47,6 @@ function MakePortfolioSecondComponent() {
     showForeign,
     showIntroduce,
   } = location.state;
-
-  useEffect(() => {}, []);
 
   const [year, setYear] = useState<string>("");
   const [company, setCompany] = useState<string>("");
@@ -154,21 +162,26 @@ function MakePortfolioSecondComponent() {
   };
 
   const onClickRegisterPortfolio = useCallback(() => {
-    dispatch(
-      registerPortFolio({
-        detailJob: showDetailJob,
-        title: showBlogTitle,
-        sns: snsObjectArray,
-        introduce: showIntroduce,
-        education: showEducation,
-        certificate: showCertificate,
-        foreignLanguage: showForeign,
-        tech: technique,
-        project: project,
-        career: showCareer,
-      })
-    );
+    if (registerPortFolioLoading === false) {
+      dispatch(
+        registerPortFolio({
+          detailJob: showDetailJob,
+          title: showBlogTitle,
+          sns: snsObjectArray,
+          introduce: showIntroduce,
+          education: showEducation,
+          certificate: showCertificate,
+          foreignLanguage: showForeign,
+          tech: technique,
+          project: project,
+          career: showCareer,
+        })
+      );
+      navigate("/");
+      dispatch(portFolioSliceActions.registerInitialize());
+    }
   }, [
+    registerPortFolioLoading,
     showDetailJob,
     showBlogTitle,
     snsObjectArray,
