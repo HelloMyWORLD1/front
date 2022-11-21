@@ -39,9 +39,9 @@ export default function GetBlogAllComponent() {
     (state: RootState) => state.blog
   );
   const navigate = useNavigate();
-  const userNickname = document.location.href.split("/")[5];
-//   console.log(document.location.href);
-//   console.log(userNickname);
+  const userNickname = document.location.href.split("/:")[1];
+  console.log(document.location.href);
+  console.log(userNickname);
 
   const dispatch = useAppDispatch();
   const [posts, setPosts] = React.useState<Posts[]>([]);
@@ -84,6 +84,9 @@ export default function GetBlogAllComponent() {
 //   const blogClick = () => {
 //     console.log(post.postId)
 //   }
+const registerBlogClick =() => {
+    navigate("/makeBlog")
+}
 
   const postLists: JSX.Element[] = posts.map((post) => {
     return (
@@ -146,7 +149,7 @@ export default function GetBlogAllComponent() {
           </div>
           <div></div>
           <div>
-            <PostBlogBtn>
+            <PostBlogBtn onClick={registerBlogClick}>
               <PostBlogImg src={registerImg}></PostBlogImg>
               글쓰기
             </PostBlogBtn>

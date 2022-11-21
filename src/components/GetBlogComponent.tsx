@@ -15,7 +15,8 @@ import {
 import { useAppDispatch } from "../hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { getBlog } from "../slices/blogSlice";
+import { getBlog, deleteBlog } from "../slices/blogSlice";
+import { useNavigate } from "react-router-dom";
 
 interface Post {
   blogId: number;
@@ -28,8 +29,9 @@ interface Post {
 
 export default function GetBlogComponenet() {
   const { blog } = useSelector((state: RootState) => state.blog);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const blogIdNum = Number(document.location.href.split("/")[4]);
+  const blogIdNum = Number(document.location.href.split("/:")[1]);
   console.log(document.location.href.split("/")[4]);
   console.log(blogIdNum);
   const [blogId, setBlogId] = React.useState<getBlogDetailType>({
@@ -43,6 +45,12 @@ export default function GetBlogComponenet() {
     blogUser: "test",
     blogUserImg: "test",
   });
+
+  const deleteBlogClick = () =>{
+    dispatch(deleteBlog(blogId)).then(()=> (
+        navigate("/")
+    ))
+  }
 
   useEffect(() => {
     dispatch(getBlog(blogId)).then((res)=>(setPost(res.payload.data)));
@@ -72,8 +80,8 @@ export default function GetBlogComponenet() {
         </GetBlogAllTr>
         <GetBlogAllTr>
           <GetBlogBtnTd>
-            <GetBlogBtn>수정하기</GetBlogBtn>
-            <GetBlogBtn>삭제하기</GetBlogBtn>
+            <GetBlogBtn >수정하기</GetBlogBtn>
+            <GetBlogBtn onClick={deleteBlogClick}>삭제하기</GetBlogBtn>
           </GetBlogBtnTd>
         </GetBlogAllTr>
       </GetBlogAllTable>

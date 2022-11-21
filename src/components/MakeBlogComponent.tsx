@@ -69,7 +69,9 @@ export default function MakeBlogComponent() {
             title: title,
             content: editorValue,
           })
-        );
+        ).then(()=>(
+          navigate(-1)
+        ));
       }
     },
     [dispatch, title, editorValue]
