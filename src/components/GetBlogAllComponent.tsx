@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useCallback } from "react";
 import { useAppDispatch } from "../hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { getBlogAll } from "../slices/blogSlice";
+import { searchBlog } from "../slices/blogSlice";
 import search from "../img/Search.png";
 import registerImg from "../img/register.png";
 import arrowLeft from "../img/arrowLeft.png";
@@ -109,13 +110,39 @@ export default function GetBlogAllComponent() {
     );
   });
 
+  const [keywords,setKeywords] = React.useState<searchBlogType>({
+    nickname: userNickname,
+    keyword: ""
+  })
+  const searchBlogs = (event: React.FormEvent<HTMLInputElement>) => {
+    // 변화한 값 받아서 setKeywords 호출
+    setKeywords({
+        nickname: userNickname,
+        keyword: event.currentTarget.value
+    })
+    console.log(event.currentTarget.value);
+    console.log(keywords);
+  };
+
+  const onSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log(keywords);
+        dispatch(
+            searchBlog(keywords)
+        ).then((res)=>(setPosts(res.payload.data)));
+    },[dispatch,keywords]
+  );
+
   return (
     <GetBlogAllTable>
       <GetBlogAllTr>
         <GetBlogAllHeader>
           <div>
-            <SearchBlogInput type="text"></SearchBlogInput>
-            <SearchBlogImg src={search}></SearchBlogImg>
+            <form onSubmit={onSubmit}>
+                <SearchBlogInput type="text" onChange={searchBlogs} ></SearchBlogInput>
+                <SearchBlogImg src={search}></SearchBlogImg>
+            </form>
           </div>
           <div></div>
           <div>

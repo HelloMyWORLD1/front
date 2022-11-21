@@ -85,9 +85,7 @@ export const searchBlog = createAsyncThunk(
   "searchBlog",
   async(data:searchBlogType,{rejectWithValue}) =>{
     try {
-      const res = await axios.post(`/blogs/search?${data.nickname}&keyword=${data.keyword}`, data, {
-        // withCredentials: true,
-      });
+      const res = await axios.get(`/blogs/search?nickname=${data.nickname}&keyword=${data.keyword}`);
       console.log(res.data);
       return res.data;
     } catch (error: any) {
