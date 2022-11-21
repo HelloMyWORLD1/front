@@ -223,6 +223,23 @@ const blogSlice = createSlice({
       state.deleteBlogDone = false;
       state.deleteBlogError = action.payload;
     },
+    //updateBlog 로직
+    [updateBlog.pending.type]: (state, action: PayloadAction<object>) => {
+      state.updateBlogLoading = true;
+      state.updateBlogDone = false;
+      state.updateBlogError = null;
+    },
+    [updateBlog.fulfilled.type]: (state, action: PayloadAction<object>) => {
+      state.updateBlogLoading = false;
+      state.updateBlogDone = true;
+      state.updateBlogError = null;
+      state.blog = action.payload;
+    },
+    [updateBlog.rejected.type]: (state, action: PayloadAction<object>) => {
+      state.updateBlogLoading = false;
+      state.updateBlogDone = false;
+      state.updateBlogError = action.payload;
+    },
   },
 });
 
