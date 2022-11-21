@@ -82,10 +82,11 @@ export default function GetBlogAllComponent() {
     }
   };
   const blogInput = useRef<HTMLTableRowElement>(null);
-  const blogClick = () => {
-    console.log(Number(blogInput.current?.getElementsByTagName("tr")[0].id)); //선택된 블로그 아이디 추출;
+  const blogClick= (event :any
+) => {
+    console.log(event.target.id);
     navigate(
-      `/blog/:${Number(blogInput.current?.getElementsByTagName("tr")[0].id)}`
+      `/blog/:${Number(event.target.id)}`
     );
   };
   const registerBlogClick = () => {
@@ -102,18 +103,18 @@ export default function GetBlogAllComponent() {
     return (
       <GetBlogAllTr ref={blogInput}>
         <td>
-          <GetBlogAllBox onClick={blogClick}>
+          <GetBlogAllBox onClick={blogClick} id={post.blogId.toString()}>
             <table>
               <tr id={post.blogId.toString()}>
-                <GetBlogAllHeader>
-                  <GetBlogAllTitle>{post.title}</GetBlogAllTitle>
+                <GetBlogAllHeader id={post.blogId.toString()}>
+                  <GetBlogAllTitle id={post.blogId.toString()} >{post.title}</GetBlogAllTitle>
                   <div></div>
-                  <GetBlogAllCreated> {post.createdAt}</GetBlogAllCreated>
+                  <GetBlogAllCreated id={post.blogId.toString()} > {post.createdAt}</GetBlogAllCreated>
                 </GetBlogAllHeader>
               </tr>
               <tr>
                 <td colSpan={2}>
-                  <GetBlogAllContent>{post.content}</GetBlogAllContent>
+                  <GetBlogAllContent id={post.blogId.toString()}>{post.content}</GetBlogAllContent>
                 </td>
               </tr>
             </table>

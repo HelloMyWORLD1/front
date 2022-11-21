@@ -93,7 +93,7 @@ export default function GetBlogComponenet() {
         </GetBlogAllTr>
         <GetBlogAllTr>
           <td>
-            <GetBlogContent>{post.content}</GetBlogContent>
+            <GetBlogContent dangerouslySetInnerHTML={{ __html: post.content }}></GetBlogContent>
           </td>
         </GetBlogAllTr>
         <GetBlogAllTr>
