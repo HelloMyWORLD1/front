@@ -105,6 +105,9 @@ const userSlice = createSlice({
   reducers: {
     simpleLogOut: (state) => {
       state.user = null;
+      state.logInLoading = false;
+      state.logInDone = false;
+      state.logInError = null;
     },
   },
   // 비동기 통신을 위한 리듀서
