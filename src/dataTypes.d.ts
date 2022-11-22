@@ -46,6 +46,27 @@ type getPortFolioLatestType = {
   field: string;
   pageNum: number;
 };
+type portfolioProjectType = {
+  title: string;
+  content: string;
+};
+
+type techNique = {
+  techName: string;
+  content: string;
+};
+
+type portFoliosType = {
+  nickname: string;
+  detailJob: string;
+  name: string;
+  field: string;
+  profileImage: string;
+  title: string;
+  introduce: string;
+  followers: string[];
+  followings: string[];
+};
 
 //blog 데이터 타입
 type postBlogType = {
@@ -74,24 +95,24 @@ type updateBlogType = {
   }
 }
 
-type portfolioProjectType = {
-  title: string;
-  content: string;
-};
-
-type techNique = {
-  techName: string;
-  content: string;
-};
-
-type portFoliosType = {
-  nickname: string;
-  detailJob: string;
-  name: string;
-  field: string;
-  profileImage: string;
-  title: string;
-  introduce: string;
-  followers: string[];
-  followings: string[];
-};
+//comment 타입(조회,등록,수정,삭제)
+type getCommentType = {
+  blogId : number;
+}
+type postCommentType = {
+  blogId : number;
+  request:{
+    content: string;
+  }
+}
+type updateCommentType = {
+  blogId: number;
+  commentId : number;
+  request:{
+    content: string;
+  }
+}
+type deleteCommentType = {
+  blogId: number;
+  commentId : number;
+}
