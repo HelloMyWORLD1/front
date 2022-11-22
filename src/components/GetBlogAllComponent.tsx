@@ -69,9 +69,12 @@ export default function GetBlogAllComponent() {
   };
 
   const GetBlogPlus = () => {
-    console.log(blogs.data.length % 5);
+    
     getBlogsData.pageNum = getBlogsData.pageNum + 1;
-    if (getBlogsData.pageNum > blogs.data.length % 5) {
+    console.log(getBlogsData.pageNum);
+    console.log(blogs.data.length/5);
+
+    if (getBlogsData.pageNum > blogs.data.length / 5) {
       getBlogsData.pageNum = getBlogsData.pageNum - 1;
       alert("더이상 보여질 내용이 없습니다!");
     } else {
