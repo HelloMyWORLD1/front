@@ -98,6 +98,7 @@ export default function GetBlogAllComponent() {
       alert("본인 블로그에서만 글작성이 가능합니다!");
     }
   };
+  const extractTextPattern = /(<([^>]+)>)/gi; //문자열 추출 위한 정규표현식;
 
   const postLists: JSX.Element[] = posts.map((post) => {
     return (
@@ -114,7 +115,7 @@ export default function GetBlogAllComponent() {
               </tr>
               <tr>
                 <td colSpan={2}>
-                  <GetBlogAllContent id={post.blogId.toString()}>{post.content}</GetBlogAllContent>
+                  <GetBlogAllContent id={post.blogId.toString()}>{post.content.replace(extractTextPattern,"")}</GetBlogAllContent>
                 </td>
               </tr>
             </table>

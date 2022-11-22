@@ -75,6 +75,7 @@ export default function GetBlogComponenet() {
   }, []);
 
   return (
+    
     <div>
       <GetBlogAllTable>
         <GetBlogAllTr>
