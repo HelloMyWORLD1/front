@@ -354,6 +354,7 @@ export const Mask = styled.img`
   height: 150px;
   margin-left: 187px;
   margin-top: 40px;
+  border-radius: 50%;
 `;
 export const UploadImg = styled.img`
   position: absolute;
