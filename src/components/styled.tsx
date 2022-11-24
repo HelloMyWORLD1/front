@@ -1256,14 +1256,14 @@ export const PortfolioEduCareerSnsContentBox = styled.div`
 
 export const PortfolioEduBox = styled.div`
   width: 150px;
-  margin-right: 130px;
+  margin-right: 100px;
   display: flex;
   flex-direction: column;
 `;
 
 export const PortfolioCareerBox = styled.div`
   width: 300px;
-  margin-right: 170px;
+  margin-right: 110px;
   display: flex;
   flex-direction: column;
 `;
