@@ -18,28 +18,11 @@ import {
   BlogTitle,
 } from "../components/styled";
 import circle from "../img/Circle.png";
-import testImg from "../img/testImg.png";
-import testImg2 from "../img/testImg2.png";
-import testImg3 from "../img/testImg3.png";
-import testImg4 from "../img/testImg4.png";
-import testImg5 from "../img/testImg5.png";
-import testImg6 from "../img/testImg6.png";
-import testImg7 from "../img/testImg7.png";
-import testImg8 from "../img/testImg8.png";
-import testImg9 from "../img/testImg9.png";
-import testImg10 from "../img/testImg10.png";
-import testImg11 from "../img/testImg11.png";
-import testImg12 from "../img/testImg12.png";
 import { getPortFoiloLike } from "../slices/portFolioSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { useNavigate } from "react-router-dom";
 
-interface Cards {
-  id: number;
-  profile: string;
-}
 function HomeCard() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -113,20 +96,6 @@ function HomeCard() {
     setClick(afterValue);
     dispatch(getPortFoiloLike({ field: "HR" }));
   }
-  const [cards, setCards] = React.useState<Cards[]>([
-    { id: 1, profile: testImg },
-    { id: 2, profile: testImg2 },
-    { id: 3, profile: testImg3 },
-    { id: 4, profile: testImg4 },
-    { id: 5, profile: testImg5 },
-    { id: 6, profile: testImg6 },
-    { id: 7, profile: testImg7 },
-    { id: 8, profile: testImg8 },
-    { id: 9, profile: testImg9 },
-    { id: 10, profile: testImg10 },
-    { id: 11, profile: testImg11 },
-    { id: 12, profile: testImg12 },
-  ]);
 
   const handlingClickCard = (nickname: string) => {
     navigate(`/portfolio/get/:${nickname}`);
@@ -137,20 +106,7 @@ function HomeCard() {
     txt = txt.slice(0, number).concat("...");
     return txt;
   }
-  const cardList: JSX.Element[] = cards.map((card) => {
-    const txt = overStringChange(
-      "비전공자였지만, 이제는 어엿한 시니어 개발자로써 후배들에게 스토리를 전하고 싶어요"
-    );
-    return (
-      <FilterResultCard key={card.id}>
-        <CardImg src={card.profile}></CardImg>
-        <NicknameTxt>사라 김</NicknameTxt>
-        <FieldTxt>스타트업/5년차 프론트엔드 개발자</FieldTxt>
-        <FollowTxt>팔로워 1,525명 팔로잉 1,326명</FollowTxt>
-        <BlogTitle>{txt}</BlogTitle>
-      </FilterResultCard>
-    );
-  });
+
   const testList = portFolios
     ? portFolios.map((item: any) => {
         const txt = overStringChange(item.introduce);
