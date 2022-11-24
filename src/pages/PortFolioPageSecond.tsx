@@ -17,7 +17,7 @@ function PortFolioPageSecond() {
     <div>
       <PortfolioHeader />
       <PortfolioPageSecondComponent />
-      <Footer />
+      <Footer></Footer>
     </div>
   );
 }
