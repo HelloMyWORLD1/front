@@ -277,7 +277,7 @@ export const SignUpBtn = styled.button`
   line-height: 26px;
   text-align: center;
   letter-spacing: -0.1em;
-
+  cursor: pointer;
   color: #ffffff;
 `;
 export const ExplainTxt = styled.div`
@@ -896,6 +896,7 @@ export const PortFolioTitleTxt = styled.div`
   width: 880px;
   margin-left: 30px;
   margin-top: 30px;
+  margin-bottom: 10px;
   font-weight: 700;
   font-size: 20px;
   line-height: 39px;
@@ -918,7 +919,7 @@ export const PortFolioNameArrayTxt = styled.div`
 export const PortFolioContentTxt = styled.div`
   display: flex;
   margin-left: 30px;
-  margin-top: 5px;
+  margin-top: 20px;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   width: 840px;
@@ -1432,6 +1433,7 @@ export const GetBlogAllTable = styled.table`
 
   border-collapse: separate;
   border-spacing: 0 10px;
+  margin-bottom: 100px;
 `;
 export const GetBlogAllTr = styled.tr`
   width: 50vw;
@@ -1469,7 +1471,7 @@ export const PostBlogBtn = styled.button`
   background: #ffffff;
   border: 1px solid #e5e5e5;
   border-radius: 56px;
-
+  cursor: pointer;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 400;
