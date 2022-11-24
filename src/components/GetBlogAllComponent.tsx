@@ -69,9 +69,12 @@ export default function GetBlogAllComponent() {
   };
 
   const GetBlogPlus = () => {
-    console.log(blogs.data.length % 5);
+    
     getBlogsData.pageNum = getBlogsData.pageNum + 1;
-    if (getBlogsData.pageNum > blogs.data.length % 5) {
+    console.log(getBlogsData.pageNum);
+    console.log(blogs.data.length/5);
+
+    if (getBlogsData.pageNum > blogs.data.length / 5) {
       getBlogsData.pageNum = getBlogsData.pageNum - 1;
       alert("더이상 보여질 내용이 없습니다!");
     } else {
@@ -82,10 +85,11 @@ export default function GetBlogAllComponent() {
     }
   };
   const blogInput = useRef<HTMLTableRowElement>(null);
-  const blogClick = () => {
-    console.log(Number(blogInput.current?.getElementsByTagName("tr")[0].id)); //선택된 블로그 아이디 추출;
+  const blogClick= (event :any
+) => {
+    console.log(event.target.id);
     navigate(
-      `/blog/:${Number(blogInput.current?.getElementsByTagName("tr")[0].id)}`
+      `/blog/:${Number(event.target.id)}`
     );
   };
   const registerBlogClick = () => {
@@ -97,23 +101,24 @@ export default function GetBlogAllComponent() {
       alert("본인 블로그에서만 글작성이 가능합니다!");
     }
   };
+  const extractTextPattern = /(<([^>]+)>)/gi; //문자열 추출 위한 정규표현식;
 
   const postLists: JSX.Element[] = posts.map((post) => {
     return (
       <GetBlogAllTr ref={blogInput}>
         <td>
-          <GetBlogAllBox onClick={blogClick}>
+          <GetBlogAllBox onClick={blogClick} id={post.blogId.toString()}>
             <table>
               <tr id={post.blogId.toString()}>
-                <GetBlogAllHeader>
-                  <GetBlogAllTitle>{post.title}</GetBlogAllTitle>
+                <GetBlogAllHeader id={post.blogId.toString()}>
+                  <GetBlogAllTitle id={post.blogId.toString()} >{post.title}</GetBlogAllTitle>
                   <div></div>
-                  <GetBlogAllCreated> {post.createdAt}</GetBlogAllCreated>
+                  <GetBlogAllCreated id={post.blogId.toString()} > {post.createdAt}</GetBlogAllCreated>
                 </GetBlogAllHeader>
               </tr>
               <tr>
                 <td colSpan={2}>
-                  <GetBlogAllContent>{post.content}</GetBlogAllContent>
+                  <GetBlogAllContent id={post.blogId.toString()}>{post.content.replace(extractTextPattern,"")}</GetBlogAllContent>
                 </td>
               </tr>
             </table>

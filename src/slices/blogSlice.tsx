@@ -3,7 +3,7 @@ import axios from "axios";
 import type { PayloadAction } from "@reduxjs/toolkit";
 axios.defaults.baseURL = "http://129.154.58.244:8001/api";
 
-const initialState :BlogInitialState= {
+const initialState: BlogInitialState = {
   blogs: null, // 사람의 전체 블로그(페이지네이션5개)를 받아올 변수
   blog: null, // 블로그의 게시글 하나를 받아올 변수
   //게시글 등록
@@ -56,7 +56,9 @@ export const getBlogAll = createAsyncThunk(
   async (data: getBlogAllType, { rejectWithValue }) => {
     try {
       //get 요청시 닉네임 받기 위함
-      const res = await axios.get(`/blogs/${data.nickname}?page=${data.pageNum}`);
+      const res = await axios.get(
+        `/blogs/${data.nickname}?page=${data.pageNum}`
+      );
       console.log(res.data);
       return res.data;
     } catch (error: any) {
@@ -69,39 +71,25 @@ export const getBlogAll = createAsyncThunk(
 //블로그 상세 조회
 export const getBlog = createAsyncThunk(
   "getBlog",
-  async (data:getBlogDetailType, {rejectWithValue}) => {
-    try{
+  async (data: getBlogDetailType, { rejectWithValue }) => {
+    try {
       const res = await axios.get(`/blog/${data.blogId}`);
       console.log(res.data);
       return res.data;
-    }catch(error: any){
+    } catch (error: any) {
       console.log(error);
       return rejectWithValue(error.response.data);
     }
   }
-)
+);
 //블로그 검색
 export const searchBlog = createAsyncThunk(
   "searchBlog",
-  async(data:searchBlogType,{rejectWithValue}) =>{
+  async (data: searchBlogType, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`/blogs/search?nickname=${data.nickname}&keyword=${data.keyword}`);
-      console.log(res.data);
-      return res.data;
-    } catch (error: any) {
-      console.log(error);
-      return rejectWithValue(error.response.data); //내부 에러처리
-  }
-})
-//블로그 삭제
-export const deleteBlog = createAsyncThunk(
-  "deleteBlog",
-  async(data:deleteBlogType,{rejectWithValue})=> {
-    try {
-      axios.defaults.headers.common["Authorization"] = "";
-      const JWTTOEKN = localStorage.getItem("jwtToken");
-      axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
-      const res = await axios.delete(`/blog/${data.blogId}`)
+      const res = await axios.get(
+        `/blogs/search?nickname=${data.nickname}&keyword=${data.keyword}`
+      );
       console.log(res.data);
       return res.data;
     } catch (error: any) {
@@ -109,142 +97,149 @@ export const deleteBlog = createAsyncThunk(
       return rejectWithValue(error.response.data); //내부 에러처리
     }
   }
-)
+);
+//블로그 삭제
+export const deleteBlog = createAsyncThunk(
+  "deleteBlog",
+  async (data: deleteBlogType, { rejectWithValue }) => {
+    try {
+      axios.defaults.headers.common["Authorization"] = "";
+      const JWTTOEKN = localStorage.getItem("jwtToken");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
+      const res = await axios.delete(`/blog/${data.blogId}`);
+      console.log(res.data);
+      return res.data;
+    } catch (error: any) {
+      console.log(error);
+      return rejectWithValue(error.response.data); //내부 에러처리
+    }
+  }
+);
+//블로그 수정
+export const updateBlog = createAsyncThunk(
+  "updateBlog",
+  async (data: updateBlogType, { rejectWithValue }) => {
+    try {
+      axios.defaults.headers.common["Authorization"] = "";
+      const JWTTOEKN = localStorage.getItem("jwtToken");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
+      const res = await axios.put(`/blog/${data.blogId}`, data.request, {
+        // withCredentials: true,
+      });
+      console.log(res.data);
+      return res.data;
+    } catch (error: any) {
+      console.log(error);
+      return rejectWithValue(error.response.data); //내부 에러처리
+    }
+  }
+);
 const blogSlice = createSlice({
   name: "blog",
   initialState,
   reducers: {},
   extraReducers: {
     //registerBlog 로직
-    [registerBlog.pending.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
+    [registerBlog.pending.type]: (state, action: PayloadAction<object>) => {
       state.registerBlogLoading = true;
       state.registerBlogDone = false;
       state.registerBlogError = null;
     },
-    [registerBlog.fulfilled.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
+    [registerBlog.fulfilled.type]: (state, action: PayloadAction<object>) => {
       state.registerBlogLoading = false;
       state.registerBlogDone = true;
       state.registerBlogError = null;
       state.blog = action.payload;
     },
-    [registerBlog.rejected.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
+    [registerBlog.rejected.type]: (state, action: PayloadAction<object>) => {
       state.registerBlogLoading = false;
       state.registerBlogDone = false;
       state.registerBlogError = action.payload;
     },
     //getBlogAll 로직
-    [getBlogAll.pending.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
+    [getBlogAll.pending.type]: (state, action: PayloadAction<object>) => {
       state.inquireBlogsLoading = true;
       state.inquireBlogsDone = false;
       state.inquireBlogsError = null;
     },
-    [getBlogAll.fulfilled.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
+    [getBlogAll.fulfilled.type]: (state, action: PayloadAction<object>) => {
       state.inquireBlogsLoading = false;
       state.inquireBlogsDone = true;
       state.inquireBlogsError = null;
       state.blogs = action.payload;
     },
-    [getBlogAll.rejected.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
+    [getBlogAll.rejected.type]: (state, action: PayloadAction<object>) => {
       state.inquireBlogsLoading = false;
       state.inquireBlogsDone = false;
       state.inquireBlogsError = action.payload;
     },
     //getBlog로직
-    [ getBlog.pending.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
+    [getBlog.pending.type]: (state, action: PayloadAction<object>) => {
       state.inquireBlogLoading = true;
       state.inquireBlogDone = false;
       state.inquireBlogError = null;
     },
-    [getBlog.fulfilled.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
+    [getBlog.fulfilled.type]: (state, action: PayloadAction<object>) => {
       state.inquireBlogLoading = false;
       state.inquireBlogDone = true;
       state.inquireBlogError = null;
       state.blog = action.payload;
     },
-    [getBlog.rejected.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
+    [getBlog.rejected.type]: (state, action: PayloadAction<object>) => {
       state.inquireBlogLoading = false;
       state.inquireBlogDone = false;
       state.inquireBlogError = action.payload;
     },
     //searchBlog 로직
-    [deleteBlog.pending.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
+    [deleteBlog.pending.type]: (state, action: PayloadAction<object>) => {
       state.searchBlogLoading = true;
       state.searchBlogDone = false;
       state.searchBlogError = null;
     },
-    [deleteBlog.fulfilled.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
+    [deleteBlog.fulfilled.type]: (state, action: PayloadAction<object>) => {
       state.searchBlogLoading = false;
       state.searchBlogDone = true;
       state.searchBlogError = null;
       state.blogs = action.payload;
     },
-    [deleteBlog.rejected.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
+    [deleteBlog.rejected.type]: (state, action: PayloadAction<object>) => {
       state.searchBlogLoading = false;
       state.searchBlogDone = false;
       state.searchBlogError = action.payload;
     },
     //deleteBlog 로직
-    [searchBlog.pending.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
+    [searchBlog.pending.type]: (state, action: PayloadAction<object>) => {
       state.deleteBlogLoading = true;
       state.deleteBlogDone = false;
       state.deleteBlogError = null;
     },
-    [searchBlog.fulfilled.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
+    [searchBlog.fulfilled.type]: (state, action: PayloadAction<object>) => {
       state.deleteBlogLoading = false;
       state.deleteBlogDone = true;
       state.deleteBlogError = null;
     },
-    [searchBlog.rejected.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
+    [searchBlog.rejected.type]: (state, action: PayloadAction<object>) => {
       state.deleteBlogLoading = false;
       state.deleteBlogDone = false;
       state.deleteBlogError = action.payload;
     },
-
+    //updateBlog 로직
+    [updateBlog.pending.type]: (state, action: PayloadAction<object>) => {
+      state.updateBlogLoading = true;
+      state.updateBlogDone = false;
+      state.updateBlogError = null;
+    },
+    [updateBlog.fulfilled.type]: (state, action: PayloadAction<object>) => {
+      state.updateBlogLoading = false;
+      state.updateBlogDone = true;
+      state.updateBlogError = null;
+      state.blog = action.payload;
+    },
+    [updateBlog.rejected.type]: (state, action: PayloadAction<object>) => {
+      state.updateBlogLoading = false;
+      state.updateBlogDone = false;
+      state.updateBlogError = action.payload;
+    },
   },
 });
 
