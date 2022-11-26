@@ -62,13 +62,12 @@ function PortfolioComponent() {
                 return <PortfolioCareerBox>{str}</PortfolioCareerBox>;
               })
             ) : (
-              <PortfolioCareerBox> -</PortfolioCareerBox>
+              <PortfolioCareerBox>-</PortfolioCareerBox>
             )}
             {portFolio.sns.map((item: any, index: number) => {
               const str = `${item.replace("-", " ")}`;
               return <PortfolioSnsBox>{str}</PortfolioSnsBox>;
             })}
-            <PortfolioSnsBox></PortfolioSnsBox>
           </PortfolioEduCareerSnsContentBox>
         </PortfolioInsideBox>
       )}

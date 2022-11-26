@@ -10,15 +10,20 @@ import {
 import search from "../img/Search.png";
 import { useNavigate } from "react-router-dom";
 import logo from "../img/logo.png";
+import { useAppDispatch } from "../hooks";
+import { getProfileImage } from "../slices/portFolioSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 function PortfolioHeader() {
   const navigate = useNavigate();
+  const { test } = useSelector((state: RootState) => state.portFolio);
   const userNickname = document.location.href.split("/:")[1];
   const navigateHome = () => {
     navigate(`/portfolio/get/:${userNickname}`);
   };
 
   const navigatePortfolio = () => {
-    navigate("/");
+    navigate(`/portfolio/get/second/:${userNickname}`);
     //portfolio 페이지로 이동 (기술스택 등등 보여주는 페이지)
   };
 
@@ -29,11 +34,22 @@ function PortfolioHeader() {
   const onClickLogo = () => {
     navigate("/");
   };
-
+  const jwtToken = localStorage.getItem("jwtToken");
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (jwtToken) {
+      dispatch(getProfileImage());
+    }
+  }, [jwtToken]);
   return (
     <HeaderComponent>
       <BlogHeaderDetailWrapper>
-        <BlogHeaderProfile src={""}></BlogHeaderProfile>
+        {test ? (
+          <BlogHeaderProfile src={test.fileUrl}></BlogHeaderProfile>
+        ) : (
+          <BlogHeaderProfile src={""}></BlogHeaderProfile>
+        )}
+
         <div>Test</div>
       </BlogHeaderDetailWrapper>
       <div>

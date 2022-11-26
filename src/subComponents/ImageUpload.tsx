@@ -13,10 +13,9 @@ function ImageUpload() {
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreview(reader.result as string);
-        localStorage.setItem("profileImageTest",preview);
+        localStorage.setItem("profileImageTest", preview);
       };
-      reader.readAsDataURL(image)
-     
+      reader.readAsDataURL(image);
     } else {
       setPreview("");
     }

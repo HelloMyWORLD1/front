@@ -277,7 +277,7 @@ export const SignUpBtn = styled.button`
   line-height: 26px;
   text-align: center;
   letter-spacing: -0.1em;
-
+  cursor: pointer;
   color: #ffffff;
 `;
 export const ExplainTxt = styled.div`
@@ -354,6 +354,7 @@ export const Mask = styled.img`
   height: 150px;
   margin-left: 187px;
   margin-top: 40px;
+  border-radius: 50%;
 `;
 export const UploadImg = styled.img`
   position: absolute;
@@ -864,8 +865,73 @@ export const DetailJobTxt = styled.div`
   font-size: 14px;
   line-height: 20px;
   letter-spacing: -0.1em;
-
   color: #333333;
+`;
+
+export const PortfollioTxt = styled.div`
+  height: 20px;
+  width: 900px;
+  margin-top: 30px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: -0.1em;
+  color: #333333;
+`;
+
+export const GetPortfolioBox = styled.div`
+  background: #ffffff;
+  margin-top: 20px;
+  width: 900px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const PortFolioTitleTxt = styled.div`
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  width: 880px;
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 39px;
+  letter-spacing: -0.1em;
+  color: #222222;
+`;
+export const PortFolioNameArrayTxt = styled.div`
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  width: 880px;
+  margin-left: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 39px;
+  letter-spacing: -0.1em;
+  color: #222222;
+`;
+export const PortFolioContentTxt = styled.div`
+  display: flex;
+  margin-left: 30px;
+  margin-top: 20px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  width: 840px;
+  word-break: break-all;
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 30px;
+  font-weight: 400;
+
+  line-height: 33px;
+  letter-spacing: -0.1em;
+  color: #222222;
 `;
 
 export const MakePortFolioNormalInput = styled.input`
@@ -1191,14 +1257,14 @@ export const PortfolioEduCareerSnsContentBox = styled.div`
 
 export const PortfolioEduBox = styled.div`
   width: 150px;
-  margin-right: 130px;
+  margin-right: 100px;
   display: flex;
   flex-direction: column;
 `;
 
 export const PortfolioCareerBox = styled.div`
   width: 300px;
-  margin-right: 170px;
+  margin-right: 110px;
   display: flex;
   flex-direction: column;
 `;
@@ -1367,6 +1433,7 @@ export const GetBlogAllTable = styled.table`
 
   border-collapse: separate;
   border-spacing: 0 10px;
+  margin-bottom: 100px;
 `;
 export const GetBlogAllTr = styled.tr`
   width: 50vw;
@@ -1404,7 +1471,7 @@ export const PostBlogBtn = styled.button`
   background: #ffffff;
   border: 1px solid #e5e5e5;
   border-radius: 56px;
-
+  cursor: pointer;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
   font-weight: 400;
