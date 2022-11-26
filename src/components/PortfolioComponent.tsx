@@ -17,28 +17,21 @@ import {
   PortfolioCareerBox,
   PortfolioSnsBox,
 } from "./styled";
-import testImg from "../img/testImg.png";
-import { useAppDispatch } from "../hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { getPortFolio } from "../slices/portFolioSlice";
 
 function PortfolioComponent() {
-  const dispatch = useAppDispatch();
   const { user } = useSelector((state: RootState) => state.user);
   const { portFolio } = useSelector((state: RootState) => state.portFolio);
   const userNickname = document.location.href.split("/:")[1];
-
-  useEffect(() => {
-    console.log(userNickname);
-    dispatch(getPortFolio({ nickname: userNickname }));
-  }, []);
 
   return (
     <PortfolioBox>
       {portFolio && (
         <PortfolioInsideBox>
-          <PortfolioProfileImg src={testImg}></PortfolioProfileImg>
+          <PortfolioProfileImg
+            src={portFolio.profileImage}
+          ></PortfolioProfileImg>
           <PortfolioNameTxt>{userNickname}</PortfolioNameTxt>
           <PortfolioDetailJobTxt>{portFolio.detailJob}</PortfolioDetailJobTxt>
           {user && user.nickname !== userNickname && (

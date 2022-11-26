@@ -11,7 +11,9 @@ function MakePortFolioPage() {
   const jwtToken = localStorage.getItem("jwtToken");
   const dispatch = useAppDispatch();
   const { user } = useSelector((state: RootState) => state.user);
-  const { portFolio } = useSelector((state: RootState) => state.portFolio);
+  const { portFolio, getPortFolioError, getPortFolioDone } = useSelector(
+    (state: RootState) => state.portFolio
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,18 +21,13 @@ function MakePortFolioPage() {
       dispatch(inquireMyInfo());
     }
   }, [jwtToken]);
-
   useEffect(() => {
-    if (user) {
-      dispatch(getPortFolio({ nickname: user.nickname }));
-    }
-  }, [user]);
-
-  useEffect(() => {
-    if (portFolio) {
+    if (getPortFolioDone === true && getPortFolioError === null) {
+      console.log("test1입니다");
       navigate(`/portfolio/get/:${user.nickname}`);
+      return;
     }
-  }, [portFolio]);
+  }, [getPortFolioError, getPortFolioDone]);
   return <MakePortFolioComponent />;
 }
 

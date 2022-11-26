@@ -14,12 +14,15 @@ import { useAppDispatch } from "../hooks";
 import { useAppSelector } from "../hooks";
 import { RootState } from "../store/store";
 import { userSliceActions } from "../slices/userSlice";
+import { getPortFolio } from "../slices/portFolioSlice";
 
 function Header() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state: RootState) => state.user);
-
+  const { getPortFolioError } = useAppSelector(
+    (state: RootState) => state.portFolio
+  );
   const onClickSearch = () => {
     console.log("search button click");
   };
@@ -53,9 +56,10 @@ function Header() {
       return;
     }
     if (user) {
+      dispatch(getPortFolio({ nickname: user.nickname }));
       navigate("/makePortfolio");
     }
-  }, [user]);
+  }, [user, dispatch]);
 
   const onClickLogo = () => {
     navigate("/");
