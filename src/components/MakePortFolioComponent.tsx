@@ -16,9 +16,11 @@ import {
 } from "./styled";
 import logo from "../img/logo.png";
 import { useState, useCallback } from "react";
-import { useAppDispatch } from "../hooks";
+import { useAppDispatch, useAppSelector } from "../hooks";
 import { snsArray } from "../utils/array";
 import { useNavigate } from "react-router-dom";
+import { RootState } from "../store/store";
+import { getPortFolio } from "../slices/portFolioSlice";
 
 function MakePortFolioComponent() {
   const dispatch = useAppDispatch();
@@ -39,6 +41,10 @@ function MakePortFolioComponent() {
   const [showForeign, setShowForeign] = useState<string[]>([]);
   const [showIntroduce, setShowIntroduce] = useState<string>("");
 
+  const { getPortFolioError } = useAppSelector(
+    (state: RootState) => state.portFolio
+  );
+  const { user } = useAppSelector((state: RootState) => state.user);
   const navigate = useNavigate();
 
   const gotoHome = () => {
