@@ -31,6 +31,8 @@ interface UserInitialState {
 
 //포트폴리오 비동기 처리 상태관리
 interface PortFolioInitalState {
+  test: any;
+  aa: any;
   //개인 포폴
   portFolio: any;
   //메인페이지|커뮤니티용 포폴
@@ -91,25 +93,25 @@ interface BlogInitialState {
 }
 
 //댓글 비동기 처리 관리
-interface CommentInitialState{
+interface CommentInitialState {
   comment: any;
-  comments:any;
+  comments: any;
   //댓글 등록
   registerCommentLoading: boolean;
   registerCommentDone: boolean;
-  registerCommentError : null |object;
+  registerCommentError: null | object;
   //댓글 수정
   updateCommentLoading: boolean;
   updateCommentDone: boolean;
-  updateCommentError : null |object;
+  updateCommentError: null | object;
   //댓글 삭제
   deleteCommentLoading: boolean;
   deleteCommentDone: boolean;
-  deleteCommentError : null |object;
+  deleteCommentError: null | object;
   //댓글 조회
   getCommentLoading: boolean;
   getCommentDone: boolean;
-  getCommentError : null |object;
+  getCommentError: null | object;
 }
 
 //이미지 모듈 선언

@@ -10,53 +10,16 @@ import {
   HomePageMidTxt2,
 } from "./styled";
 import mid from "../img/Rectangle.png";
+import { useNavigate } from "react-router-dom";
 
 function HomePageForm() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const onClickTestButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const data = {
-      detailJob: "string",
-      title: "string",
-      introduce: "string",
-      tech: [
-        {
-          techName: "string",
-          content: "string",
-        },
-      ],
-      education: "string",
-      sns: ["string"],
-      certificate: ["string"],
-      foreignLanguage: ["string"],
-      project: [
-        {
-          title: "string",
-          content: "string",
-        },
-      ],
-      career: [
-        {
-          year: "string",
-          title: "string",
-          content: "string",
-        },
-      ],
-    };
-    dispatch(registerPortFolio(data));
+    console.log("test");
+    navigate("/signUp/profile");
   };
-  const onClickButtonTest2 = (e: React.MouseEvent<HTMLElement>) => {
-    const data = {
-      email: "testleefirst",
-      password: "1234qwer!@#",
-      username: "leefirst",
-      field: "프론트엔드개발자",
-      phone: 1012345678,
-      profileImage: "dd",
-      birth: "1997-04-19 0",
-      nickname: "testleefirst",
-    };
-    //dispatch(signUp(data));
-  };
+
   return (
     <div>
       <HomePageMidComponent>
@@ -68,6 +31,7 @@ function HomePageForm() {
         />
         <HomePageMidTxt1>세상에 모든 가치를 그려내는 공간</HomePageMidTxt1>
         <HomePageMidTxt2>단 하나의 유일한 포트폴리오를 만나다</HomePageMidTxt2>
+        <button onClick={onClickTestButton}>이미지업로드 테스트</button>
       </HomePageMidComponent>
     </div>
   );

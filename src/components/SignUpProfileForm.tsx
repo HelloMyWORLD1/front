@@ -14,12 +14,16 @@ import logo from "../img/logo.png";
 import mask from "../img/Mask group.png";
 import { useNavigate } from "react-router-dom";
 import imageCompression from "browser-image-compression";
+import { useAppDispatch } from "../hooks";
+import { registerProfileImage } from "../slices/portFolioSlice";
 
 export default function SignUpProfileForm() {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [preview, setPreview] = useState<string>("");
   const [image, setImage] = useState<File>();
+
   const gotoHome = () => {
     navigate("/");
   };
@@ -29,16 +33,15 @@ export default function SignUpProfileForm() {
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreview(reader.result as string);
-        localStorage.setItem("profileImageTest", preview);
+        localStorage.setItem("preview", preview);
       };
       reader.readAsDataURL(image);
     } else {
       setPreview("");
     }
-    console.log(image);
-    console.log(preview);
+
     if (preview !== "") {
-      handlingDataForm(preview);
+      //handlingDataForm(preview);
       console.log("handlingDataForm 실행!");
     }
   }, [image, preview]);
@@ -68,13 +71,8 @@ export default function SignUpProfileForm() {
 
     // 위 과정을 통해 만든 image폼을 FormData에 넣어줍니다.
     // 서버에서는 이미지를 받을 때, FormData가 아니면 받지 않도록 세팅해야합니다.
-    const formData = new FormData();
-    formData.append("image", file, file.name);
-    formData.append("name", "lee");
-    console.log("인코딩 된 이미지입니다.");
-    console.log(file);
-    console.log("인코딩 된 파일입니다.");
-    console.log(formData);
+
+    //formData.append("images", file);
 
     //dispatch
   };
@@ -84,7 +82,8 @@ export default function SignUpProfileForm() {
         return;
       }
       console.log(e.target.files[0]);
-      actionImgCompress(e.target.files[0]); //압축함수 호출
+      setImage(e.target.files[0]);
+      //actionImgCompress(e.target.files[0]); //압축함수 호출
     },
     []
   );
@@ -107,19 +106,33 @@ export default function SignUpProfileForm() {
     }
   };
 
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log();
-  };
+  const onSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const formData = new FormData();
+      console.log("form 제출 버튼 클릭");
+      if (image) {
+        console.log(image);
+        formData.append("images", image, image.name);
+        formData.forEach((v) => {
+          console.log(v);
+        });
+        if (localStorage.getItem("jwtToken")) {
+          dispatch(
+            registerProfileImage({
+              images: formData,
+            })
+          );
+        }
+      }
+    },
+    [image]
+  );
 
   const upload = useCallback(() => {
     console.log("업로드 버튼 눌림");
     inputRef.current?.click();
   }, [inputRef.current]);
-
-  const register = () => {
-    console.log("등록");
-  };
 
   return (
     <SignUpProfileComponent>
@@ -130,20 +143,21 @@ export default function SignUpProfileForm() {
         <SignUpProfileTxt2>
           사용하실 별명과 사진을 등록해주세요
         </SignUpProfileTxt2>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} encType="multipart/form-data">
           <MaskBox>
             <Mask src={preview ? preview : mask} onClick={upload} />
           </MaskBox>
-
           <input
             type="file"
             accept="image/jpeg,image/jpg,image/png"
+            multiple
+            hidden
             style={{ display: "none" }}
             ref={inputRef}
             onChange={onUploadImage}
           ></input>
 
-          <RegisterProfileBtn onClick={register}>등록하기</RegisterProfileBtn>
+          <RegisterProfileBtn>등록하기</RegisterProfileBtn>
         </form>
       </SignUpProfileBox>
     </SignUpProfileComponent>

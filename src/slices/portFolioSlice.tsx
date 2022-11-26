@@ -5,6 +5,8 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 axios.defaults.baseURL = "http://129.154.58.244:8001/api";
 
 const initialState: PortFolioInitalState = {
+  test: null,
+  aa: null,
   portFolio: null,
   portFolios: null,
   //포트폴리오 생성/등록
@@ -110,7 +112,7 @@ export const followPortFolio = createAsyncThunk(
       axios.defaults.headers.common["Authorization"] = "";
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
-      const res = await axios.post("/portFolio/follow", data, {
+      const res: any = await axios.post("/portFolio/follow", data, {
         withCredentials: true,
       });
       console.log(res.data);
@@ -129,18 +131,55 @@ export const unFollowPortFolio = createAsyncThunk(
       axios.defaults.headers.common["Authorization"] = "";
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
-      const res = await axios.post("portFolio/unFollow", data, {
+      const res = await axios.post("/portFolio/unFollow", data, {
         withCredentials: true,
       });
       console.log(res.data);
-      return res.data;
     } catch (error: any) {
       console.log(error);
       return rejectWithValue(error.response.data);
     }
   }
 );
+type ProfileType = {
+  images: any;
+};
 
+export const registerProfileImage = createAsyncThunk(
+  "registerProfileImage",
+  async (data: ProfileType, { rejectWithValue }) => {
+    try {
+      console.log("데이터");
+      data.images.forEach((v: any) => {
+        console.log(v);
+      });
+      axios.defaults.headers.common["Authorization"] = "";
+      const JWTTOEKN = localStorage.getItem("jwtToken");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
+      await axios.post("/profileImage/upload", data.images, {
+        withCredentials: false,
+      });
+    } catch (error: any) {
+      console.log(error);
+      rejectWithValue(error.response.data);
+    }
+  }
+);
+export const getProfileImage = createAsyncThunk("getProfileImage", async () => {
+  try {
+    axios.defaults.headers.common["Authorization"] = "";
+    const JWTTOEKN = localStorage.getItem("jwtToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
+    const res = await axios.get("/profileImage", {
+      withCredentials: false,
+    });
+    console.log(res.data);
+    return res.data;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+});
 //슬라이스 생성
 const portFolioSlice = createSlice({
   name: "portFolio",
@@ -238,7 +277,7 @@ const portFolioSlice = createSlice({
       state.getPortFolioLatestError = null;
       state.portFolios = action.payload;
     },
-    [getPortFolioLatest.pending.type]: (
+    [getPortFolioLatest.rejected.type]: (
       state,
       action: PayloadAction<object>
     ) => {
@@ -261,7 +300,7 @@ const portFolioSlice = createSlice({
       state.followPortFolioError = null;
       state.portFolio = action.payload;
     },
-    [followPortFolio.pending.type]: (state, action: PayloadAction<object>) => {
+    [followPortFolio.rejected.type]: (state, action: PayloadAction<object>) => {
       state.followPortFolioLoading = false;
       state.followPortFolioDone = false;
       state.followPortFolioError = action.payload;
@@ -284,7 +323,7 @@ const portFolioSlice = createSlice({
       state.unFollowPortFolioError = null;
       state.portFolio = action.payload;
     },
-    [unFollowPortFolio.pending.type]: (
+    [unFollowPortFolio.rejected.type]: (
       state,
       action: PayloadAction<object>
     ) => {
@@ -292,6 +331,34 @@ const portFolioSlice = createSlice({
       state.unFollowPortFolioDone = false;
       state.unFollowPortFolioError = action.payload;
     },
+    [getProfileImage.pending.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {},
+    [getProfileImage.fulfilled.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.test = action.payload;
+    },
+    [getProfileImage.rejected.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {},
+    [registerProfileImage.pending.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {},
+    [registerProfileImage.fulfilled.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {
+      state.aa = action.payload;
+    },
+    [registerProfileImage.rejected.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {},
   },
 });
 
