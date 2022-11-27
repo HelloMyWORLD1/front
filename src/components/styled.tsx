@@ -1644,6 +1644,7 @@ export const GetBlogBtn = styled.button`
 `;
 //getComments
 export const GetCommentsHeaderBox = styled.td`
+width:50vw;
   top: 0;
   display: flex;
   justify-content: space-between;

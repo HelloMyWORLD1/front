@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   GetBlogAllTable,
   GetBlogAllTr,
@@ -34,14 +34,14 @@ export default function GetComments() {
     blogId: blogIdNum,
   });
   const [commentCnt,setCommentCtn] = React.useState<number>(0);
-
   const [detailComments, setDetailComments] = React.useState<Comment[]>([]);
+
   useEffect(() => {
     dispatch(getComment(blogId)).then((res) =>{
+        
         setDetailComments(res.payload.data.comments)
         setCommentCtn(res.payload.data.length)
     }
-    
     );
   }, []);
 
@@ -57,11 +57,11 @@ export default function GetComments() {
                     <GetCommentsProfile
                       src={comment.profile}
                     ></GetCommentsProfile>{" "}
-                    {comment.nickname} {comment.createdAt}
+                    {comment.nickname} {comment.createdAt.slice(0,9)}
                   </GetBlogAllTitle>
                   <div></div>
                   <GetBlogAllCreated>
-                    <GetCommentsMoreBtn>
+                    <GetCommentsMoreBtn >
                       <img src={moreBtn}></img>
                     </GetCommentsMoreBtn>
                   </GetBlogAllCreated>
