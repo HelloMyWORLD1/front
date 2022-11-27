@@ -87,6 +87,9 @@ export const deleteComment = createAsyncThunk(
         `/blog/${data.blogId}/comment/${data.commentId}`
       );
       console.log(res.data);
+      alert(res.data.message);
+      window.location.reload();
+
       return res.data;
     } catch (error: any) {
       console.log(error);

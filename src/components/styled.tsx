@@ -1667,6 +1667,11 @@ export const GetCommentsMoreBtn = styled.button`
   background: #ffffff;
   border: none;
 `;
+export const DeleteCommentImg = styled.img`
+width: 15px;
+height: 15px;
+background: #ffffff;
+`;
 //postComment
 export const PostCommentTable = styled.table`
 display: flex;
