@@ -1,7 +1,4 @@
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../hooks";
-import { signUp } from "../slices/userSlice";
-import { registerPortFolio } from "../slices/portFolioSlice";
 
 import {
   HomePageMidImg,
@@ -13,7 +10,6 @@ import mid from "../img/Rectangle.png";
 import { useNavigate } from "react-router-dom";
 
 function HomePageForm() {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const onClickTestButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     console.log("test");
