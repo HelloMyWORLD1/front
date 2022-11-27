@@ -29,6 +29,9 @@ interface Comment {
   createdAt: string;
 }
 export default function GetComments() {
+  const {user} = useSelector(
+    (state:RootState) => state.user
+  );
   const { comment, comments } = useSelector(
     (state: RootState) => state.comment
   );
@@ -44,12 +47,21 @@ export default function GetComments() {
     blogId: blogIdNum,
     commentId: 0
   })
+  const USERINFO = localStorage.getItem("userInfo");
 
   const deleteOnClick = (e:any) => {
-    console.log(Number(e.target.id),blogIdNum);
+    // console.log(Number(e.target.id),blogIdNum);
     deleteCommentData.commentId = Number(e.target.id);
-    console.log(deleteCommentData);
-    dispatch(deleteComment(deleteCommentData));
+    // console.log(deleteCommentData);
+    console.log(e.target.className.split(" ")[2]);
+    // console.log(user.nickname);
+    console.log(USERINFO);
+    if(USERINFO===e.target.className.split(" ")[2]){
+      dispatch(deleteComment(deleteCommentData));
+    }else{
+      alert("본인의 댓글만 삭제 가능합니다.")
+    }
+   
   }
   const updateOnClick = (e:any) => {
     console.log(Number(e.target.id),blogIdNum);
@@ -78,7 +90,7 @@ export default function GetComments() {
                   <div></div>
                   <GetBlogAllCreated>
                     <GetCommentsMoreBtn onClick={deleteOnClick} >
-                        <DeleteCommentImg id={comment.commentId.toString()} src={deleteImg}></DeleteCommentImg>
+                        <DeleteCommentImg id={comment.commentId.toString()} className={comment.nickname} src={deleteImg}></DeleteCommentImg>
                     </GetCommentsMoreBtn>
                     <img src={moreBtn}></img>
                     <GetCommentsMoreBtn onClick={updateOnClick} >

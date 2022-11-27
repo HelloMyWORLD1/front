@@ -46,11 +46,11 @@ export default function GetBlogComponenet() {
     blogUser: "test",
     blogUserImg: "test",
   });
+  const USERINFO = localStorage.getItem("userInfo");
 
-  const deleteBlogClick = () => {
-    console.log(post.blogUser);
-    console.log(user.nickname);
-    if (post.blogUser === user.nickname) {
+  const deleteBlogClick = (e:any) => {
+    console.log(e.currentTarget.id);
+    if (post.blogUser === USERINFO) {
       dispatch(deleteBlog(blogId)).then(() => navigate(-1));
     } else {
       alert("본인 블로그에서만 삭제가 가능합니다.");
@@ -58,8 +58,7 @@ export default function GetBlogComponenet() {
   };
   const updateBlogClick = ()=>{
     console.log(post.blogUser);
-    console.log(user.nickname);
-    if (post.blogUser === user.nickname) {
+    if (post.blogUser === USERINFO) {
       navigate("/updateBlog",{
         state:{
             blogId:blogIdNum
@@ -99,8 +98,9 @@ export default function GetBlogComponenet() {
         </GetBlogAllTr>
         <GetBlogAllTr>
           <GetBlogBtnTd>
-            <GetBlogBtn onClick={updateBlogClick}>수정하기</GetBlogBtn>
-            <GetBlogBtn onClick={deleteBlogClick}>삭제하기</GetBlogBtn>
+            <GetBlogBtn onClick={updateBlogClick}>
+                <div id={post.blogUser}>수정하기</div></GetBlogBtn>
+            <GetBlogBtn onClick={deleteBlogClick}><div id={post.blogUser}>삭제하기</div></GetBlogBtn>
           </GetBlogBtnTd>
         </GetBlogAllTr>
       </GetBlogAllTable>
