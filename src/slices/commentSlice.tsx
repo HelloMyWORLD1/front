@@ -68,6 +68,9 @@ export const updateComment = createAsyncThunk(
         }
       );
       console.log(res.data);
+      alert(res.data.message);
+      window.location.reload();
+      
       return res.data;
     } catch (error: any) {
       console.log(error);
