@@ -1433,7 +1433,7 @@ export const GetBlogAllTable = styled.table`
 
   border-collapse: separate;
   border-spacing: 0 10px;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
 `;
 export const GetBlogAllTr = styled.tr`
   width: 50vw;
@@ -1466,8 +1466,9 @@ export const GetBlogMoreBtn = styled.button`
 `;
 
 export const PostBlogBtn = styled.button`
-  width: 147.81px;
+  width: 100px;
   height: 50px;
+  margin-left : 10px;
   background: #ffffff;
   border: 1px solid #e5e5e5;
   border-radius: 56px;
@@ -1633,4 +1634,45 @@ export const GetCommentsProfile = styled.img`
 export const GetCommentsMoreBtn = styled.button`
   background: #ffffff;
   border: none;
+`;
+//postComment
+export const PostCommentTable = styled.table`
+display: flex;
+  flex-wrap: wrap;
+  flex-direction: column; /*수직 정렬*/
+
+  align-items: center;
+  justify-content: center;
+
+  border-collapse: separate;
+  border-spacing: 0 10px;
+`;
+export const PostCommentInput = styled.input`
+width : 580px;
+height : 50px;
+background: #ffffff;
+border-radius: 15px;
+  border: 1px solid #e5e5e5;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  letter-spacing: -0.1em;
+  &::placeholder {
+    color: #999999;
+  }
+`;
+export const PostCommentBtn = styled.button`
+  height: 50px;
+  border: 1px solid #cccccc;
+  border-radius: 56px;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 39px;
+  text-align: center;
+  letter-spacing: -0.1em;
+  color: #222222;
 `;

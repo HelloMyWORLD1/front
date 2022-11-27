@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { GetBlogAllTable, GetBlogAllTr } from "./styled";
+import { GetBlogAllTr,PostCommentTable ,PostCommentInput,PostBlogBtn} from "./styled";
 import { useAppDispatch } from "../hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { registerComment } from "../slices/commentSlice";
+import { useLocation } from "react-router-dom";
 
 export default function PostComment() {
   const { comment, comments } = useSelector(
@@ -37,19 +38,19 @@ export default function PostComment() {
   );
 
   return (
-    <GetBlogAllTable>
+    <PostCommentTable>
       <GetBlogAllTr>
         <td>
           <form onSubmit={onSubmit}>
-            <input
+            <PostCommentInput
               type="text"
               placeholder="댓글을 입력하세요."
               onChange={commentHandler}
-            ></input>
-            <button>등록하기</button>
+            ></PostCommentInput>
+            <PostBlogBtn>등록하기</PostBlogBtn>
           </form>
         </td>
       </GetBlogAllTr>
-    </GetBlogAllTable>
+    </PostCommentTable>
   );
 }

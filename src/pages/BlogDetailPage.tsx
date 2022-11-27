@@ -21,8 +21,9 @@ export default function BlogDetailpage() {
         </BlogHeaderDetailWrapper>
     </HeaderComponent>
     <GetBlogComponenet />
-    <GetComments />
     <PostComment />
+    <GetComments />
+    
     </div>
   );
 }
