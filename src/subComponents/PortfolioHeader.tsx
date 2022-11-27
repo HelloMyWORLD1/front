@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import {
   HeaderComponent,
   PortfolioNavDiv,
@@ -7,7 +7,6 @@ import {
   BlogHeaderProfile,
   LogoImg,
 } from "../components/styled";
-import search from "../img/Search.png";
 import { useNavigate } from "react-router-dom";
 import logo from "../img/logo.png";
 import { useAppDispatch } from "../hooks";
@@ -16,7 +15,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 function PortfolioHeader() {
   const navigate = useNavigate();
-  const { test } = useSelector((state: RootState) => state.portFolio);
+  const { user } = useSelector((state: RootState) => state.user);
   const userNickname = document.location.href.split("/:")[1];
   const navigateHome = () => {
     navigate(`/portfolio/get/:${userNickname}`);
@@ -44,13 +43,13 @@ function PortfolioHeader() {
   return (
     <HeaderComponent>
       <BlogHeaderDetailWrapper>
-        {test ? (
-          <BlogHeaderProfile src={test.fileUrl}></BlogHeaderProfile>
+        {user && user.profileImage ? (
+          <BlogHeaderProfile src={user.profileImage}></BlogHeaderProfile>
         ) : (
-          <BlogHeaderProfile src={""}></BlogHeaderProfile>
+          ""
         )}
 
-        <div>Test</div>
+        <div>{user && user.nickname ? user.nickname : "비회원"}</div>
       </BlogHeaderDetailWrapper>
       <div>
         <LogoImg
