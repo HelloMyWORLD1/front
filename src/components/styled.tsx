@@ -1429,7 +1429,7 @@ export const BlogHeaderDetailWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 150px;
+  // width: 150px;
 `;
 
 export const BlogHeaderNavigateDiv = styled.div`
