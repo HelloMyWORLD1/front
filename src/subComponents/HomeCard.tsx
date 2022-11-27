@@ -112,7 +112,7 @@ function HomeCard() {
         const txt = overStringChange(item.introduce);
         return (
           <FilterResultCard onClick={() => handlingClickCard(item.nickname)}>
-            <CardImg src=""></CardImg>
+            <CardImg src={item.profileImage}></CardImg>
             <NicknameTxt>{item.nickname}</NicknameTxt>
             <FieldTxt>{item.detailJob}</FieldTxt>
             <FollowTxt>

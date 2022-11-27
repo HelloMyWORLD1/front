@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import mid from "../img/Rectangle.png";
 import { ReactComponent as MySvg } from "../img/Vector-2.svg";
 import ReactQuill from "react-quill";
@@ -465,6 +465,15 @@ export const FindPasswordSubmitButton = styled.button`
 
 //Header
 
+export const HeaderComponentBox = styled.div`
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+`;
 export const HeaderComponent = styled.div`
   top: 0;
   height: 80px;
@@ -523,6 +532,27 @@ export const HomePageMidComponent = styled.div`
   width: 100%;
   height: 100%;
 `;
+
+export const HomeMenu = styled.div<{ show: boolean; logIn: boolean }>`
+  width: 100%;
+  height: ${(props) => (props.logIn === false ? "10vh" : "30vh")};
+
+  display: ${(props) => (props.show === false ? "none" : "block")};
+`;
+
+export const HomeMenuList = styled.div`
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  &:hover {
+    background: black;
+    color: white;
+  }
+`;
+
 export const HomePageMidImg = styled.img`
   width: 100%;
   height: 100%;
@@ -686,6 +716,7 @@ export const CardImg = styled.img`
   height: 150px;
   border-radius: 190px;
   background: #eeeeee;
+  border: 1px solid #e8f5ff;
 `;
 
 export const PortfolioProfileImg = styled.img`
