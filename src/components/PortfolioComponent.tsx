@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import {
   PortfolioBox,
   PortfolioInsideBox,
@@ -19,11 +19,22 @@ import {
 } from "./styled";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import { followPortFolio, unFollowPortFolio } from "../slices/portFolioSlice";
+import { useAppDispatch } from "../hooks";
 
 function PortfolioComponent() {
+  const dispatch = useAppDispatch();
   const { user } = useSelector((state: RootState) => state.user);
   const { portFolio } = useSelector((state: RootState) => state.portFolio);
   const userNickname = document.location.href.split("/:")[1];
+
+  const handlingFollow = () => {
+    dispatch(followPortFolio({ nickname: userNickname }));
+  };
+
+  const handlingUnFollow = () => {
+    dispatch(unFollowPortFolio({ nickname: userNickname }));
+  };
 
   return (
     <PortfolioBox>
@@ -34,9 +45,20 @@ function PortfolioComponent() {
           ></PortfolioProfileImg>
           <PortfolioNameTxt>{userNickname}</PortfolioNameTxt>
           <PortfolioDetailJobTxt>{portFolio.detailJob}</PortfolioDetailJobTxt>
-          {user && user.nickname !== userNickname && (
-            <PortfolioFollowButton>팔로우</PortfolioFollowButton>
+          {user === null ? (
+            ""
+          ) : user && user.nickname === userNickname ? (
+            ""
+          ) : !portFolio.followings.includes(user.nickname) ? (
+            <PortfolioFollowButton onClick={handlingFollow}>
+              팔로우
+            </PortfolioFollowButton>
+          ) : (
+            <PortfolioFollowButton onClick={handlingUnFollow}>
+              언팔로우
+            </PortfolioFollowButton>
           )}
+
           <PortfolioIntroduceTxt>{portFolio.introduce}</PortfolioIntroduceTxt>
           <BlackLine width={900} marginTop={30}></BlackLine>
           <PortfolioEduCareerSnsHeaderBox>

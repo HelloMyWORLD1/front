@@ -116,3 +116,7 @@ type deleteCommentType = {
   blogId: number;
   commentId: number;
 };
+
+type FollowType = {
+  nickname: string;
+};
