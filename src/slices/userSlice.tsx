@@ -38,7 +38,7 @@ export const logIn = createAsyncThunk(
       localStorage.setItem("jwtToken", res.data.tokenDto.token); //로컬 스토리지에 쿠키 저장
       const JWTTOKEN = localStorage.getItem("jwtToken");
       console.log(JWTTOKEN); // 로그인 후 쿠키가 local에 저장이 제대로 되어있는지 확인
-      localStorage.setItem("userInfo",res.data.userDto.nickname);
+      localStorage.setItem("userInfo", res.data.userDto.nickname);
       return res.data.userDto;
     } catch (error: any) {
       console.error(error);
@@ -91,15 +91,27 @@ export const inquireMyInfo = createAsyncThunk("inquireMyInfo", async () => {
     const res = await axios.get("/user", {
       withCredentials: false,
     });
-    console.log(
-      "로그인 후 본인 정보 조회 / 토큰을 이용한 프론트에서 로그인 유지에도 사용될 듯 함"
-    );
-    console.log(res.data);
     return res.data;
   } catch (error: any) {
     console.error(error);
   }
 });
+
+export const deleteAccount = createAsyncThunk("deleteAccount", async () => {
+  try {
+    axios.defaults.headers.common["Authorization"] = "";
+    const JWTTOEKN = localStorage.getItem("jwtToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
+    await axios
+      .delete("/user", { withCredentials: false })
+      .then(() => console.log("삭제합니다."))
+      .then(() => localStorage.removeItem("jwtToken"));
+  } catch (error: any) {
+    console.log(error);
+    return error;
+  }
+});
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -181,6 +193,22 @@ const userSlice = createSlice({
       state.inquireMyInfoLoading = false;
       state.inquireMyInfoDone = false;
       state.inquireMyInfoError = action.payload;
+    },
+    [deleteAccount.pending.type]: (state, action: PayloadAction<object>) => {
+      state.deleteAccountLoading = true;
+      state.deleteAccountDone = false;
+      state.deleteAccountError = null;
+    },
+    [deleteAccount.fulfilled.type]: (state, action: PayloadAction<object>) => {
+      state.deleteAccountLoading = false;
+      state.deleteAccountDone = true;
+      state.deleteAccountError = null;
+      state.user = action.payload;
+    },
+    [deleteAccount.rejected.type]: (state, action: PayloadAction<object>) => {
+      state.deleteAccountLoading = false;
+      state.deleteAccountDone = false;
+      state.deleteAccountError = action.payload;
     },
   },
 });
