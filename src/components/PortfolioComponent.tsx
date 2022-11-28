@@ -45,7 +45,9 @@ function PortfolioComponent() {
           ></PortfolioProfileImg>
           <PortfolioNameTxt>{userNickname}</PortfolioNameTxt>
           <PortfolioDetailJobTxt>{portFolio.detailJob}</PortfolioDetailJobTxt>
-          {user && user.nickname === userNickname ? (
+          {user === null ? (
+            ""
+          ) : user && user.nickname === userNickname ? (
             ""
           ) : !portFolio.followings.includes(user.nickname) ? (
             <PortfolioFollowButton onClick={handlingFollow}>
