@@ -32,10 +32,12 @@ function Header() {
 
   const onClickHome = () => {
     console.log("home");
+    navigate("/")
   };
 
   const onClickIntro = () => {
     console.log("intro");
+    navigate("/introduce")
   };
 
   const onClickCommunity = () => {

@@ -1713,3 +1713,43 @@ export const PostCommentBtn = styled.button`
   letter-spacing: -0.1em;
   color: #222222;
 `;
+
+//introduce
+export const IntroduceBox =  styled.div`
+position : relative;
+margin-top: 80px;
+display:flex;
+`
+export const ScrollBox = styled.div`
+border: 1px solid #CCCCCC;
+border-radius: 50px;
+position: fixed;
+top: 150px;
+left: 5px;
+width: 200px;
+padding: 20px 0;
+transition: all 0.5s ease;
+font-family: 'Noto Sans CJK KR';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 36px;
+/* identical to box height, or 200% */
+letter-spacing: -0.1em;
+color: #999999;
+text-align : center;
+`;
+
+export const ContentBox = styled.div`
+margin-left : 210px;
+margin-top:10px;
+`;
+export const ArrowDownImg = styled.img`
+margin-left:5px;
+width:30px;
+height:30px;
+`
+export const TestDiv = styled.div`
+width:100px;
+height:500px;
+`;
