@@ -50,7 +50,7 @@ function SignUpForm() {
 
   const selectList = [
     "도메인 선택",
-    "@naver.com",
+    "naver.com",
     "hanmail.net",
     "daum.net",
     "nate.com",
@@ -192,67 +192,63 @@ function SignUpForm() {
     return setPwCheckError(false);
   }, [pwCheck, pw]);
 
-  const onSubmit = useCallback(
-    (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      if (
-        nameError ||
-        nicknameError ||
-        fieldError ||
-        birthError ||
-        phoneError ||
-        emailError ||
-        pwError ||
-        pwCheckError
-      ) {
-        alert("유효성 검사를 확인해주세요.");
-        return;
-      }
-      if (
-        !nameError &&
-        !nicknameError &&
-        !fieldError &&
-        !birthError &&
-        !phoneError &&
-        !emailError &&
-        !pwError &&
-        !pwCheckError
-      ) {
-        dispatch(
-          signUp({
-            email: `${email}@${domain}`,
-            password: pw,
-            username: name,
-            field: field,
-            phone: phone,
-            profileImage: "string",
-            birth: birth,
-            nickname: nickname,
-          })
-        );
-      }
-    },
-    [
-      dispatch,
-      name,
-      birth,
-      phone,
-      email,
-      domain,
-      pw,
-      pwCheck,
-      field,
-      nickname,
-      nameError,
-      nicknameError,
-      fieldError,
-      birthError,
-      phoneError,
-      emailError,
-      pwError,
-      pwCheckError,
-    ]
-  );
+  const onSubmit = useCallback(() => {
+    if (
+      nameError ||
+      nicknameError ||
+      fieldError ||
+      birthError ||
+      phoneError ||
+      emailError ||
+      pwError ||
+      pwCheckError
+    ) {
+      alert("유효성 검사를 확인해주세요.");
+      return;
+    }
+    if (
+      !nameError &&
+      !nicknameError &&
+      !fieldError &&
+      !birthError &&
+      !phoneError &&
+      !emailError &&
+      !pwError &&
+      !pwCheckError
+    ) {
+      dispatch(
+        signUp({
+          email: `${email}@${domain}`,
+          password: pw,
+          username: name,
+          field: field,
+          phone: phone,
+          profileImage: "string",
+          birth: birth,
+          nickname: nickname,
+        })
+      );
+    }
+  }, [
+    dispatch,
+    name,
+    birth,
+    phone,
+    email,
+    domain,
+    pw,
+    pwCheck,
+    field,
+    nickname,
+    nameError,
+    nicknameError,
+    fieldError,
+    birthError,
+    phoneError,
+    emailError,
+    pwError,
+    pwCheckError,
+  ]);
 
   useEffect(() => {
     if (signUpDone === true) {
@@ -267,7 +263,8 @@ function SignUpForm() {
         <BlackLine></BlackLine>
         <SignUpTxt>회원가입하기</SignUpTxt>
         <SignUpTxt2>회원가입에 필요한 정보를 입력해주세요</SignUpTxt2>
-        <form onSubmit={onSubmit}>
+        <div>
+          <input type="hidden" />
           <ExplainTxt>실명</ExplainTxt>
           <SignUpNormalInput
             value={name}
@@ -396,8 +393,8 @@ function SignUpForm() {
           ) : (
             <CheckWarnTxt />
           )}
-          <SignUpBtn>회원가입</SignUpBtn>
-        </form>
+          <SignUpBtn onClick={onSubmit}>회원가입</SignUpBtn>
+        </div>
       </SignUpInsideBox>
     </SignUpComponent>
   );
