@@ -81,7 +81,7 @@ function Header() {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
+    }).then((result:any) => {
       if (result.isConfirmed) {
         dispatch(deleteAccount());
         Swal.fire("Deleted!", "계정이 삭제되었습니다.", "success");
