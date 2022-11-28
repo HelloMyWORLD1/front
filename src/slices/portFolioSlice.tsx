@@ -106,17 +106,15 @@ export const getPortFolioLatest = createAsyncThunk(
 //팔로우하기
 export const followPortFolio = createAsyncThunk(
   "followPortFolio",
-  async (data, { rejectWithValue }) => {
+  async (data: FollowType, { rejectWithValue }) => {
     try {
       //로그인 확인을 위한 토큰 값 확인
       axios.defaults.headers.common["Authorization"] = "";
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
-      const res: any = await axios.post("/portFolio/follow", data, {
-        withCredentials: true,
+      await axios.post("/social/follow", data, {
+        withCredentials: false,
       });
-      console.log(res.data);
-      return res.data;
     } catch (error: any) {
       console.log(error);
       return rejectWithValue(error.response.error);
@@ -126,15 +124,16 @@ export const followPortFolio = createAsyncThunk(
 //팔로우 취소
 export const unFollowPortFolio = createAsyncThunk(
   "unFollowPortFolio",
-  async (data, { rejectWithValue }) => {
+  async (data: FollowType, { rejectWithValue }) => {
     try {
       axios.defaults.headers.common["Authorization"] = "";
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
-      const res = await axios.post("/portFolio/unFollow", data, {
-        withCredentials: true,
+      console.log("데이터");
+      console.log(data.nickname);
+      await axios.post("/social/unfollow", data, {
+        withCredentials: false,
       });
-      console.log(res.data);
     } catch (error: any) {
       console.log(error);
       return rejectWithValue(error.response.data);
@@ -298,7 +297,6 @@ const portFolioSlice = createSlice({
       state.followPortFolioLoading = false;
       state.followPortFolioDone = true;
       state.followPortFolioError = null;
-      state.portFolio = action.payload;
     },
     [followPortFolio.rejected.type]: (state, action: PayloadAction<object>) => {
       state.followPortFolioLoading = false;
@@ -321,7 +319,6 @@ const portFolioSlice = createSlice({
       state.unFollowPortFolioLoading = false;
       state.unFollowPortFolioDone = true;
       state.unFollowPortFolioError = null;
-      state.portFolio = action.payload;
     },
     [unFollowPortFolio.rejected.type]: (
       state,

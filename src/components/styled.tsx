@@ -1229,6 +1229,7 @@ export const PortfolioFollowButton = styled.div`
   line-height: 39px;
   text-align: center;
   letter-spacing: -0.1em;
+  cursor: pointer;
   color: #ffffff;
 `;
 
@@ -1499,7 +1500,7 @@ export const GetBlogMoreBtn = styled.button`
 export const PostBlogBtn = styled.button`
   width: 100px;
   height: 50px;
-  margin-left : 10px;
+  margin-left: 10px;
   background: #ffffff;
   border: 1px solid #e5e5e5;
   border-radius: 56px;
@@ -1644,7 +1645,7 @@ export const GetBlogBtn = styled.button`
 `;
 //getComments
 export const GetCommentsHeaderBox = styled.td`
-width:50vw;
+  width: 50vw;
   top: 0;
   display: flex;
   justify-content: space-between;
@@ -1668,13 +1669,13 @@ export const GetCommentsMoreBtn = styled.button`
   border: none;
 `;
 export const DeleteCommentImg = styled.img`
-width: 15px;
-height: 15px;
-background: #ffffff;
+  width: 15px;
+  height: 15px;
+  background: #ffffff;
 `;
 //postComment
 export const PostCommentTable = styled.table`
-display: flex;
+  display: flex;
   flex-wrap: wrap;
   flex-direction: column; /*수직 정렬*/
 
@@ -1685,10 +1686,10 @@ display: flex;
   border-spacing: 0 10px;
 `;
 export const PostCommentInput = styled.input`
-width : 580px;
-height : 50px;
-background: #ffffff;
-border-radius: 15px;
+  width: 580px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 15px;
   border: 1px solid #e5e5e5;
   font-family: "Noto Sans CJK KR";
   font-style: normal;
