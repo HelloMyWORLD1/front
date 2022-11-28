@@ -92,10 +92,12 @@ export default function GetBlogAllComponent() {
       `/blog/:${Number(event.target.id)}`
     );
   };
+  const USERINFO = localStorage.getItem("userInfo");
+
   const registerBlogClick = () => {
     console.log(userNickname);
-    console.log(user.nickname);
-    if (userNickname === user.nickname) {
+    console.log(USERINFO);
+    if (userNickname === USERINFO) {
       navigate("/makeBlog");
     } else {
       alert("본인 블로그에서만 글작성이 가능합니다!");

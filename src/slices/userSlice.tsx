@@ -38,6 +38,7 @@ export const logIn = createAsyncThunk(
       localStorage.setItem("jwtToken", res.data.tokenDto.token); //로컬 스토리지에 쿠키 저장
       const JWTTOKEN = localStorage.getItem("jwtToken");
       console.log(JWTTOKEN); // 로그인 후 쿠키가 local에 저장이 제대로 되어있는지 확인
+      localStorage.setItem("userInfo",res.data.userDto.nickname);
       return res.data.userDto;
     } catch (error: any) {
       console.error(error);
