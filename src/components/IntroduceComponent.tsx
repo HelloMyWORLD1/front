@@ -7,6 +7,7 @@ import {
   TestDiv,
   RedCircle,
   IntroduceTitleDiv,
+
   ContentDiv,
 } from "../components/styled";
 import arrowDownImg from "../img/click.png";
