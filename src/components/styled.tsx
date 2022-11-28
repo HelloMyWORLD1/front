@@ -32,6 +32,47 @@ export const Vector = styled.img`
   cursor: pointer;
 `;
 
+export const HamburgerMenu = styled.div<{ show?: boolean }>`
+  width: 40px;
+  height: 30px;
+  position: relative;
+  display: inline-block;
+  transition: all 0.4s;
+  box-sizing: border-box;
+  margin-right: 34px;
+  margin-left: 10px;
+  cursor: pointer;
+  span {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: black;
+    border-radius: 4px;
+    transition: all 0.4s;
+    box-sizing: border-box;
+  }
+  span:nth-of-type(1) {
+    top: 0;
+    -webkit-transform: ${(props) =>
+      props.show ? "translateY (13px) rotate (-45deg)" : ""};
+    transform: ${(props) =>
+      props.show ? "translateY(13px) rotate(-45deg)" : ""};
+  }
+
+  span:nth-of-type(2) {
+    top: 13px;
+    opacity: ${(props) => (props.show ? "0" : "")};
+  }
+
+  span:nth-of-type(3) {
+    bottom: 0;
+    -webkit-transform: ${(props) =>
+      props.show ? "translateY(-13px) rotate(45deg)" : ""};
+    transform: ${(props) =>
+      props.show ? "translateY(-13px) rotate(45deg)" : ""};
+  }
+`;
 //LoginPage 스타일
 export const LogInComponent = styled.div`
   display: flex;
@@ -489,6 +530,7 @@ export const SearchImg = styled.img`
 
 export const LinkCategory = styled.div`
   display: flex;
+  align-items: center;
   padding-top: 5px;
 `;
 //홈 | 소개 | 커뮤니티 개별 카드
