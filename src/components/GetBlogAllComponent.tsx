@@ -115,7 +115,7 @@ export default function GetBlogAllComponent() {
                 <GetBlogAllHeader id={post.blogId.toString()}>
                   <GetBlogAllTitle id={post.blogId.toString()} >{post.title}</GetBlogAllTitle>
                   <div></div>
-                  <GetBlogAllCreated id={post.blogId.toString()} > {post.createdAt}</GetBlogAllCreated>
+                  <GetBlogAllCreated id={post.blogId.toString()} > {post.createdAt.slice(0,10)}</GetBlogAllCreated>
                 </GetBlogAllHeader>
               </tr>
               <tr>
@@ -148,7 +148,11 @@ export default function GetBlogAllComponent() {
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       console.log(keywords);
-      dispatch(searchBlog(keywords)).then((res) => setPosts(res.payload.data));
+      dispatch(searchBlog(keywords)).then((res) => 
+      (
+      setPosts(res.payload.data)
+      )
+      );
     },
     [dispatch, keywords]
   );
