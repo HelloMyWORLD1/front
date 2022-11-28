@@ -16,7 +16,6 @@ export default function IntroduceComponent() {
   const [portfolioTipsOpen, setPortfolioTipsOpen] =
     React.useState<boolean>(false);
   const introduceRef = useRef<HTMLDivElement>(null);
-  const functionRef = useRef<HTMLDivElement>(null);
   const tipsRef = useRef<HTMLDivElement>(null);
   const blogTitleRef = useRef<HTMLDivElement>(null);
   const snsRef = useRef<HTMLDivElement>(null);
@@ -31,13 +30,6 @@ export default function IntroduceComponent() {
   const introduceClick = () => {
     introduceRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
     console.log(introduceRef.current);
-  };
-  const functionClick = () => {
-    functionRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
-    console.log(functionRef.current);
   };
   const portfolioTipsClick = () => {
     setPortfolioTipsOpen(!portfolioTipsOpen);
@@ -91,7 +83,6 @@ export default function IntroduceComponent() {
         <ScrollBox>
           <ul>
             <li onClick={introduceClick}>소개</li>
-            <li onClick={functionClick}>기능</li>
             <li onClick={portfolioTipsClick}>
               <div>
                 {" "}
@@ -125,16 +116,12 @@ export default function IntroduceComponent() {
                 <RedCircle src={circle}></RedCircle>
               </div>
             </IntroduceTitleDiv>
-            <ContentDiv>소개내용</ContentDiv>
-          </TestDiv>
-          <TestDiv ref={functionRef}>
-            <IntroduceTitleDiv>
-              기능
-              <div>
-                <RedCircle src={circle}></RedCircle>
-              </div>
-            </IntroduceTitleDiv>
-            <ContentDiv></ContentDiv>
+            <ContentDiv>Q : 무엇을 하는 사이트인가요??<br />
+            ▹	여러분의 포트폴리오를 좀 더 손쉽게 작성하도록 <mark>양식을 제공</mark>해줍니다!<br />
+            ▹	여러 분야의 포트폴리오가 궁금하지 않나요?? <mark>서로 공유</mark>해보세요!<br />
+            ▹	다른 사람의 <mark>포트폴리오를 팔로우</mark>할수 있어요!<br />
+            ▹	내 블로그에 다양한 <mark>게시글들을 작성</mark>하고 서로 <mark>댓글</mark>을 남길수 있어요!
+</ContentDiv>
           </TestDiv>
           <TestDiv ref={tipsRef}>
             <IntroduceTitleDiv>
