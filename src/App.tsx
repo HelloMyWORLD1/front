@@ -15,6 +15,7 @@ import BlogPage from "./pages/Blogpage";
 import BlogDetailpage from "./pages/BlogDetailPage";
 import PortFolioPageSecond from "./pages/PortFolioPageSecond";
 import UpadateBlogPage from "./pages/UpdateBlogPage";
+import IntroducePage from "./pages/IntroducePage";
 //Route 설정.
 
 function App() {
@@ -24,6 +25,8 @@ function App() {
       <Routes>
         {/* 홈페이지 */}
         <Route path="/" element={<HomePage />}></Route>
+        {/* 소개페이지  */}
+        <Route path="/introduce" element={<IntroducePage />}></Route>
 
         {/* 로그인, 회원가입 */}
         <Route path="/logIn" element={<LogInPage />}></Route>
