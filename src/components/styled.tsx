@@ -1741,7 +1741,7 @@ text-align : center;
 `;
 
 export const ContentBox = styled.div`
-margin-left : 210px;
+margin-left : 300px;
 margin-top:10px;
 `;
 export const ArrowDownImg = styled.img`
@@ -1750,6 +1750,23 @@ width:30px;
 height:30px;
 `
 export const TestDiv = styled.div`
-width:100px;
-height:500px;
+// height:500px;
+margin-top:10px;
+// background: #FFFFFF;
+`;
+export const IntroduceTitleDiv = styled.div`
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 36px;
+  display: flex;
+  align-items: center;
+  letter-spacing: -0.1em;
+  color: #333333;
+`
+export const ContentDiv = styled.div`
+border: 1px solid #FFFFFF;
+border-radius: 50px;
+background: #FFFFFF;
 `;

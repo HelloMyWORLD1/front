@@ -4,28 +4,32 @@ import {
   ScrollBox,
   ContentBox,
   ArrowDownImg,
-  TestDiv
+  TestDiv,
+  RedCircle,
+  IntroduceTitleDiv,
+  ContentDiv
 } from "../components/styled";
 import arrowDownImg from "../img/click.png";
+import circle from "../img/Circle.png";
 
 export default function IntroduceComponent() {
-  const [portfolioTipsOpen, setPortfolioTipsOpen] =React.useState<boolean>(false);
+  const [portfolioTipsOpen, setPortfolioTipsOpen] =
+    React.useState<boolean>(false);
   const introduceRef = useRef<HTMLDivElement>(null);
   const functionRef = useRef<HTMLDivElement>(null);
   const tipsRef = useRef<HTMLDivElement>(null);
 
- 
   const introduceClick = () => {
-    introduceRef.current?.scrollIntoView({ behavior: 'smooth',block: 'end' });
+    introduceRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
     console.log(introduceRef.current);
-  }
+  };
   const functionClick = () => {
-    functionRef.current?.scrollIntoView({ behavior: 'smooth',block: 'end' });
-    console.log(functionRef.current)
-  }
+    functionRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    console.log(functionRef.current);
+  };
   const portfolioTipsClick = () => {
     setPortfolioTipsOpen(!portfolioTipsOpen);
-    tipsRef.current?.scrollIntoView({ behavior: 'smooth',block: 'end' });
+    tipsRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
   };
   return (
     <div>
@@ -61,9 +65,33 @@ export default function IntroduceComponent() {
           </ul>
         </ScrollBox>
         <ContentBox>
-            <TestDiv ref={introduceRef}>소개</TestDiv>
-            <TestDiv ref={functionRef}>기능</TestDiv>
-            <TestDiv ref={tipsRef}>포트폴리오 작성팁</TestDiv>
+          <TestDiv ref={introduceRef}>
+            <IntroduceTitleDiv>
+              소개
+              <div>
+                <RedCircle src={circle}></RedCircle>
+              </div>
+            </IntroduceTitleDiv>
+            <ContentDiv>
+                소개내용
+            </ContentDiv>
+          </TestDiv>
+          <TestDiv ref={functionRef}>
+          <IntroduceTitleDiv>
+              기능
+              <div>
+                <RedCircle src={circle}></RedCircle>
+              </div>
+            </IntroduceTitleDiv>
+          </TestDiv>
+          <TestDiv ref={tipsRef}>
+          <IntroduceTitleDiv>
+              포트폴리오 작성팁
+              <div>
+                <RedCircle src={circle}></RedCircle>
+              </div>
+            </IntroduceTitleDiv>
+          </TestDiv>
         </ContentBox>
       </IntroduceBox>
     </div>
