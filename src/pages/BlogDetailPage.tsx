@@ -1,18 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import GetBlogComponenet from "../components/GetBlogComponent";
-import { 
-    HeaderComponent,
-    BlogHeaderDetailWrapper,
-    BlogHeaderNavigateDiv,
- } from "../components/styled";
 import GetComments from "../components/GetComments";
 import PostComment from "../components/PostComment";
 import PortfolioHeader from "../subComponents/PortfolioHeader";
-
+import { inquireMyInfo } from "../slices/userSlice";
+import { useAppDispatch } from "../hooks";
 export default function BlogDetailpage() {
+  const jwtToken = localStorage.getItem("jwtToken");
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    if (jwtToken) {
+      dispatch(inquireMyInfo());
+    }
+  }, [jwtToken]);
   return (
     <div>
-        {/* <HeaderComponent>
+      {/* <HeaderComponent>
         <div></div>
         <div></div>
         <BlogHeaderDetailWrapper>
@@ -21,11 +24,10 @@ export default function BlogDetailpage() {
             <BlogHeaderNavigateDiv>블로그</BlogHeaderNavigateDiv>
         </BlogHeaderDetailWrapper>
     </HeaderComponent> */}
-    <PortfolioHeader />
-    <GetBlogComponenet />
-    <PostComment />
-    <GetComments />
-    
+      <PortfolioHeader />
+      <GetBlogComponenet />
+      <PostComment />
+      <GetComments />
     </div>
   );
 }
