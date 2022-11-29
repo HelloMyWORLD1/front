@@ -1809,7 +1809,12 @@ export const IntroduceTitleDiv = styled.div`
   color: #333333;
 `
 export const ContentDiv = styled.div`
+margin-top: 10px;
+margin-right : 20px;
+padding:20px;
 border: 1px solid #FFFFFF;
 border-radius: 50px;
 background: #FFFFFF;
+line-height: 36px;
+letter-spacing: -0.1em;
 `;
