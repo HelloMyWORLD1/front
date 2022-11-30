@@ -6,6 +6,8 @@ import {
   BlogHeaderDetailWrapper,
   BlogHeaderProfile,
   LogoImg,
+  HeaderLoginBtn,
+  HeaderLoginImg
 } from "../components/styled";
 import { useNavigate } from "react-router-dom";
 import logo from "../img/logo.png";
@@ -13,6 +15,7 @@ import { useAppDispatch } from "../hooks";
 import { getProfileImage } from "../slices/portFolioSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import loginImg from "../img/login2.png"
 function PortfolioHeader() {
   const navigate = useNavigate();
   const { user } = useSelector((state: RootState) => state.user);
@@ -33,6 +36,9 @@ function PortfolioHeader() {
   const onClickLogo = () => {
     navigate("/");
   };
+  const loginClick = () => {
+    navigate("/logIn")
+  }
   const jwtToken = localStorage.getItem("jwtToken");
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -46,10 +52,10 @@ function PortfolioHeader() {
         {user && user.profileImage ? (
           <BlogHeaderProfile src={user.profileImage}></BlogHeaderProfile>
         ) : (
-          ""
+          <HeaderLoginBtn onClick={loginClick}><HeaderLoginImg src={loginImg}></HeaderLoginImg></HeaderLoginBtn>
         )}
 
-        <div>{user && user.nickname ? user.nickname : "비회원"}</div>
+        <div>{user && user.nickname ? user.nickname : ""}</div>
       </BlogHeaderDetailWrapper>
       <div>
         <LogoImg
