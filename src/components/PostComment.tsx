@@ -10,6 +10,9 @@ export default function PostComment() {
   const { comment, comments } = useSelector(
     (state: RootState) => state.comment
   );
+  const {user} = useSelector(
+    (state: RootState) => state.user
+  );
   const dispatch = useAppDispatch();
   const blogIdNum = Number(document.location.href.split("/:")[1]);
   console.log(document.location.href.split("/")[4]);
@@ -32,7 +35,12 @@ export default function PostComment() {
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       console.log(commentData);
-      dispatch(registerComment(commentData));
+      if(user){
+        dispatch(registerComment(commentData));
+      }else{
+        alert("로그인을 선행해주세요!");
+      }
+      
     },
     [dispatch, commentData]
   );
