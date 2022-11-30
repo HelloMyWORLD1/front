@@ -7,7 +7,6 @@ import {
     BlogHeaderNavigateDiv
  } from "../components/styled";
 
-
 function BlogHeader() {
 
   return (
