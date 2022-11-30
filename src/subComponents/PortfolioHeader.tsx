@@ -13,12 +13,14 @@ import { useNavigate } from "react-router-dom";
 import logo from "../img/logo.png";
 import { useAppDispatch } from "../hooks";
 import { getProfileImage } from "../slices/portFolioSlice";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../hooks";
 import { RootState } from "../store/store";
 import loginImg from "../img/login2.png"
 function PortfolioHeader() {
+  
+  const { user } = useAppSelector((state: RootState) => state.user);
   const navigate = useNavigate();
-  const { user } = useSelector((state: RootState) => state.user);
+  // const { user } = useSelector((state: RootState) => state.user);
   const userNickname = document.location.href.split("/:")[1];
   const navigateHome = () => {
     navigate(`/portfolio/get/:${userNickname}`);

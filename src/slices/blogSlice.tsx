@@ -40,7 +40,7 @@ export const registerBlog = createAsyncThunk(
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
       const res = await axios.post("/blog", data, {
-        // withCredentials: true,
+        withCredentials: true,
       });
       console.log(res.data);
       return res.data;
@@ -57,7 +57,9 @@ export const getBlogAll = createAsyncThunk(
     try {
       //get 요청시 닉네임 받기 위함
       const res = await axios.get(
-        `/blogs/${data.nickname}?page=${data.pageNum}`
+        `/blogs/${data.nickname}?page=${data.pageNum}`, {
+          withCredentials: false,
+        }
       );
       console.log(res.data);
       return res.data;
@@ -73,7 +75,9 @@ export const getBlog = createAsyncThunk(
   "getBlog",
   async (data: getBlogDetailType, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`/blog/${data.blogId}`);
+      const res = await axios.get(`/blog/${data.blogId}`, {
+        withCredentials: false,
+      });
       console.log(res.data);
       return res.data;
     } catch (error: any) {
@@ -88,7 +92,9 @@ export const searchBlog = createAsyncThunk(
   async (data: searchBlogType, { rejectWithValue }) => {
     try {
       const res = await axios.get(
-        `/blogs/search?nickname=${data.nickname}&keyword=${data.keyword}`
+        `/blogs/search?nickname=${data.nickname}&keyword=${data.keyword}`, {
+          withCredentials: false,
+        }
       );
       console.log(res.data);
       return res.data;
@@ -106,7 +112,9 @@ export const deleteBlog = createAsyncThunk(
       axios.defaults.headers.common["Authorization"] = "";
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
-      const res = await axios.delete(`/blog/${data.blogId}`);
+      const res = await axios.delete(`/blog/${data.blogId}`, {
+        withCredentials: false,
+      });
       console.log(res.data);
       return res.data;
     } catch (error: any) {
@@ -124,7 +132,7 @@ export const updateBlog = createAsyncThunk(
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
       const res = await axios.put(`/blog/${data.blogId}`, data.request, {
-        // withCredentials: true,
+        withCredentials: true,
       });
       console.log(res.data);
       return res.data;
