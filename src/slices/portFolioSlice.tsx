@@ -112,9 +112,12 @@ export const followPortFolio = createAsyncThunk(
       axios.defaults.headers.common["Authorization"] = "";
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
-      await axios.post("/social/follow", data, {
+      const res = await axios.post("/social/follow", data, {
         withCredentials: false,
       });
+      console.log(res.data);
+      alert(res.data.message);
+      window.location.reload();
     } catch (error: any) {
       console.log(error);
       return rejectWithValue(error.response.error);
@@ -131,9 +134,12 @@ export const unFollowPortFolio = createAsyncThunk(
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
       console.log("데이터");
       console.log(data.nickname);
-      await axios.post("/social/unfollow", data, {
+      const res = await axios.post("/social/unfollow", data, {
         withCredentials: false,
       });
+      console.log(res.data);
+      alert(res.data.message);
+      window.location.reload();
     } catch (error: any) {
       console.log(error);
       return rejectWithValue(error.response.data);
