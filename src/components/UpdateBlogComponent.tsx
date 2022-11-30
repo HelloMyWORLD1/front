@@ -26,9 +26,13 @@ export default function UpdateBlogComponent() {
   const onClickLogo = () => {
     navigate("/");
   };
+  const location = useLocation();
+  console.log(location.state.blogId); //블로그 아이디 값 전달받기 위함
+  console.log(location.state.title);
+  console.log(location.state.content);
 
-  const [editorValue, setEditorValue] = useState<string>("");
-  const [title, setTitle] = useState<string>("");
+  const [editorValue, setEditorValue] = useState<string>(location.state.content);
+  const [title, setTitle] = useState<string>(location.state.title);
 
   const modules = useMemo(
     () => ({
@@ -58,8 +62,7 @@ export default function UpdateBlogComponent() {
     console.log("내용", editorValue);
   }, [editorValue, title]);
 
-  const location = useLocation();
-  console.log(location.state.blogId); //블로그 아이디 값 전달받기 위함
+  
 
   const onSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
