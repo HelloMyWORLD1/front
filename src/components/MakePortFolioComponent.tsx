@@ -17,10 +17,14 @@ import {
 import logo from "../img/logo.png";
 import { useState, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { snsArray } from "../utils/array";
+import {
+  snsArray,
+  ErrorHook,
+  ErrorArrayHook,
+  keyEventUtil,
+} from "../utils/array";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../store/store";
-import { getPortFolio } from "../slices/portFolioSlice";
 
 function MakePortFolioComponent() {
   const dispatch = useAppDispatch();
@@ -41,10 +45,6 @@ function MakePortFolioComponent() {
   const [showForeign, setShowForeign] = useState<string[]>([]);
   const [showIntroduce, setShowIntroduce] = useState<string>("");
 
-  const { getPortFolioError } = useAppSelector(
-    (state: RootState) => state.portFolio
-  );
-  const { user } = useAppSelector((state: RootState) => state.user);
   const navigate = useNavigate();
 
   const gotoHome = () => {
@@ -83,33 +83,6 @@ function MakePortFolioComponent() {
     setIntroduce(event.currentTarget.value);
   };
 
-  const onKeyPressDetailJob = useCallback(
-    (e: KeyboardEvent<HTMLElement>) => {
-      if (e.key === "Enter") {
-        setShowDetailJob(detailJob);
-      }
-    },
-    [detailJob]
-  );
-
-  const onKeyPressBlogTitle = useCallback(
-    (e: KeyboardEvent<HTMLElement>) => {
-      if (e.key === "Enter") {
-        setShowBlogTitle(blogTitle);
-      }
-    },
-    [blogTitle]
-  );
-
-  const onKeyPressEducation = useCallback(
-    (e: KeyboardEvent<HTMLElement>) => {
-      if (e.key === "Enter") {
-        setShowEducation(education);
-      }
-    },
-    [education]
-  );
-
   const onKeyPressCertificate = useCallback(
     (e: KeyboardEvent<HTMLElement>) => {
       if (e.key === "Enter") {
@@ -126,15 +99,6 @@ function MakePortFolioComponent() {
       }
     },
     [foreign]
-  );
-
-  const onKeyPressIntroduce = useCallback(
-    (e: KeyboardEvent<HTMLElement>) => {
-      if (e.key === "Enter") {
-        setShowIntroduce(introduce);
-      }
-    },
-    [introduce]
   );
 
   const onKeyPressSns = useCallback(
@@ -237,133 +201,188 @@ function MakePortFolioComponent() {
         <BlackLine></BlackLine>
         <MakePortfolioHeadTxt>포트폴리오 등록</MakePortfolioHeadTxt>
         <GrayExplainTxt>필요한 기본 정보를 입력해주세요</GrayExplainTxt>
-
-        <DetailJobTxt>세부직업</DetailJobTxt>
-        <MakePortFolioNormalInput
-          value={detailJob}
-          onChange={onChangeDetailJob}
-          type="text"
-          placeholder="세부 직업을 입력해주세요."
-          onKeyPress={onKeyPressDetailJob}
-        />
-        {showDetailJob ? (
-          <UnderUserInput>
-            {showDetailJob}
-            <button onClick={onClickDeleteDetailJob}>X</button>
-          </UnderUserInput>
-        ) : (
-          ""
-        )}
-
-        <DetailJobTxt>블로그 타이틀</DetailJobTxt>
-        <MakePortFolioNormalInput
-          value={blogTitle}
-          onChange={onChangeBlogTitle}
-          type="text"
-          placeholder="블로그 명을 입력해주세요."
-          onKeyPress={onKeyPressBlogTitle}
-        />
-        {showBlogTitle ? (
-          <UnderUserInput>
-            {showBlogTitle}
-            <button onClick={onClickDeleteBlogTitle}>X</button>
-          </UnderUserInput>
-        ) : (
-          ""
-        )}
-        <DetailJobTxt>본인 SNS 아이디</DetailJobTxt>
-        <SnsBox>
-          <SnsSelectField value={snsField} onChange={onChangeSetSnsField}>
-            {snsArray.sns.map((item) => (
-              <option value={item} key={item}>
-                {item}
-              </option>
-            ))}
-          </SnsSelectField>
-          <SnsInput
+        <div>
+          <DetailJobTxt>세부직업</DetailJobTxt>
+          <MakePortFolioNormalInput
+            value={detailJob}
+            onChange={onChangeDetailJob}
             type="text"
-            placeholder="ID를 입력하세요."
-            value={snsTxt}
-            onChange={onChangeSetSnsTxt}
-            onKeyPress={onKeyPressSns}
+            placeholder="세부 직업을 입력해주세요."
+            onKeyPress={(e) =>
+              keyEventUtil({
+                setState: setShowDetailJob,
+                state: detailJob,
+                event: e,
+              })
+            }
           />
-        </SnsBox>
-        {snsObjectArray &&
-          snsObjectArray.map((item, index) => {
-            return (
-              <UnderUserInput key={index}>
-                {item}
-                <button onClick={() => onClickDeleteSns(index)}>X</button>
-              </UnderUserInput>
-            );
-          })}
-        <DetailJobTxt>학력</DetailJobTxt>
-        <MakePortFolioNormalInput
-          value={education}
-          onChange={onChangeEducation}
-          type="text"
-          placeholder="학력을 입력해주세요."
-          onKeyPress={onKeyPressEducation}
-        />
-        {showEducation && (
-          <UnderUserInput>
-            {showEducation}
-            <button onClick={onClickDeleteEducation}>X</button>
-          </UnderUserInput>
-        )}
-        <DetailJobTxt>자격증</DetailJobTxt>
-        <MakePortFolioNormalInput
-          value={certificate}
-          onChange={onChangeCertificate}
-          type="text"
-          placeholder="자격증을 입력해주세요."
-          onKeyPress={onKeyPressCertificate}
-        />
-        {showCertificate &&
-          showCertificate.map((item, index) => {
-            return (
-              <UnderUserInput key={index}>
-                {item}
-                <button onClick={() => onClickDeleteCertificate(index)}>
-                  X
-                </button>
-              </UnderUserInput>
-            );
-          })}
-        <DetailJobTxt>외국어 능력</DetailJobTxt>
-        <MakePortFolioNormalInput
-          value={foreign}
-          onChange={onChangeForeign}
-          type="text"
-          placeholder="외국어 능력을 입력해주세요."
-          onKeyPress={onKeyPressForeign}
-        />
-        {showForeign &&
-          showForeign.map((item, index) => {
-            return (
-              <UnderUserInput key={index}>
-                {item}
-                <button onClick={() => onClickDeleteForeign(index)}>X</button>
-              </UnderUserInput>
-            );
-          })}
-        <DetailJobTxt>자기소개</DetailJobTxt>
-        <MakePortFolioNormalInput
-          value={introduce}
-          onChange={onChangeIntroduce}
-          type="text"
-          placeholder="자기 소개를 간단하게 입력해주세요."
-          onKeyPress={onKeyPressIntroduce}
-        />
-        {showIntroduce && (
-          <UnderUserInput>
-            {showIntroduce}
-            <button onClick={onClickDeleteIntroduce}>X</button>
-          </UnderUserInput>
-        )}
-        <MakePortFolioNextBtn onClick={onClickNextPage}>
-          다음으로
-        </MakePortFolioNextBtn>
+          {showDetailJob ? (
+            <UnderUserInput>
+              {showDetailJob}
+              <button onClick={onClickDeleteDetailJob}>X</button>
+            </UnderUserInput>
+          ) : (
+            ""
+          )}
+          <ErrorHook
+            show={showDetailJob}
+            state={detailJob}
+            str="세부직업"
+          ></ErrorHook>
+
+          <DetailJobTxt>블로그 타이틀</DetailJobTxt>
+          <MakePortFolioNormalInput
+            value={blogTitle}
+            onChange={onChangeBlogTitle}
+            type="text"
+            placeholder="블로그 명을 입력해주세요."
+            onKeyPress={(e) =>
+              keyEventUtil({
+                setState: setShowBlogTitle,
+                state: blogTitle,
+                event: e,
+              })
+            }
+          />
+          {showBlogTitle ? (
+            <UnderUserInput>
+              {showBlogTitle}
+              <button onClick={onClickDeleteBlogTitle}>X</button>
+            </UnderUserInput>
+          ) : (
+            ""
+          )}
+          <ErrorHook
+            show={showBlogTitle}
+            state={blogTitle}
+            str="블로그 타이틀"
+          ></ErrorHook>
+
+          <DetailJobTxt>본인 SNS 아이디</DetailJobTxt>
+          <SnsBox>
+            <SnsSelectField value={snsField} onChange={onChangeSetSnsField}>
+              {snsArray.sns.map((item) => (
+                <option value={item} key={item}>
+                  {item}
+                </option>
+              ))}
+            </SnsSelectField>
+            <SnsInput
+              type="text"
+              placeholder="ID를 입력하세요."
+              value={snsTxt}
+              onChange={onChangeSetSnsTxt}
+              onKeyPress={onKeyPressSns}
+            />
+          </SnsBox>
+          <ErrorArrayHook show={snsObjectArray} state={snsTxt} str="SNS ID" />
+          {snsObjectArray &&
+            snsObjectArray.map((item, index) => {
+              return (
+                <UnderUserInput key={index}>
+                  {item}
+                  <button onClick={() => onClickDeleteSns(index)}>X</button>
+                </UnderUserInput>
+              );
+            })}
+
+          <DetailJobTxt>학력</DetailJobTxt>
+          <MakePortFolioNormalInput
+            value={education}
+            onChange={onChangeEducation}
+            type="text"
+            placeholder="학력을 입력해주세요."
+            onKeyPress={(e) =>
+              keyEventUtil({
+                setState: setShowEducation,
+                state: education,
+                event: e,
+              })
+            }
+          />
+          {showEducation && (
+            <UnderUserInput>
+              {showEducation}
+              <button onClick={onClickDeleteEducation}>X</button>
+            </UnderUserInput>
+          )}
+          <ErrorHook
+            show={showEducation}
+            state={education}
+            str="학력"
+          ></ErrorHook>
+
+          <DetailJobTxt>자격증</DetailJobTxt>
+          <MakePortFolioNormalInput
+            value={certificate}
+            onChange={onChangeCertificate}
+            type="text"
+            placeholder="자격증을 입력해주세요."
+            onKeyPress={onKeyPressCertificate}
+          />
+          {showCertificate &&
+            showCertificate.map((item, index) => {
+              return (
+                <UnderUserInput key={index}>
+                  {item}
+                  <button onClick={() => onClickDeleteCertificate(index)}>
+                    X
+                  </button>
+                </UnderUserInput>
+              );
+            })}
+          <ErrorArrayHook
+            show={showCertificate}
+            state={certificate}
+            str="자격증"
+          />
+          <DetailJobTxt>외국어 능력</DetailJobTxt>
+          <MakePortFolioNormalInput
+            value={foreign}
+            onChange={onChangeForeign}
+            type="text"
+            placeholder="외국어 능력을 입력해주세요."
+            onKeyPress={onKeyPressForeign}
+          />
+          {showForeign &&
+            showForeign.map((item, index) => {
+              return (
+                <UnderUserInput key={index}>
+                  {item}
+                  <button onClick={() => onClickDeleteForeign(index)}>X</button>
+                </UnderUserInput>
+              );
+            })}
+          <ErrorArrayHook show={showForeign} state={foreign} str="외국어" />
+          <DetailJobTxt>자기소개</DetailJobTxt>
+          <MakePortFolioNormalInput
+            value={introduce}
+            onChange={onChangeIntroduce}
+            type="text"
+            placeholder="자기 소개를 간단하게 입력해주세요."
+            onKeyPress={(e) =>
+              keyEventUtil({
+                setState: setShowIntroduce,
+                state: introduce,
+                event: e,
+              })
+            }
+          />
+          {showIntroduce && (
+            <UnderUserInput>
+              {showIntroduce}
+              <button onClick={onClickDeleteIntroduce}>X</button>
+            </UnderUserInput>
+          )}
+          <ErrorHook
+            show={showIntroduce}
+            state={introduce}
+            str="자기소개"
+          ></ErrorHook>
+          <MakePortFolioNextBtn onClick={onClickNextPage}>
+            다음으로
+          </MakePortFolioNextBtn>
+        </div>
       </MakePortfolioInsideBox>
     </MakePortfolioBox>
   );
