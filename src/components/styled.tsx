@@ -1348,6 +1348,15 @@ export const PortfolioSnsBox = styled.div`
   flex-direction: column;
   width: 150px;
 `;
+export const HeaderLoginImg = styled.img`
+width: 40px;
+height: 40px;
+`
+export const HeaderLoginBtn = styled.button`
+margin-right : 10px;
+background-color : #F5F5F5;
+border: none;
+`
 //PortfolioPage
 
 export const PortfolioBox = styled.div`

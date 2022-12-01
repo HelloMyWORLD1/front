@@ -32,9 +32,9 @@ interface Comment {
   createdAt: string;
 }
 export default function GetComments() {
-  const {user} = useSelector(
-    (state:RootState) => state.user
-  );
+  // const {user} = useSelector(
+  //   (state:RootState) => state.user
+  // );
   const { comment, comments } = useSelector(
     (state: RootState) => state.comment
   );

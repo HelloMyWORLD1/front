@@ -61,7 +61,9 @@ export default function GetBlogComponenet() {
     if (post.blogUser === USERINFO) {
       navigate("/updateBlog",{
         state:{
-            blogId:blogIdNum
+            blogId:blogIdNum,
+            title : post.title,
+            content: post.content
         }
       })
     } else {

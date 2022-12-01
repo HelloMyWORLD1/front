@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect}from "react";
 import GetBlogComponenet from "../components/GetBlogComponent";
 import { 
     HeaderComponent,
@@ -8,19 +8,21 @@ import {
 import GetComments from "../components/GetComments";
 import PostComment from "../components/PostComment";
 import PortfolioHeader from "../subComponents/PortfolioHeader";
+import { useAppDispatch } from "../hooks";
+import { inquireMyInfo } from "../slices/userSlice";
 
 export default function BlogDetailpage() {
+  const jwtToken = localStorage.getItem("jwtToken");
+  const dispatch = useAppDispatch();
+  const userNickname = document.location.href.split("/:")[1];
+
+  useEffect(() => {
+    if (jwtToken) {
+      dispatch(inquireMyInfo());
+    }
+  }, [jwtToken]);
   return (
     <div>
-        {/* <HeaderComponent>
-        <div></div>
-        <div></div>
-        <BlogHeaderDetailWrapper>
-            <BlogHeaderNavigateDiv>홈</BlogHeaderNavigateDiv>
-            <BlogHeaderNavigateDiv>포트폴리오</BlogHeaderNavigateDiv>
-            <BlogHeaderNavigateDiv>블로그</BlogHeaderNavigateDiv>
-        </BlogHeaderDetailWrapper>
-    </HeaderComponent> */}
     <PortfolioHeader />
     <GetBlogComponenet />
     <PostComment />
