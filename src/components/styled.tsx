@@ -577,7 +577,7 @@ export const HomePageMidComponent = styled.div`
 
 export const HomeMenu = styled.div<{ show: boolean; logIn: boolean }>`
   width: 100%;
-  height: ${(props) => (props.logIn === false ? "10vh" : "30vh")};
+  height: ${(props) => (props.logIn === false ? "10vh" : "40vh")};
 
   display: ${(props) => (props.show === false ? "none" : "block")};
 `;
@@ -1349,14 +1349,14 @@ export const PortfolioSnsBox = styled.div`
   width: 150px;
 `;
 export const HeaderLoginImg = styled.img`
-width: 40px;
-height: 40px;
-`
+  width: 40px;
+  height: 40px;
+`;
 export const HeaderLoginBtn = styled.button`
-margin-right : 10px;
-background-color : #F5F5F5;
-border: none;
-`
+  margin-right: 10px;
+  background-color: #f5f5f5;
+  border: none;
+`;
 //PortfolioPage
 
 export const PortfolioBox = styled.div`
@@ -1767,44 +1767,44 @@ export const PostCommentBtn = styled.button`
 `;
 
 //introduce
-export const IntroduceBox =  styled.div`
-position : relative;
-margin-top: 80px;
-display:flex;
-`
+export const IntroduceBox = styled.div`
+  position: relative;
+  margin-top: 80px;
+  display: flex;
+`;
 export const ScrollBox = styled.div`
-border: 1px solid #CCCCCC;
-border-radius: 50px;
-position: fixed;
-top: 150px;
-left: 5px;
-width: 200px;
-padding: 20px 0;
-transition: all 0.5s ease;
-font-family: 'Noto Sans CJK KR';
-font-style: normal;
-font-weight: 400;
-font-size: 18px;
-line-height: 36px;
-/* identical to box height, or 200% */
-letter-spacing: -0.1em;
-color: #999999;
-text-align : center;
+  border: 1px solid #cccccc;
+  border-radius: 50px;
+  position: fixed;
+  top: 150px;
+  left: 5px;
+  width: 200px;
+  padding: 20px 0;
+  transition: all 0.5s ease;
+  font-family: "Noto Sans CJK KR";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 36px;
+  /* identical to box height, or 200% */
+  letter-spacing: -0.1em;
+  color: #999999;
+  text-align: center;
 `;
 
 export const ContentBox = styled.div`
-margin-left : 300px;
-margin-top:10px;
+  margin-left: 300px;
+  margin-top: 10px;
 `;
 export const ArrowDownImg = styled.img`
-margin-left:5px;
-width:30px;
-height:30px;
-`
+  margin-left: 5px;
+  width: 30px;
+  height: 30px;
+`;
 export const TestDiv = styled.div`
-// height:500px;
-margin-top:10px;
-// background: #FFFFFF;
+  // height:500px;
+  margin-top: 10px;
+  // background: #FFFFFF;
 `;
 export const IntroduceTitleDiv = styled.div`
   font-family: "Noto Sans CJK KR";
@@ -1816,14 +1816,14 @@ export const IntroduceTitleDiv = styled.div`
   align-items: center;
   letter-spacing: -0.1em;
   color: #333333;
-`
+`;
 export const ContentDiv = styled.div`
-margin-top: 10px;
-margin-right : 20px;
-padding:20px;
-border: 1px solid #FFFFFF;
-border-radius: 50px;
-background: #FFFFFF;
-line-height: 36px;
-letter-spacing: -0.1em;
+  margin-top: 10px;
+  margin-right: 20px;
+  padding: 20px;
+  border: 1px solid #ffffff;
+  border-radius: 50px;
+  background: #ffffff;
+  line-height: 36px;
+  letter-spacing: -0.1em;
 `;

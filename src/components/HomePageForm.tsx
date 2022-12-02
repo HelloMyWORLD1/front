@@ -27,7 +27,6 @@ function HomePageForm() {
         />
         <HomePageMidTxt1>세상에 모든 가치를 그려내는 공간</HomePageMidTxt1>
         <HomePageMidTxt2>단 하나의 유일한 포트폴리오를 만나다</HomePageMidTxt2>
-        <button onClick={onClickTestButton}>이미지업로드 테스트</button>
       </HomePageMidComponent>
     </div>
   );

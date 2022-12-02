@@ -34,12 +34,16 @@ function Header() {
 
   const onClickHome = () => {
     console.log("home");
-    navigate("/")
+    navigate("/");
+  };
+
+  const onClickGoProfileImage = () => {
+    navigate("/signUp/profile");
   };
 
   const onClickIntro = () => {
     console.log("intro");
-    navigate("/introduce")
+    navigate("/introduce");
   };
 
   const onClickCommunity = () => {
@@ -81,7 +85,7 @@ function Header() {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!",
-    }).then((result:any) => {
+    }).then((result: any) => {
       if (result.isConfirmed) {
         dispatch(deleteAccount());
         Swal.fire("Deleted!", "계정이 삭제되었습니다.", "success");
@@ -132,6 +136,9 @@ function Header() {
             포트폴리오
           </HomeMenuList>
           <HomeMenuList onClick={onClickAccountDelete}>계정탈퇴</HomeMenuList>
+          <HomeMenuList onClick={onClickGoProfileImage}>
+            프로필 설정
+          </HomeMenuList>
         </HomeMenu>
       ) : (
         <HomeMenu show={menu} logIn={user ? true : false}>
