@@ -16,6 +16,7 @@ import BlogDetailpage from "./pages/BlogDetailPage";
 import PortFolioPageSecond from "./pages/PortFolioPageSecond";
 import UpadateBlogPage from "./pages/UpdateBlogPage";
 import IntroducePage from "./pages/IntroducePage";
+import EditMyPage from "./pages/EditMyPage";
 //Route 설정.
 
 function App() {
@@ -33,6 +34,9 @@ function App() {
         <Route path="/signUp" element={<SignUpPage />}></Route>
         <Route path="/signUp/profile" element={<SignUpProfilePage />}></Route>
         <Route path="/findpassword" element={<FindPwPage />}></Route>
+
+        {/* 개인정보수정 페이지 */}
+        <Route path="/myPage" element={<EditMyPage />}></Route>
 
         {/* 포트폴리오 등록 첫번째 페이지  */}
         <Route path="/makePortfolio" element={<MakePortFolioPage />}></Route>

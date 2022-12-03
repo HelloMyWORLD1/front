@@ -92,6 +92,9 @@ function Header() {
       }
     });
   };
+  const onClickMyPage = () =>{
+    navigate("/myPage")
+  }
 
   return (
     <HeaderComponentBox>
@@ -131,7 +134,7 @@ function Header() {
 
       {user ? (
         <HomeMenu show={menu} logIn={user ? true : false}>
-          <HomeMenuList>회원정보관리</HomeMenuList>
+          <HomeMenuList onClick={onClickMyPage}>회원정보관리</HomeMenuList>
           <HomeMenuList onClick={onClickMakePortFolioBtn}>
             포트폴리오
           </HomeMenuList>
