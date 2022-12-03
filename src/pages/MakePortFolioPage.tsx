@@ -11,7 +11,7 @@ function MakePortFolioPage() {
   const jwtToken = localStorage.getItem("jwtToken");
   const dispatch = useAppDispatch();
   const { user } = useSelector((state: RootState) => state.user);
-  const { portFolio, getPortFolioError, getPortFolioDone } = useSelector(
+  const { getPortFolioError, getPortFolioDone } = useSelector(
     (state: RootState) => state.portFolio
   );
   const navigate = useNavigate();
