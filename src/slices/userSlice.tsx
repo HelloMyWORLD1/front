@@ -112,6 +112,22 @@ export const deleteAccount = createAsyncThunk("deleteAccount", async () => {
   }
 });
 
+export const editProfile = createAsyncThunk(
+  "editProfile",
+  async (data: editProfileType, { rejectWithValue }) => {
+    try {
+      const res = await axios.put("/signup", data, {
+        withCredentials: false,
+      });
+      console.log(res.data);
+    } catch (error: any) {
+      console.error(error);
+      alert(error.response.data.errorMessage);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -209,6 +225,23 @@ const userSlice = createSlice({
       state.deleteAccountLoading = false;
       state.deleteAccountDone = false;
       state.deleteAccountError = action.payload;
+    },
+    //개인정보수정 로직
+    [editProfile.pending.type]: (state, action: PayloadAction<object>) => {
+      state.reviseMyInfoLoading = true;
+      state.reviseMyInfoDone = false;
+      state.reviseMyInfoError = null;
+    },
+    [editProfile.fulfilled.type]: (state, action: PayloadAction<object>) => {
+      state.reviseMyInfoLoading = false;
+      state.reviseMyInfoDone = true;
+      state.reviseMyInfoError = null;
+      state.user = action.payload;
+    },
+    [editProfile.rejected.type]: (state, action: PayloadAction<object>) => {
+      state.reviseMyInfoLoading = false;
+      state.reviseMyInfoDone = false;
+      state.reviseMyInfoError = action.payload;
     },
   },
 });
