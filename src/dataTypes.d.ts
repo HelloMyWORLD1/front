@@ -8,6 +8,14 @@ type signUpType = {
   birth: string;
   nickname: string;
 };
+type editProfileType = {
+  email: string;
+  username: string;
+  field: string;
+  phone: string;
+  birth: string;
+  nickname: string;
+}
 
 type portFolioRegisterType = {
   detailJob: string;
