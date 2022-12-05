@@ -97,6 +97,19 @@ export const inquireMyInfo = createAsyncThunk("inquireMyInfo", async () => {
   }
 });
 
+export const testMyInfo = createAsyncThunk("inquireMyInfo", async () => {
+  try {
+    axios.defaults.headers.common["Authorization"] = "";
+    const JWTTOEKN = localStorage.getItem("jwtToken");
+    axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
+    const res = await axios.get("/user", {
+      withCredentials: false,
+    });
+    return res.data;
+  } catch (error: any) {
+    console.error(error);
+  }
+});
 export const deleteAccount = createAsyncThunk("deleteAccount", async () => {
   try {
     axios.defaults.headers.common["Authorization"] = "";
