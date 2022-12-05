@@ -35,8 +35,10 @@ interface PortFolioInitalState {
   aa: any;
   //개인 포폴
   portFolio: any;
+  portFolioFieldLength: number;
   //메인페이지|커뮤니티용 포폴
   portFolios: Object[] | any;
+  portFoliosSecond: Object[] | any;
   //개인 포폴 등록
   registerPortFolioLoading: boolean;
   registerPortFolioDone: boolean;
