@@ -9,6 +9,8 @@ const initialState: PortFolioInitalState = {
   aa: null,
   portFolio: null,
   portFolios: null,
+  portFoliosSecond: null, //test용도
+  portFolioFieldLength: 0,
   //포트폴리오 생성/등록
   registerPortFolioLoading: false,
   registerPortFolioDone: false,
@@ -88,6 +90,46 @@ export const getPortFoiloLike = createAsyncThunk(
   }
 );
 
+const getNicknameData = (nickname: string) => {
+  return axios.get(`/user/${nickname}}`).then((response) => {
+    return response.data.data;
+  });
+};
+//포트폴리오 좋아요순(분야별) 조회 Version2
+export const getPortFolioLikeV2 = createAsyncThunk(
+  "getPortFolioLikeNewVersion",
+  async (data: getPortFoiloLikeType, { rejectWithValue }) => {
+    try {
+      //입력 받은 분야의 포트폴리오 정보들을 들고온다.
+      const res = await axios.get(`/v2/portfolio/${data.field}/like`);
+
+      //서버로부터 입력받은 포트폴리오 정보배열을 map을 돌린다.
+      //서버의 회원관리 모델과 포트폴리오 모델을 분리하기 위함.
+      //map 함수는 Array.prototype이기 때문에 await이 기다리지 않는다.
+      //따라서 Promise.all 을 통해서 모든 프로미스가 이행된 후 이행하게 한다.
+      const arr = await Promise.all(
+        res.data.data.map(async (item: any) => {
+          const nicknameData = await getNicknameData(item.nickname);
+          //const nicknameData = await axios
+          //  .get(`/user/${item.nickname}}`)
+          //  .then((response) => {
+          //    return response.data.data;
+          //  });
+          item["profileImage"] = nicknameData;
+          return item;
+        })
+      );
+      //현재는 서버의 '/user/nickname' api가 잘못 되어있어서 백엔드에 수정 요청한 상황
+      //토큰의 유무가 필요한 상태임 현재
+      //삭제요청완료
+      return arr;
+    } catch (error: any) {
+      console.log(error);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 //포트폴리오 최신순(분야별) 조회-> 페이지네이션(오프셋 20개)
 export const getPortFolioLatest = createAsyncThunk(
   "getPortFolioLatest",
@@ -96,6 +138,26 @@ export const getPortFolioLatest = createAsyncThunk(
       const res = await axios.get(`/portfolio/latest?page=${data.pageNum}`);
       console.log(res.data);
       return res.data;
+    } catch (error: any) {
+      return error;
+    }
+  }
+);
+
+export const getPortFolioLatestV2 = createAsyncThunk(
+  "getPortFolioLatestNewVersion",
+  async (data: getPortFolioLatestType) => {
+    try {
+      const res = await axios.get(`/v2/portfolio/latest?page=${data.pageNum}`);
+      console.log(res.data);
+      const newArray = Promise.all(
+        res.data.data.map(async (item: any) => {
+          const nicknameData = await getNicknameData(item.nickname);
+          item["profileImage"] = nicknameData;
+          return item;
+        })
+      );
+      return newArray;
     } catch (error: any) {
       console.log(error);
       return error;
@@ -108,18 +170,15 @@ export const followPortFolio = createAsyncThunk(
   "followPortFolio",
   async (data: FollowType, { rejectWithValue }) => {
     try {
-      //로그인 확인을 위한 토큰 값 확인
       axios.defaults.headers.common["Authorization"] = "";
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
       const res = await axios.post("/social/follow", data, {
         withCredentials: false,
       });
-      console.log(res.data);
       alert(res.data.message);
       window.location.reload();
     } catch (error: any) {
-      console.log(error);
       return rejectWithValue(error.response.error);
     }
   }
@@ -132,32 +191,21 @@ export const unFollowPortFolio = createAsyncThunk(
       axios.defaults.headers.common["Authorization"] = "";
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
-      console.log("데이터");
-      console.log(data.nickname);
       const res = await axios.post("/social/unfollow", data, {
         withCredentials: false,
       });
-      console.log(res.data);
       alert(res.data.message);
       window.location.reload();
     } catch (error: any) {
-      console.log(error);
       return rejectWithValue(error.response.data);
     }
   }
 );
-type ProfileType = {
-  images: any;
-};
 
 export const registerProfileImage = createAsyncThunk(
   "registerProfileImage",
   async (data: ProfileType, { rejectWithValue }) => {
     try {
-      console.log("데이터");
-      data.images.forEach((v: any) => {
-        console.log(v);
-      });
       axios.defaults.headers.common["Authorization"] = "";
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
@@ -165,8 +213,22 @@ export const registerProfileImage = createAsyncThunk(
         withCredentials: false,
       });
     } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const getPortFolioLength = createAsyncThunk(
+  "getPortFolioLength",
+  async (data: GetPortFolioLength, { rejectWithValue }) => {
+    try {
+      const res: PortFolioResponse = await axios.get(
+        `/v2/portfolio/${data.field}/count`
+      );
+      return res.data;
+    } catch (error: any) {
       console.log(error);
-      rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -178,10 +240,8 @@ export const getProfileImage = createAsyncThunk("getProfileImage", async () => {
     const res = await axios.get("/profileImage", {
       withCredentials: false,
     });
-    console.log(res.data);
     return res.data;
   } catch (error) {
-    console.log(error);
     return error;
   }
 });
@@ -359,6 +419,48 @@ const portFolioSlice = createSlice({
       state.aa = action.payload;
     },
     [registerProfileImage.rejected.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {},
+    [getPortFolioLength.pending.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {},
+    [getPortFolioLength.fulfilled.type]: (
+      state,
+      action: PayloadAction<PortFolioResponse>
+    ) => {
+      state.portFolioFieldLength = action.payload.data;
+    },
+    [getPortFolioLength.rejected.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {},
+    [getPortFolioLikeV2.pending.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {},
+    [getPortFolioLikeV2.fulfilled.type]: (
+      state,
+      action: PayloadAction<Object>
+    ) => {
+      state.portFoliosSecond = action.payload;
+    },
+    [getPortFolioLikeV2.rejected.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {},
+    [getPortFolioLatestV2.pending.type]: (
+      state,
+      action: PayloadAction<object>
+    ) => {},
+    [getPortFolioLatestV2.fulfilled.type]: (
+      state,
+      action: PayloadAction<Object>
+    ) => {
+      state.portFoliosSecond = action.payload;
+    },
+    [getPortFolioLatestV2.rejected.type]: (
       state,
       action: PayloadAction<object>
     ) => {},
