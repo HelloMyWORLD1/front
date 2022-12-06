@@ -76,33 +76,19 @@ export const getPortFolio = createAsyncThunk(
 );
 
 //포트폴리오 좋아요순(분야별) 조회
+const getNicknameData = (nickname: string) => {
+  return axios.get(`/user/${nickname}`).then((response) => {
+    return response.data.profileUrl;
+  });
+};
+
+//포트폴리오 좋아요순(분야별) 조회 Version2
 export const getPortFoiloLike = createAsyncThunk(
   "getPortFoiloLike",
   async (data: getPortFoiloLikeType, { rejectWithValue }) => {
     try {
-      const res = await axios.get(`/portfolio/${data.field}/like`);
-      console.log(res.data.data);
-      return res.data.data;
-    } catch (error: any) {
-      console.log(error);
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-const getNicknameData = (nickname: string) => {
-  return axios.get(`/user/${nickname}}`).then((response) => {
-    return response.data.data;
-  });
-};
-//포트폴리오 좋아요순(분야별) 조회 Version2
-export const getPortFolioLikeV2 = createAsyncThunk(
-  "getPortFolioLikeNewVersion",
-  async (data: getPortFoiloLikeType, { rejectWithValue }) => {
-    try {
       //입력 받은 분야의 포트폴리오 정보들을 들고온다.
       const res = await axios.get(`/v2/portfolio/${data.field}/like`);
-
       //서버로부터 입력받은 포트폴리오 정보배열을 map을 돌린다.
       //서버의 회원관리 모델과 포트폴리오 모델을 분리하기 위함.
       //map 함수는 Array.prototype이기 때문에 await이 기다리지 않는다.
@@ -110,19 +96,14 @@ export const getPortFolioLikeV2 = createAsyncThunk(
       const arr = await Promise.all(
         res.data.data.map(async (item: any) => {
           const nicknameData = await getNicknameData(item.nickname);
-          //const nicknameData = await axios
-          //  .get(`/user/${item.nickname}}`)
-          //  .then((response) => {
-          //    return response.data.data;
-          //  });
           item["profileImage"] = nicknameData;
           return item;
         })
       );
+      return arr;
       //현재는 서버의 '/user/nickname' api가 잘못 되어있어서 백엔드에 수정 요청한 상황
       //토큰의 유무가 필요한 상태임 현재
       //삭제요청완료
-      return arr;
     } catch (error: any) {
       console.log(error);
       return rejectWithValue(error.response.data);
@@ -433,20 +414,6 @@ const portFolioSlice = createSlice({
       state.portFolioFieldLength = action.payload.data;
     },
     [getPortFolioLength.rejected.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {},
-    [getPortFolioLikeV2.pending.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {},
-    [getPortFolioLikeV2.fulfilled.type]: (
-      state,
-      action: PayloadAction<Object>
-    ) => {
-      state.portFoliosSecond = action.payload;
-    },
-    [getPortFolioLikeV2.rejected.type]: (
       state,
       action: PayloadAction<object>
     ) => {},
