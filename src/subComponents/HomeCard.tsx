@@ -32,7 +32,6 @@ function HomeCard() {
 
   useEffect(() => {
     const afterValue = clickAfterValue(0, click);
-    console.log(afterValue);
     setClick(afterValue);
     dispatch(getPortFoiloLike({ field: "개발" }));
   }, []);
