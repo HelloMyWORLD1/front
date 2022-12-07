@@ -19,6 +19,7 @@ import logo from "../img/logo.png";
 import { useAppDispatch } from "../hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import { editProfile } from "../slices/userSlice";
 import console from "console";
 
 function MyPageForm() {
@@ -180,19 +181,16 @@ function MyPageForm() {
       !phoneError &&
       !emailError 
     ) {
-    //   dispatch(
-    //     signUp({
-    //       email: `${email}@${domain}`,
-    //       password: pw,
-    //       username: name,
-    //       field: field,
-    //       phone: phone,
-    //       profileImage: "string",
-    //       birth: birth,
-    //       nickname: nickname,
-    //     })
-    //   );
-    // console.log("회원정보수정!");
+      dispatch(
+        editProfile({
+          email: `${email}@${domain}`,
+          username: name,
+          field: field,
+          phone: phone,
+          birth: birth,
+          nickname: nickname,
+        })
+      );
     }
   }, [
     dispatch,
