@@ -4,7 +4,6 @@ import MakePortFolioComponent from "../components/MakePortFolioComponent";
 import { useAppDispatch } from "../hooks";
 import { inquireMyInfo } from "../slices/userSlice";
 import { RootState } from "../store/store";
-import { getPortFolio } from "../slices/portFolioSlice";
 import { useNavigate } from "react-router-dom";
 
 function MakePortFolioPage() {
@@ -21,13 +20,14 @@ function MakePortFolioPage() {
       dispatch(inquireMyInfo());
     }
   }, [jwtToken]);
+
   useEffect(() => {
-    if (getPortFolioDone === true && getPortFolioError === null) {
-      console.log("test1입니다");
+    if (getPortFolioDone === true && getPortFolioError === null && user) {
       navigate(`/portfolio/get/:${user.nickname}`);
       return;
     }
   }, [getPortFolioError, getPortFolioDone]);
+
   return <MakePortFolioComponent />;
 }
 

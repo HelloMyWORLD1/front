@@ -12,13 +12,10 @@ import {
   MakeBlogBtn,
 } from "./styled";
 import { useNavigate } from "react-router-dom";
-import { useState, useMemo, useEffect } from "react";
-import ReactQuill from "react-quill";
+import { useState, useMemo } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useAppDispatch } from "../hooks";
 import { registerBlog } from "../slices/blogSlice";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/store";
 
 export default function MakeBlogComponent() {
   const navigate = useNavigate();
@@ -53,11 +50,6 @@ export default function MakeBlogComponent() {
     setTitle(event.currentTarget.value);
   };
 
-  useEffect(() => {
-    console.log("제목", title);
-    console.log("내용", editorValue);
-  }, [editorValue, title]);
-
   const onSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -69,9 +61,7 @@ export default function MakeBlogComponent() {
             title: title,
             content: editorValue,
           })
-        ).then(()=>(
-          navigate(-1)
-        ));
+        ).then(() => navigate(-1));
       }
     },
     [dispatch, title, editorValue]

@@ -20,23 +20,20 @@ import { useAppDispatch } from "../hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { editProfile } from "../slices/userSlice";
-import console from "console";
 
 function MyPageForm() {
-  const { user } = useSelector(
-    (state: RootState) => state.user
-  );
+  const { user } = useSelector((state: RootState) => state.user);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [nickname, setNickname] = useState<string>(user.nickname);
-  const [name, setName] = useState<string>(user.username.split("#")[0]);
-  const [birth, setBirth] = useState<string>(user.birth);
-  const [phone, setPhone] = useState<string>(user.phone);
-  const [email, setEmail] = useState<string>(user.email);
+  const [nickname, setNickname] = useState<string>(user!.nickname);
+  const [name, setName] = useState<string>(user!.username.split("#")[0]);
+  const [birth, setBirth] = useState<string>(user!.birth);
+  const [phone, setPhone] = useState<string>(user!.phone);
+  const [email, setEmail] = useState<string>(user!.email);
   const [domain, setDomain] = useState<string>("");
-  const [field, setField] = useState<string>(user.field);
+  const [field, setField] = useState<string>(user!.field);
 
   const [nicknameError, setNicknameError] = useState<boolean>(false);
   const [nameError, setNameError] = useState<boolean>(false);
@@ -160,7 +157,6 @@ function MyPageForm() {
     return setEmailError(false);
   }, [email]);
 
-
   const onSubmit = useCallback(() => {
     if (
       nameError ||
@@ -168,7 +164,7 @@ function MyPageForm() {
       fieldError ||
       birthError ||
       phoneError ||
-      emailError 
+      emailError
     ) {
       alert("유효성 검사를 확인해주세요.");
       return;
@@ -179,7 +175,7 @@ function MyPageForm() {
       !fieldError &&
       !birthError &&
       !phoneError &&
-      !emailError 
+      !emailError
     ) {
       dispatch(
         editProfile({
