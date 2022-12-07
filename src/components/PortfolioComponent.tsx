@@ -49,7 +49,7 @@ function PortfolioComponent() {
             ""
           ) : user && user.nickname === userNickname ? (
             ""
-          ) : !portFolio.followings.includes(user.nickname) ? (
+          ) : !portFolio.followers.includes(user.nickname) ? (
             <PortfolioFollowButton onClick={handlingFollow}>
               팔로우
             </PortfolioFollowButton>

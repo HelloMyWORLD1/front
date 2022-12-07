@@ -128,3 +128,18 @@ type deleteCommentType = {
 type FollowType = {
   nickname: string;
 };
+
+interface GetPortFolioLength {
+  field: string;
+}
+interface PortFolioResponse {
+  data: number;
+}
+
+type ProfileType = {
+  images: any;
+};
+
+interface getPortFolioUserRequest {
+  nickname: string;
+}

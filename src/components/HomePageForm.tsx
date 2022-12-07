@@ -7,15 +7,8 @@ import {
   HomePageMidTxt2,
 } from "./styled";
 import mid from "../img/Rectangle.png";
-import { useNavigate } from "react-router-dom";
 
 function HomePageForm() {
-  const navigate = useNavigate();
-  const onClickTestButton = (e: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("test");
-    navigate("/signUp/profile");
-  };
-
   return (
     <div>
       <HomePageMidComponent>
