@@ -6,7 +6,7 @@ function ImageUpload() {
   const [preview, setPreview] = useState<string>(""); // 인코딩한 src가 담김
   const [image, setImage] = useState<File>(); // 업로드 할 이미지 파일이 담김
   const inputRef = useRef<HTMLInputElement | null>(null); //버튼 클릭 시 input 요소에 접근하기 위해 선언
-  const reader = new FileReader(); //이미지파일을 base64로 인코딩 하기 위함
+  //const reader = new FileReader(); //이미지파일을 base64로 인코딩 하기 위함
 
   useEffect(() => {
     if (image) {

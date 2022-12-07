@@ -1,6 +1,5 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import {
-  SearchImg,
   LinkCategoryCard,
   LinkCategory,
   MakeMyBlogBtn,
@@ -11,7 +10,6 @@ import {
   HomeMenuList,
   HamburgerMenu,
 } from "../components/styled";
-import search from "../img/Search.png";
 import logo from "../img/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../hooks";
@@ -92,9 +90,9 @@ function Header() {
       }
     });
   };
-  const onClickMyPage = () =>{
-    navigate("/myPage")
-  }
+  const onClickMyPage = () => {
+    navigate("/myPage");
+  };
 
   return (
     <HeaderComponentBox>

@@ -31,7 +31,9 @@ export default function UpdateBlogComponent() {
   console.log(location.state.title);
   console.log(location.state.content);
 
-  const [editorValue, setEditorValue] = useState<string>(location.state.content);
+  const [editorValue, setEditorValue] = useState<string>(
+    location.state.content
+  );
   const [title, setTitle] = useState<string>(location.state.title);
 
   const modules = useMemo(
@@ -62,8 +64,6 @@ export default function UpdateBlogComponent() {
     console.log("내용", editorValue);
   }, [editorValue, title]);
 
-  
-
   const onSubmit = useCallback(
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -71,16 +71,14 @@ export default function UpdateBlogComponent() {
         alert("제목과 내용 모두 입력해주세요!");
       } else {
         dispatch(
-            updateBlog({
-                blogId: location.state.blogId,
-                request: {
-                    title: title,
-                    content: editorValue,
-                }
+          updateBlog({
+            blogId: location.state.blogId,
+            request: {
+              title: title,
+              content: editorValue,
+            },
           })
-        ).then(()=>(
-          navigate(-1)
-        ));
+        ).then(() => navigate(-1));
       }
     },
     [dispatch, title, editorValue]
