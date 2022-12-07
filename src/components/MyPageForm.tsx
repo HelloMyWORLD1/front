@@ -20,13 +20,11 @@ import { useAppDispatch } from "../hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { editProfile } from "../slices/userSlice";
-import console from "console";
 
 function MyPageForm() {
   const { user } = useSelector(
     (state: RootState) => state.user
   );
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -34,8 +32,8 @@ function MyPageForm() {
   const [name, setName] = useState<string>(user.username.split("#")[0]);
   const [birth, setBirth] = useState<string>(user.birth);
   const [phone, setPhone] = useState<string>(user.phone);
-  const [email, setEmail] = useState<string>(user.email);
-  const [domain, setDomain] = useState<string>("");
+  const [email, setEmail] = useState<string>(user.email.split("@")[0]);
+  const [domain, setDomain] = useState<string>(user.email.split("@")[1]);
   const [field, setField] = useState<string>(user.field);
 
   const [nicknameError, setNicknameError] = useState<boolean>(false);
@@ -162,6 +160,7 @@ function MyPageForm() {
 
 
   const onSubmit = useCallback(() => {
+
     if (
       nameError ||
       nicknameError ||
@@ -190,7 +189,7 @@ function MyPageForm() {
           birth: birth,
           nickname: nickname,
         })
-      );
+      ).then((res)=> (navigate("/"))).then((res)=> (window.location.reload()));
     }
   }, [
     dispatch,
