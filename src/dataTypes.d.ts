@@ -15,7 +15,17 @@ type editProfileType = {
   phone: string;
   birth: string;
   nickname: string;
-}
+};
+type userType = {
+  email: string;
+  field: string;
+  username: string;
+  phone: string;
+  profileImage: string;
+  birth: string;
+  nickname: string;
+  authorityDtoSet: { authorityName: string }[];
+};
 
 type portFolioRegisterType = {
   detailJob: string;
@@ -64,11 +74,26 @@ type techNique = {
   content: string;
 };
 
+type portFolioType = {
+  sns: string[];
+  detailJob: string;
+  title: string;
+  introduce: string;
+  profileImage: string;
+  field: string;
+  tech: { techName: string; content: string }[];
+  education: string;
+  certificate: string[];
+  foreignLanguage: string[];
+  project: { title: string; content: string }[];
+  career: { year: string; title: string; content: string }[];
+  followings: string[];
+  followers: string[];
+};
+
 type portFoliosType = {
   nickname: string;
   detailJob: string;
-  name: string;
-  field: string;
   profileImage: string;
   title: string;
   introduce: string;

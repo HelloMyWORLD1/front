@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL = "http://129.154.58.244:8001/api";
@@ -7,9 +7,8 @@ axios.defaults.baseURL = "http://129.154.58.244:8001/api";
 const initialState: PortFolioInitalState = {
   test: null,
   aa: null,
-  portFolio: null,
-  portFolios: null,
-  portFoliosSecond: null, //test용도
+  portFolio: undefined,
+  portFolios: undefined,
   portFolioFieldLength: 0,
   //포트폴리오 생성/등록
   registerPortFolioLoading: false,
@@ -51,9 +50,10 @@ export const registerPortFolio = createAsyncThunk(
       });
       console.log(res.data);
       return res.data;
-    } catch (error: any) {
-      console.log(error);
-      return rejectWithValue(error.response.data); //내부 에러처리
+    } catch (err) {
+      console.log(err);
+      const errors = err as Error | AxiosError;
+      return errors; //내부 에러처리
     }
   }
 );
@@ -131,14 +131,14 @@ export const getPortFolioLatestV2 = createAsyncThunk(
     try {
       const res = await axios.get(`/v2/portfolio/latest?page=${data.pageNum}`);
       console.log(res.data);
-      const newArray = Promise.all(
+      const arr = Promise.all(
         res.data.data.map(async (item: any) => {
           const nicknameData = await getNicknameData(item.nickname);
           item["profileImage"] = nicknameData;
           return item;
         })
       );
-      return newArray;
+      return arr;
     } catch (error: any) {
       console.log(error);
       return error;
@@ -250,7 +250,7 @@ const portFolioSlice = createSlice({
     },
     [registerPortFolio.fulfilled.type]: (
       state,
-      action: PayloadAction<object>
+      action: PayloadAction<portFolioType>
     ) => {
       state.registerPortFolioLoading = false;
       state.registerPortFolioDone = true;
@@ -271,7 +271,10 @@ const portFolioSlice = createSlice({
       state.getPortFolioDone = false;
       state.getPortFolioError = null;
     },
-    [getPortFolio.fulfilled.type]: (state, action: PayloadAction<object>) => {
+    [getPortFolio.fulfilled.type]: (
+      state,
+      action: PayloadAction<portFolioType>
+    ) => {
       state.getPortFolioLoading = false;
       state.getPortFolioDone = true;
       state.getPortFolioError = null;
@@ -290,7 +293,7 @@ const portFolioSlice = createSlice({
     },
     [getPortFoiloLike.fulfilled.type]: (
       state,
-      action: PayloadAction<object>
+      action: PayloadAction<portFoliosType[]>
     ) => {
       state.getPortFolioLikeLoading = false;
       state.getPortFolioLikeDone = true;
@@ -316,7 +319,7 @@ const portFolioSlice = createSlice({
     },
     [getPortFolioLatest.fulfilled.type]: (
       state,
-      action: PayloadAction<object>
+      action: PayloadAction<portFoliosType[]>
     ) => {
       state.getPortFolioLatestLoading = false;
       state.getPortFolioLatestDone = true;
@@ -423,9 +426,9 @@ const portFolioSlice = createSlice({
     ) => {},
     [getPortFolioLatestV2.fulfilled.type]: (
       state,
-      action: PayloadAction<Object>
+      action: PayloadAction<portFoliosType[]>
     ) => {
-      state.portFoliosSecond = action.payload;
+      state.portFolios = action.payload;
     },
     [getPortFolioLatestV2.rejected.type]: (
       state,

@@ -1,6 +1,5 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import GetBlogAllComponent from "../components/GetBlogAllComponent";
-//import BlogHeader from "../subComponents/BlogHeader";
 import PortfolioHeader from "../subComponents/PortfolioHeader";
 import Footer from "../subComponents/Footer";
 import { useAppDispatch } from "../hooks";
@@ -9,7 +8,6 @@ import { inquireMyInfo } from "../slices/userSlice";
 export default function BlogPage() {
   const jwtToken = localStorage.getItem("jwtToken");
   const dispatch = useAppDispatch();
-  const userNickname = document.location.href.split("/:")[1];
 
   useEffect(() => {
     if (jwtToken) {

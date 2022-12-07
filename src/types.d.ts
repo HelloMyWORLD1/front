@@ -2,7 +2,7 @@
 
 //회원 비동기처리 상태관리
 interface UserInitialState {
-  user: any;
+  user?: userType;
   //로그인
   logInLoading: boolean;
   logInDone: boolean;
@@ -34,11 +34,10 @@ interface PortFolioInitalState {
   test: any;
   aa: any;
   //개인 포폴
-  portFolio: any;
+  portFolio?: portFolioType;
   portFolioFieldLength: number;
   //메인페이지|커뮤니티용 포폴
-  portFolios: Object[] | any;
-  portFoliosSecond: Object[] | any;
+  portFolios?: portFoliosType[];
   //개인 포폴 등록
   registerPortFolioLoading: boolean;
   registerPortFolioDone: boolean;

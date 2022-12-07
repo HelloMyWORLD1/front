@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import React, { useEffect, useCallback, useRef } from "react";
 import { useAppDispatch } from "../hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
@@ -8,10 +8,10 @@ import search from "../img/Search.png";
 import registerImg from "../img/register.png";
 import arrowLeft from "../img/arrowLeft.png";
 import arrowRight from "../img/arrowRight.png";
+import { v4 as uuidv4, v4 } from "uuid";
 import {
   GetBlogAllTableLine,
   GetBlogAllTable,
-  HeaderComponent,
   GetBlogAllTr,
   GetBlogAllHeader,
   GetBlogMoreBtn,
@@ -35,10 +35,7 @@ interface Posts {
 }
 
 export default function GetBlogAllComponent() {
-  const { user } = useSelector((state: RootState) => state.user);
-  const { blogs, inquireBlogDone } = useSelector(
-    (state: RootState) => state.blog
-  );
+  const { blogs } = useSelector((state: RootState) => state.blog);
   const navigate = useNavigate();
   const userNickname = document.location.href.split("/:")[1];
   console.log(document.location.href);
@@ -56,6 +53,7 @@ export default function GetBlogAllComponent() {
       setPosts(res.payload.data.blogs)
     );
   }, []);
+
   const GetBlogMinus = () => {
     if (getBlogsData.pageNum === 0) {
       alert("더이상 뒤로 갈수 없습니다!");
@@ -69,10 +67,9 @@ export default function GetBlogAllComponent() {
   };
 
   const GetBlogPlus = () => {
-    
     getBlogsData.pageNum = getBlogsData.pageNum + 1;
     console.log(getBlogsData.pageNum);
-    console.log(blogs.data.length/5);
+    console.log(blogs.data.length / 5);
 
     if (getBlogsData.pageNum > blogs.data.length / 5) {
       getBlogsData.pageNum = getBlogsData.pageNum - 1;
@@ -85,12 +82,9 @@ export default function GetBlogAllComponent() {
     }
   };
   const blogInput = useRef<HTMLTableRowElement>(null);
-  const blogClick= (event :any
-) => {
+  const blogClick = (event: any) => {
     console.log(event.target.id);
-    navigate(
-      `/blog/:${Number(event.target.id)}`
-    );
+    navigate(`/blog/:${Number(event.target.id)}`);
   };
   const USERINFO = localStorage.getItem("userInfo");
 
@@ -107,20 +101,27 @@ export default function GetBlogAllComponent() {
 
   const postLists: JSX.Element[] = posts.map((post) => {
     return (
-      <GetBlogAllTr ref={blogInput}>
+      <GetBlogAllTr ref={blogInput} key={v4()}>
         <td>
           <GetBlogAllBox onClick={blogClick} id={post.blogId.toString()}>
             <table>
               <tr id={post.blogId.toString()}>
                 <GetBlogAllHeader id={post.blogId.toString()}>
-                  <GetBlogAllTitle id={post.blogId.toString()} >{post.title}</GetBlogAllTitle>
+                  <GetBlogAllTitle id={post.blogId.toString()}>
+                    {post.title}
+                  </GetBlogAllTitle>
                   <div></div>
-                  <GetBlogAllCreated id={post.blogId.toString()} > {post.createdAt.slice(0,10)}</GetBlogAllCreated>
+                  <GetBlogAllCreated id={post.blogId.toString()}>
+                    {" "}
+                    {post.createdAt.slice(0, 10)}
+                  </GetBlogAllCreated>
                 </GetBlogAllHeader>
               </tr>
               <tr>
                 <td colSpan={2}>
-                  <GetBlogAllContent id={post.blogId.toString()}>{post.content.replace(extractTextPattern,"")}</GetBlogAllContent>
+                  <GetBlogAllContent id={post.blogId.toString()}>
+                    {post.content.replace(extractTextPattern, "")}
+                  </GetBlogAllContent>
                 </td>
               </tr>
             </table>
@@ -148,11 +149,7 @@ export default function GetBlogAllComponent() {
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       console.log(keywords);
-      dispatch(searchBlog(keywords)).then((res) => 
-      (
-      setPosts(res.payload.data)
-      )
-      );
+      dispatch(searchBlog(keywords)).then((res) => setPosts(res.payload.data));
     },
     [dispatch, keywords]
   );
@@ -170,7 +167,6 @@ export default function GetBlogAllComponent() {
               <SearchBlogImg src={search}></SearchBlogImg>
             </form>
           </div>
-          <div></div>
           <div>
             <PostBlogBtn onClick={registerBlogClick}>
               <PostBlogImg src={registerImg}></PostBlogImg>
@@ -182,17 +178,20 @@ export default function GetBlogAllComponent() {
 
       <GetBlogAllTableLine></GetBlogAllTableLine>
       {postLists}
-      <tr>
-        <td>
-          <GetBlogMoreBtn onClick={GetBlogMinus}>
-            <GetBlogNextImg src={arrowLeft}></GetBlogNextImg>
-          </GetBlogMoreBtn>
-          <GetBlogMoreBtn>{getBlogsData.pageNum + 1}</GetBlogMoreBtn>
-          <GetBlogMoreBtn onClick={GetBlogPlus}>
-            <GetBlogNextImg src={arrowRight}></GetBlogNextImg>
-          </GetBlogMoreBtn>
-        </td>
-      </tr>
+
+      <tbody>
+        <tr>
+          <td>
+            <GetBlogMoreBtn onClick={GetBlogMinus}>
+              <GetBlogNextImg src={arrowLeft}></GetBlogNextImg>
+            </GetBlogMoreBtn>
+            <GetBlogMoreBtn>{getBlogsData.pageNum + 1}</GetBlogMoreBtn>
+            <GetBlogMoreBtn onClick={GetBlogPlus}>
+              <GetBlogNextImg src={arrowRight}></GetBlogNextImg>
+            </GetBlogMoreBtn>
+          </td>
+        </tr>
+      </tbody>
     </GetBlogAllTable>
   );
 }

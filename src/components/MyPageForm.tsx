@@ -158,7 +158,6 @@ function MyPageForm() {
     return setEmailError(false);
   }, [email]);
 
-
   const onSubmit = useCallback(() => {
 
     if (
@@ -167,7 +166,7 @@ function MyPageForm() {
       fieldError ||
       birthError ||
       phoneError ||
-      emailError 
+      emailError
     ) {
       alert("유효성 검사를 확인해주세요.");
       return;
@@ -178,7 +177,7 @@ function MyPageForm() {
       !fieldError &&
       !birthError &&
       !phoneError &&
-      !emailError 
+      !emailError
     ) {
       dispatch(
         editProfile({

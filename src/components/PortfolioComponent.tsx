@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from "react";
+import React from "react";
 import {
   PortfolioBox,
   PortfolioInsideBox,
@@ -21,6 +21,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { followPortFolio, unFollowPortFolio } from "../slices/portFolioSlice";
 import { useAppDispatch } from "../hooks";
+import { v4 as uuidv4, v4 } from "uuid";
 
 function PortfolioComponent() {
   const dispatch = useAppDispatch();
@@ -45,7 +46,7 @@ function PortfolioComponent() {
           ></PortfolioProfileImg>
           <PortfolioNameTxt>{userNickname}</PortfolioNameTxt>
           <PortfolioDetailJobTxt>{portFolio.detailJob}</PortfolioDetailJobTxt>
-          {user === null ? (
+          {user === undefined ? (
             ""
           ) : user && user.nickname === userNickname ? (
             ""
@@ -74,14 +75,16 @@ function PortfolioComponent() {
             ) ? (
               portFolio.career.map((item: any, index: number) => {
                 const str = `${item.year} ${item.title} ${item.content}`;
-                return <PortfolioCareerBox>{str}</PortfolioCareerBox>;
+                return (
+                  <PortfolioCareerBox key={v4()}>{str}</PortfolioCareerBox>
+                );
               })
             ) : (
               <PortfolioCareerBox>-</PortfolioCareerBox>
             )}
             {portFolio.sns.map((item: any, index: number) => {
               const str = `${item.replace("-", " ")}`;
-              return <PortfolioSnsBox>{str}</PortfolioSnsBox>;
+              return <PortfolioSnsBox key={v4()}>{str}</PortfolioSnsBox>;
             })}
           </PortfolioEduCareerSnsContentBox>
         </PortfolioInsideBox>

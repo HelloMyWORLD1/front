@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { v4 as uuidv4, v4 } from "uuid";
 import {
   HomeCardIntroTxtComponent,
   HomeCardIntroTxt1,
@@ -110,7 +111,10 @@ function HomeCard() {
     ? portFolios.map((item: any) => {
         const txt = overStringChange(item.introduce);
         return (
-          <FilterResultCard onClick={() => handlingClickCard(item.nickname)}>
+          <FilterResultCard
+            onClick={() => handlingClickCard(item.nickname)}
+            key={v4()}
+          >
             <CardImg src={item.profileImage}></CardImg>
             <NicknameTxt>{item.nickname}</NicknameTxt>
             <FieldTxt>{item.detailJob}</FieldTxt>

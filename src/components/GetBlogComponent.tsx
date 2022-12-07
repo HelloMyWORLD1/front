@@ -48,7 +48,7 @@ export default function GetBlogComponenet() {
   });
   const USERINFO = localStorage.getItem("userInfo");
 
-  const deleteBlogClick = (e:any) => {
+  const deleteBlogClick = (e: any) => {
     console.log(e.currentTarget.id);
     if (post.blogUser === USERINFO) {
       dispatch(deleteBlog(blogId)).then(() => navigate(-1));
@@ -56,27 +56,26 @@ export default function GetBlogComponenet() {
       alert("본인 블로그에서만 삭제가 가능합니다.");
     }
   };
-  const updateBlogClick = ()=>{
+  const updateBlogClick = () => {
     console.log(post.blogUser);
     if (post.blogUser === USERINFO) {
-      navigate("/updateBlog",{
-        state:{
-            blogId:blogIdNum,
-            title : post.title,
-            content: post.content
-        }
-      })
+      navigate("/updateBlog", {
+        state: {
+          blogId: blogIdNum,
+          title: post.title,
+          content: post.content,
+        },
+      });
     } else {
       alert("본인 블로그에서만 수정이 가능합니다.");
     }
-  }
+  };
 
   useEffect(() => {
     dispatch(getBlog(blogId)).then((res) => setPost(res.payload.data));
   }, []);
 
   return (
-    
     <div>
       <GetBlogAllTable>
         <GetBlogAllTr>
@@ -95,14 +94,19 @@ export default function GetBlogComponenet() {
         </GetBlogAllTr>
         <GetBlogAllTr>
           <td>
-            <GetBlogContent dangerouslySetInnerHTML={{ __html: post.content }}></GetBlogContent>
+            <GetBlogContent
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            ></GetBlogContent>
           </td>
         </GetBlogAllTr>
         <GetBlogAllTr>
           <GetBlogBtnTd>
             <GetBlogBtn onClick={updateBlogClick}>
-                <div id={post.blogUser}>수정하기</div></GetBlogBtn>
-            <GetBlogBtn onClick={deleteBlogClick}><div id={post.blogUser}>삭제하기</div></GetBlogBtn>
+              <div id={post.blogUser}>수정하기</div>
+            </GetBlogBtn>
+            <GetBlogBtn onClick={deleteBlogClick}>
+              <div id={post.blogUser}>삭제하기</div>
+            </GetBlogBtn>
           </GetBlogBtnTd>
         </GetBlogAllTr>
       </GetBlogAllTable>
