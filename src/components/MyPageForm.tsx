@@ -22,19 +22,17 @@ import { RootState } from "../store/store";
 import { editProfile } from "../slices/userSlice";
 
 function MyPageForm() {
-  const { user } = useSelector(
-    (state: RootState) => state.user
-  );
+  const { user } = useSelector((state: RootState) => state.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [nickname, setNickname] = useState<string>(user.nickname);
-  const [name, setName] = useState<string>(user.username.split("#")[0]);
-  const [birth, setBirth] = useState<string>(user.birth);
-  const [phone, setPhone] = useState<string>(user.phone);
-  const [email, setEmail] = useState<string>(user.email.split("@")[0]);
-  const [domain, setDomain] = useState<string>(user.email.split("@")[1]);
-  const [field, setField] = useState<string>(user.field);
+  const [nickname, setNickname] = useState<string>(user!.nickname);
+  const [name, setName] = useState<string>(user!.username.split("#")[0]);
+  const [birth, setBirth] = useState<string>(user!.birth);
+  const [phone, setPhone] = useState<string>(user!.phone);
+  const [email, setEmail] = useState<string>(user!.email.split("@")[0]);
+  const [domain, setDomain] = useState<string>(user!.email.split("@")[1]);
+  const [field, setField] = useState<string>(user!.field);
 
   const [nicknameError, setNicknameError] = useState<boolean>(false);
   const [nameError, setNameError] = useState<boolean>(false);
@@ -159,7 +157,6 @@ function MyPageForm() {
   }, [email]);
 
   const onSubmit = useCallback(() => {
-
     if (
       nameError ||
       nicknameError ||
@@ -188,7 +185,9 @@ function MyPageForm() {
           birth: birth,
           nickname: nickname,
         })
-      ).then((res)=> (navigate("/"))).then((res)=> (window.location.reload()));
+      )
+        .then((res) => navigate("/"))
+        .then((res) => window.location.reload());
     }
   }, [
     dispatch,
