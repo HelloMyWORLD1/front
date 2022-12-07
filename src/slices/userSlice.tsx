@@ -3,7 +3,7 @@ import axios from "axios";
 import type { PayloadAction } from "@reduxjs/toolkit";
 axios.defaults.baseURL = "http://129.154.58.244:8001/api";
 const initialState: UserInitialState = {
-  user: null,
+  user: undefined,
   logInLoading: false, // 로그인
   logInDone: false,
   logInError: null,
@@ -146,7 +146,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     simpleLogOut: (state) => {
-      state.user = null;
+      state.user = undefined;
       state.logInLoading = false;
       state.logInDone = false;
       state.logInError = null;
@@ -161,7 +161,7 @@ const userSlice = createSlice({
       state.logInDone = false;
       state.logInError = null;
     },
-    [logIn.fulfilled.type]: (state, action: PayloadAction<object>) => {
+    [logIn.fulfilled.type]: (state, action: PayloadAction<userType>) => {
       // 정상적으로 비동기 통신 완료 시(성공)
       state.logInLoading = false;
       state.logInDone = true;
@@ -212,7 +212,10 @@ const userSlice = createSlice({
       state.inquireMyInfoDone = false;
       state.inquireMyInfoError = null;
     },
-    [inquireMyInfo.fulfilled.type]: (state, action: PayloadAction<object>) => {
+    [inquireMyInfo.fulfilled.type]: (
+      state,
+      action: PayloadAction<userType>
+    ) => {
       state.inquireMyInfoLoading = false;
       state.inquireMyInfoDone = true;
       state.inquireMyInfoError = null;
@@ -228,7 +231,10 @@ const userSlice = createSlice({
       state.deleteAccountDone = false;
       state.deleteAccountError = null;
     },
-    [deleteAccount.fulfilled.type]: (state, action: PayloadAction<object>) => {
+    [deleteAccount.fulfilled.type]: (
+      state,
+      action: PayloadAction<userType>
+    ) => {
       state.deleteAccountLoading = false;
       state.deleteAccountDone = true;
       state.deleteAccountError = null;
@@ -245,7 +251,7 @@ const userSlice = createSlice({
       state.reviseMyInfoDone = false;
       state.reviseMyInfoError = null;
     },
-    [editProfile.fulfilled.type]: (state, action: PayloadAction<object>) => {
+    [editProfile.fulfilled.type]: (state, action: PayloadAction<userType>) => {
       state.reviseMyInfoLoading = false;
       state.reviseMyInfoDone = true;
       state.reviseMyInfoError = null;
