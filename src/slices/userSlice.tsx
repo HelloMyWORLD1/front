@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { useNavigate } from "react-router-dom";
 axios.defaults.baseURL = "http://129.154.58.244:8001/api";
 const initialState: UserInitialState = {
   user: undefined,
@@ -124,15 +125,16 @@ export const deleteAccount = createAsyncThunk("deleteAccount", async () => {
     return error;
   }
 });
-
 export const editProfile = createAsyncThunk(
   "editProfile",
   async (data: editProfileType, { rejectWithValue }) => {
     try {
-      const res = await axios.put("/signup", data, {
-        withCredentials: false,
-      });
-      console.log(res.data);
+      axios.defaults.headers.common["Authorization"] = "";
+      const JWTTOEKN = localStorage.getItem("jwtToken");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
+      await axios.put(`/user?email=${data.email}&username=${data.username}
+      &field=${data.field}&phone=${data.phone}&birth=${data.birth}&nickname=${data.nickname}`);
+      alert("개인정보수정이 완료되었습니다.");
     } catch (error: any) {
       console.error(error);
       alert(error.response.data.errorMessage);
