@@ -17,7 +17,7 @@ import {
 } from "./styled";
 import logo from "../img/logo.png";
 import { useAppDispatch } from "../hooks";
-import { logIn, signUp } from "../slices/userSlice";
+import { logIn, signUp } from "../slices/user/userSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 

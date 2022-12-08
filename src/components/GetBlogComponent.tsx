@@ -15,7 +15,7 @@ import {
 import { useAppDispatch } from "../hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { getBlog, deleteBlog } from "../slices/blogSlice";
+import { getBlog, deleteBlog } from "../slices/blog/blogSlice";
 import { useNavigate } from "react-router-dom";
 
 interface Post {

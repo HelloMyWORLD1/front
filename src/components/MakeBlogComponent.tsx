@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useMemo } from "react";
 import "react-quill/dist/quill.snow.css";
 import { useAppDispatch } from "../hooks";
-import { registerBlog } from "../slices/blogSlice";
+import { registerBlog } from "../slices/blog/blogSlice";
 
 export default function MakeBlogComponent() {
   const navigate = useNavigate();

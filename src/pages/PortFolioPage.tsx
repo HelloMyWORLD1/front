@@ -3,15 +3,11 @@ import { useAppDispatch } from "../hooks";
 import PortfolioComponent from "../components/PortfolioComponent";
 import PortfolioHeader from "../subComponents/PortfolioHeader";
 import Footer from "../subComponents/Footer";
-import { getPortFolio } from "../slices/portFolioSlice";
-import useInquireMyInfo from "../useHooks/useInquireMyInfo";
+import { getPortFolio } from "../slices/portFolio/portFolioSlice";
 
 function PortFolioPage() {
   const dispatch = useAppDispatch();
   const userNickname = document.location.href.split("/:")[1];
-
-  useInquireMyInfo();
-
   useEffect(() => {
     dispatch(getPortFolio({ nickname: userNickname }));
   }, []);

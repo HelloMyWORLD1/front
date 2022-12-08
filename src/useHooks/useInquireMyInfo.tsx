@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "../hooks";
-import { inquireMyInfo } from "../slices/userSlice";
+import { inquireMyInfo } from "../slices/user/userSlice";
 
 export default function useInquireMyInfo() {
   const token = localStorage.getItem("jwtToken");

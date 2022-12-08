@@ -12,7 +12,7 @@ import {
 } from "./styled";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { getPortFolio } from "../slices/portFolioSlice";
+import { getPortFolio } from "../slices/portFolio/portFolioSlice";
 
 function PortfolioPageSecondComponent() {
   const dispatch = useAppDispatch();

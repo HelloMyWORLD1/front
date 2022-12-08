@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userSlice from "../slices/userSlice";
-import portFolioSlice from "../slices/portFolioSlice";
-import blogSlice from "../slices/blogSlice";
-import commentSlice from "../slices/commentSlice";
+import userSlice from "../slices/user/userSlice";
+import portFolioSlice from "../slices/portFolio/portFolioSlice";
+import blogSlice from "../slices/blog/blogSlice";
+import commentSlice from "../slices/comment/commentSlice";
 
 // 전역으로 관리하기 위한 스토어
 const store = configureStore({
@@ -10,7 +10,7 @@ const store = configureStore({
     user: userSlice,
     portFolio: portFolioSlice,
     blog: blogSlice,
-    comment: commentSlice
+    comment: commentSlice,
   },
 });
 

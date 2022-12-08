@@ -21,7 +21,7 @@ import {
 import {
   portFolioSliceActions,
   registerPortFolio,
-} from "../slices/portFolioSlice";
+} from "../slices/portFolio/portFolioSlice";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAppDispatch } from "../hooks";
 import logo from "../img/logo.png";

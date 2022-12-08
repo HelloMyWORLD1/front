@@ -23,7 +23,7 @@ import {
   getComment,
   deleteComment,
   updateComment,
-} from "../slices/commentSlice";
+} from "../slices/comment/commentSlice";
 
 interface Comment {
   commentId: number;

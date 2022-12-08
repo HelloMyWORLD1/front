@@ -19,7 +19,7 @@ import logo from "../img/logo.png";
 import { useAppDispatch } from "../hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { editProfile } from "../slices/userSlice";
+import { editProfile } from "../slices/user/userSlice";
 
 function MyPageForm() {
   const { user } = useSelector((state: RootState) => state.user);

@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import MakePortFolioComponent from "../components/MakePortFolioComponent";
 import { RootState } from "../store/store";
 import { useNavigate } from "react-router-dom";
-import useInquireMyInfo from "../useHooks/useInquireMyInfo";
 
 function MakePortFolioPage() {
   const { user } = useSelector((state: RootState) => state.user);
@@ -11,8 +10,6 @@ function MakePortFolioPage() {
     (state: RootState) => state.portFolio
   );
   const navigate = useNavigate();
-
-  useInquireMyInfo();
 
   useEffect(() => {
     if (getPortFolioDone === true && getPortFolioError === null && user) {

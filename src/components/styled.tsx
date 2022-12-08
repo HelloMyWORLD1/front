@@ -436,6 +436,7 @@ export const RegisterProfileBtn = styled.button`
   text-align: center;
   letter-spacing: -0.1em;
   color: #ffffff;
+  cursor: pointer;
 `;
 
 //비밀번호 찾기 페이지
