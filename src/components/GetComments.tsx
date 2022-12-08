@@ -109,12 +109,12 @@ export default function GetComments() {
     [dispatch, updateCommentData, updateContent]
   );
 
-  const removeUpdate = () => {
-    setUpdateOpen(!updateOpen);
-  };
+  // const removeUpdate = () => {
+  //   setUpdateOpen(!updateOpen);
+  // };
   const commentLists: JSX.Element[] = detailComments.map((comment) => {
     return (
-      <GetBlogAllTr onClick={removeUpdate}>
+      <GetBlogAllTr>
         <td>
           <GetCommentsDiv>
             <table>
@@ -159,7 +159,7 @@ export default function GetComments() {
 
   return (
     <GetBlogAllTable>
-      <GetBlogAllTr onClick={removeUpdate}>
+      <GetBlogAllTr >
         <td>
           <div>댓글 {commentCnt}</div>
         </td>
