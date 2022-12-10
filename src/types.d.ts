@@ -31,7 +31,6 @@ interface UserInitialState {
 
 //포트폴리오 비동기 처리 상태관리
 interface PortFolioInitalState {
-  aa: any;
   //개인 포폴
   portFolio?: portFolioType;
   portFolioFieldLength: number;
