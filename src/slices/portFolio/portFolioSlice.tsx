@@ -80,6 +80,23 @@ const getNicknameData = (nickname: string) => {
   });
 };
 
+// 포트폴리오 이미지 등록
+export const updateProfileImage = createAsyncThunk(
+  "updateProfileImage",
+  async (data: ProfileType) => {
+    try {
+      axios.defaults.headers.common["Authorization"] = "";
+      const JWTTOEKN = localStorage.getItem("jwtToken");
+      axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
+      await axios.post("/profileImage/update", data.images, {
+        withCredentials: false,
+      });
+    } catch (err) {
+      const errors = err as Error | AxiosError;
+      return errors; //내부 에러처리
+    }
+  }
+);
 //포트폴리오 좋아요순(분야별) 조회 Version2
 export const getPortFoiloLike = createAsyncThunk(
   "getPortFoiloLike",
