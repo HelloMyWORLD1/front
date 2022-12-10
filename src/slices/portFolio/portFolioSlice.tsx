@@ -5,7 +5,6 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 axios.defaults.baseURL = "http://129.154.58.244:8001/api";
 
 const initialState: PortFolioInitalState = {
-  aa: null,
   portFolio: undefined,
   portFolios: undefined,
   portFolioFieldLength: 0,
@@ -79,24 +78,6 @@ const getNicknameData = (nickname: string) => {
     return response.data.profileUrl;
   });
 };
-
-// 포트폴리오 이미지 등록
-export const updateProfileImage = createAsyncThunk(
-  "updateProfileImage",
-  async (data: ProfileType) => {
-    try {
-      axios.defaults.headers.common["Authorization"] = "";
-      const JWTTOEKN = localStorage.getItem("jwtToken");
-      axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
-      await axios.post("/profileImage/update", data.images, {
-        withCredentials: false,
-      });
-    } catch (err) {
-      const errors = err as Error | AxiosError;
-      return errors; //내부 에러처리
-    }
-  }
-);
 //포트폴리오 좋아요순(분야별) 조회 Version2
 export const getPortFoiloLike = createAsyncThunk(
   "getPortFoiloLike",
@@ -194,23 +175,6 @@ export const unFollowPortFolio = createAsyncThunk(
       });
       alert(res.data.message);
       window.location.reload();
-    } catch (err) {
-      const errors = err as Error | AxiosError;
-      return errors; //내부 에러처리
-    }
-  }
-);
-
-export const registerProfileImage = createAsyncThunk(
-  "registerProfileImage",
-  async (data: ProfileType) => {
-    try {
-      axios.defaults.headers.common["Authorization"] = "";
-      const JWTTOEKN = localStorage.getItem("jwtToken");
-      axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
-      await axios.post("/profileImage/upload", data.images, {
-        withCredentials: false,
-      });
     } catch (err) {
       const errors = err as Error | AxiosError;
       return errors; //내부 에러처리
@@ -385,20 +349,7 @@ const portFolioSlice = createSlice({
       state.unFollowPortFolioDone = false;
       state.unFollowPortFolioError = action.payload;
     },
-    [registerProfileImage.pending.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {},
-    [registerProfileImage.fulfilled.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {
-      state.aa = action.payload;
-    },
-    [registerProfileImage.rejected.type]: (
-      state,
-      action: PayloadAction<object>
-    ) => {},
+
     [getPortFolioLength.pending.type]: (
       state,
       action: PayloadAction<object>
