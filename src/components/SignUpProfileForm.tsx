@@ -13,13 +13,11 @@ import {
 import logo from "../img/logo.png";
 import mask from "../img/Mask group.png";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../hooks";
-import { registerProfileImage } from "../slices/portFolio/portFolioSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import axios, { AxiosError } from "axios";
 
 export default function SignUpProfileForm() {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [preview, setPreview] = useState<string>("");
@@ -35,6 +33,21 @@ export default function SignUpProfileForm() {
       setPreview(user?.profileImage);
     }
   }, [user]);
+
+  const updateOrUploadProfileImage = async (
+    data: ProfileType,
+    link: string
+  ) => {
+    try {
+      const response = await axios.post(`/profileImage/${link}`, data.images, {
+        withCredentials: false,
+      });
+      return response;
+    } catch (err) {
+      const errors = err as Error | AxiosError;
+      return errors;
+    }
+  };
 
   useEffect(() => {
     if (image) {
@@ -61,18 +74,19 @@ export default function SignUpProfileForm() {
     (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
       const formData = new FormData();
+      const baseImageUrl =
+        "https://helloworld4204.s3.ap-northeast-2.amazonaws.com/default.png";
       if (image) {
         formData.append("images", image, image.name);
-        if (localStorage.getItem("jwtToken")) {
-          dispatch(
-            registerProfileImage({
-              images: formData,
-            })
-          );
+        if (user) {
+          const link = user.profileImage === baseImageUrl ? "upload" : "update";
+          console.log(link);
+          const res = updateOrUploadProfileImage({ images: formData }, link);
+          console.log(res);
         }
       }
     },
-    [image]
+    [image, user]
   );
 
   const upload = useCallback(() => {

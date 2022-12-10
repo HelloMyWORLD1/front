@@ -32,11 +32,9 @@ function MakePortfolioSecondComponent() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const {
-    registerPortFolioLoading,
-    registerPortFolioDone,
-    registerPortFolioError,
-  } = useSelector((state: RootState) => state.portFolio);
+  const { registerPortFolioLoading } = useSelector(
+    (state: RootState) => state.portFolio
+  );
 
   const {
     showDetailJob,
