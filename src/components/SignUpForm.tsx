@@ -17,14 +17,12 @@ import {
 } from "./styled";
 import logo from "../img/logo.png";
 import { useAppDispatch } from "../hooks";
-import { logIn, signUp } from "../slices/userSlice";
+import { signUp } from "../slices/user/userSlice";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-
+import { selectList, fieldList } from "../utils/array";
 function SignUpForm() {
-  const { user, signUpLoading, signUpDone, signUpError } = useSelector(
-    (state: RootState) => state.user
-  );
+  const { signUpDone } = useSelector((state: RootState) => state.user);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -48,38 +46,8 @@ function SignUpForm() {
   const [pwCheckError, setPwCheckError] = useState<boolean>(false);
   const [fieldError, setFieldError] = useState<boolean>(false);
 
-  const selectList = [
-    "도메인 선택",
-    "naver.com",
-    "hanmail.net",
-    "daum.net",
-    "nate.com",
-    "gmail.com",
-    "hotmail.com",
-    "lycos.co.kr",
-    "empal.com",
-    "cyworld.com",
-    "yahoo.com",
-    "paran.com",
-    "dreamwiz.com",
-    "직접입력",
-  ];
-  const fieldList = [
-    "직업 분야 선택",
-    "개발",
-    "경영",
-    "운영",
-    "데이터",
-    "디자인",
-    "마케팅",
-    "회계",
-    "HR",
-  ];
   const gotoHome = () => {
     navigate("/");
-  };
-  const gotoProfile = () => {
-    navigate("/signUp/profile");
   };
 
   const nameHandler = (event: React.FormEvent<HTMLInputElement>) => {

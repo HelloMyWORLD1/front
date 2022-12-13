@@ -16,7 +16,6 @@ import {
 } from "./styled";
 import logo from "../img/logo.png";
 import { useState, useCallback } from "react";
-import { useAppDispatch, useAppSelector } from "../hooks";
 import {
   snsArray,
   ErrorHook,
@@ -24,10 +23,8 @@ import {
   keyEventUtil,
 } from "../utils/array";
 import { useNavigate } from "react-router-dom";
-import { RootState } from "../store/store";
 
 function MakePortFolioComponent() {
-  const dispatch = useAppDispatch();
   const [detailJob, setDetailJob] = useState<string>("");
   const [blogTitle, setBlogTitle] = useState<string>("");
   const [snsField, setSnsField] = useState<string>(snsArray.sns[0]);

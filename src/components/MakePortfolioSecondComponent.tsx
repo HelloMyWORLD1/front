@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, KeyboardEvent } from "react";
+import React, { useState, useCallback, KeyboardEvent } from "react";
 import {
   MakePortfolioBox,
   MakePortfolioInsideBox,
@@ -21,7 +21,7 @@ import {
 import {
   portFolioSliceActions,
   registerPortFolio,
-} from "../slices/portFolioSlice";
+} from "../slices/portFolio/portFolioSlice";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAppDispatch } from "../hooks";
 import logo from "../img/logo.png";
@@ -32,11 +32,9 @@ function MakePortfolioSecondComponent() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const location = useLocation();
-  const {
-    registerPortFolioLoading,
-    registerPortFolioDone,
-    registerPortFolioError,
-  } = useSelector((state: RootState) => state.portFolio);
+  const { registerPortFolioLoading } = useSelector(
+    (state: RootState) => state.portFolio
+  );
 
   const {
     showDetailJob,

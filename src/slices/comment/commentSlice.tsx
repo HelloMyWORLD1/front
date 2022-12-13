@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { useLocation } from "react-router-dom";
 axios.defaults.baseURL = "http://129.154.58.244:8001/api";
 
 const initialState: CommentInitialState = {

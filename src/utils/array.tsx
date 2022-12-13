@@ -51,3 +51,30 @@ export const keyEventUtil = (props: KeyboardProps): void => {
     props.setState(props.state);
   }
 };
+
+export const selectList = [
+  "도메인 선택",
+  "naver.com",
+  "hanmail.net",
+  "daum.net",
+  "nate.com",
+  "gmail.com",
+  "hotmail.com",
+  "lycos.co.kr",
+  "empal.com",
+  "cyworld.com",
+  "yahoo.com",
+  "paran.com",
+  "dreamwiz.com",
+];
+export const fieldList = [
+  "직업 분야 선택",
+  "개발",
+  "경영",
+  "운영",
+  "데이터",
+  "디자인",
+  "마케팅",
+  "회계",
+  "HR",
+];

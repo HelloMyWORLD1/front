@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch } from "../hooks";
 import {
   PortfolioBox,
@@ -12,16 +12,14 @@ import {
 } from "./styled";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { getPortFolio } from "../slices/portFolioSlice";
+import { getPortFolio } from "../slices/portFolio/portFolioSlice";
 
 function PortfolioPageSecondComponent() {
   const dispatch = useAppDispatch();
-  const { user } = useSelector((state: RootState) => state.user);
   const { portFolio } = useSelector((state: RootState) => state.portFolio);
   const userNickname = document.location.href.split("/:")[1];
 
   useEffect(() => {
-    console.log(userNickname);
     dispatch(getPortFolio({ nickname: userNickname }));
   }, []);
 

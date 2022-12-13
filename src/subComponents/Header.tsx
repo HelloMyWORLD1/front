@@ -15,8 +15,8 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../hooks";
 import { useAppSelector } from "../hooks";
 import { RootState } from "../store/store";
-import { deleteAccount, userSliceActions } from "../slices/userSlice";
-import { getPortFolio } from "../slices/portFolioSlice";
+import { deleteAccount, userSliceActions } from "../slices/user/userSlice";
+import { getPortFolio } from "../slices/portFolio/portFolioSlice";
 import Swal from "sweetalert2";
 
 function Header() {

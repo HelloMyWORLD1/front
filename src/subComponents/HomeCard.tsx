@@ -19,7 +19,7 @@ import {
   BlogTitle,
 } from "../components/styled";
 import circle from "../img/Circle.png";
-import { getPortFoiloLike } from "../slices/portFolioSlice";
+import { getPortFoiloLike } from "../slices/portFolio/portFolioSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { RootState } from "../store/store";
 import { useNavigate } from "react-router-dom";

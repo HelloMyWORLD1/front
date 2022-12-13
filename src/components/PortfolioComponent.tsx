@@ -19,7 +19,10 @@ import {
 } from "./styled";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { followPortFolio, unFollowPortFolio } from "../slices/portFolioSlice";
+import {
+  followPortFolio,
+  unFollowPortFolio,
+} from "../slices/portFolio/portFolioSlice";
 import { useAppDispatch } from "../hooks";
 import { v4 as uuidv4, v4 } from "uuid";
 

@@ -17,9 +17,11 @@ import PortFolioPageSecond from "./pages/PortFolioPageSecond";
 import UpadateBlogPage from "./pages/UpdateBlogPage";
 import IntroducePage from "./pages/IntroducePage";
 import EditMyPage from "./pages/EditMyPage";
+import useInquireMyInfo from "./useHooks/useInquireMyInfo";
 //Route 설정.
 
 function App() {
+  useInquireMyInfo();
   return (
     <div>
       <GlobalStyles />
