@@ -1,6 +1,6 @@
 interface BlogInitialState {
-  blogs: any; // 사람의 전체 블로그(페이지네이션5개)를 받아올 변수
-  blog: any; // 블로그의 게시글 하나를 받아올 변수
+  blogs?: BlogsType; // 사람의 전체 블로그(페이지네이션5개)를 받아올 변수
+  blog?: BlogType; // 블로그의 게시글 하나를 받아올 변수
   //게시글 등록
   registerBlogLoading: boolean;
   registerBlogDone: boolean;
@@ -26,3 +26,32 @@ interface BlogInitialState {
   searchBlogDone: boolean;
   searchBlogError: null | object;
 }
+
+type BlogType = {
+  success: boolean;
+  message: string;
+  data: BlogDataType;
+};
+
+type BlogDataType = {
+  blogId: number;
+  title: string;
+  content: string;
+  blogUser: string;
+  blogUserImg: string;
+  createdAt: string;
+};
+
+type BlogsType = {
+  success: boolean;
+  message: string;
+  data: BlogsDataType[];
+};
+
+type BlogsDataType = {
+  blogId: number;
+  title: string;
+  content: string;
+  createdAt: string;
+  blogUserImg: string;
+};
