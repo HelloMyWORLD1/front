@@ -27,15 +27,3 @@ function useMyInfoUpdate(
 }
 
 export default useMyInfoUpdate;
-
-// useEffect(() => {
-//   if (user) {
-//     setNickname(user!.nickname);
-//     setName(user!.username.split("#")[0]);
-//     setBirth(user!.birth);
-//     setPhone(user!.phone);
-//     setEmail(user!.email.split("@")[0]);
-//     setDomain(user!.email.split("@")[1]);
-//     setField(user!.field);
-//   }
-// }, [user]);

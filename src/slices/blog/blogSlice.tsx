@@ -4,8 +4,8 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 axios.defaults.baseURL = "http://129.154.58.244:8001/api";
 
 const initialState: BlogInitialState = {
-  blogs: null, // 사람의 전체 블로그(페이지네이션5개)를 받아올 변수
-  blog: null, // 블로그의 게시글 하나를 받아올 변수
+  blogs: undefined, // 사람의 전체 블로그(페이지네이션5개)를 받아올 변수
+  blog: undefined, // 블로그의 게시글 하나를 받아올 변수
   //게시글 등록
   registerBlogLoading: false,
   registerBlogDone: false,
@@ -134,7 +134,7 @@ export const updateBlog = createAsyncThunk(
       const JWTTOEKN = localStorage.getItem("jwtToken");
       axios.defaults.headers.common["Authorization"] = `Bearer ${JWTTOEKN}`;
       const res = await axios.put(`/blog/${data.blogId}`, data.request, {
-        withCredentials: true,
+        withCredentials: false,
       });
       console.log(res.data);
       return res.data;
@@ -155,7 +155,7 @@ const blogSlice = createSlice({
       state.registerBlogDone = false;
       state.registerBlogError = null;
     },
-    [registerBlog.fulfilled.type]: (state, action: PayloadAction<object>) => {
+    [registerBlog.fulfilled.type]: (state, action: PayloadAction<BlogType>) => {
       state.registerBlogLoading = false;
       state.registerBlogDone = true;
       state.registerBlogError = null;
@@ -172,7 +172,7 @@ const blogSlice = createSlice({
       state.inquireBlogsDone = false;
       state.inquireBlogsError = null;
     },
-    [getBlogAll.fulfilled.type]: (state, action: PayloadAction<object>) => {
+    [getBlogAll.fulfilled.type]: (state, action: PayloadAction<BlogsType>) => {
       state.inquireBlogsLoading = false;
       state.inquireBlogsDone = true;
       state.inquireBlogsError = null;
@@ -189,7 +189,7 @@ const blogSlice = createSlice({
       state.inquireBlogDone = false;
       state.inquireBlogError = null;
     },
-    [getBlog.fulfilled.type]: (state, action: PayloadAction<object>) => {
+    [getBlog.fulfilled.type]: (state, action: PayloadAction<BlogType>) => {
       state.inquireBlogLoading = false;
       state.inquireBlogDone = true;
       state.inquireBlogError = null;
@@ -206,7 +206,7 @@ const blogSlice = createSlice({
       state.searchBlogDone = false;
       state.searchBlogError = null;
     },
-    [deleteBlog.fulfilled.type]: (state, action: PayloadAction<object>) => {
+    [deleteBlog.fulfilled.type]: (state, action: PayloadAction<BlogsType>) => {
       state.searchBlogLoading = false;
       state.searchBlogDone = true;
       state.searchBlogError = null;
@@ -239,7 +239,7 @@ const blogSlice = createSlice({
       state.updateBlogDone = false;
       state.updateBlogError = null;
     },
-    [updateBlog.fulfilled.type]: (state, action: PayloadAction<object>) => {
+    [updateBlog.fulfilled.type]: (state, action: PayloadAction<BlogType>) => {
       state.updateBlogLoading = false;
       state.updateBlogDone = true;
       state.updateBlogError = null;

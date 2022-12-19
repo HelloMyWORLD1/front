@@ -7,7 +7,6 @@ import SignUpPage from "./pages/SignUpPage";
 import PortFolioPage from "./pages/PortFolioPage";
 import SignUpProfilePage from "./pages/SignUpProfilePage";
 import FindPwPage from "./pages/FindPwPage";
-import TestPage from "./pages/TestPage";
 import MakePortFolioPage from "./pages/MakePortFolioPage";
 import MakeBlogPage from "./pages/MakeBlogPage";
 import MakePortFolioSecondPage from "./pages/MakePortFolioSecondPage";
@@ -60,12 +59,12 @@ function App() {
         {/* 블로그 페이지 */}
         <Route path="/blog/get/:nickname" element={<BlogPage />}></Route>
         {/* 상세 블로그 페이지  */}
-        <Route path="blog/:blogId" element={<BlogDetailpage />}></Route>
+        <Route
+          path="blog/get/:nickname/:blogId"
+          element={<BlogDetailpage />}
+        ></Route>
         {/* 블로그 수정 페이지 */}
         <Route path="/updateBlog" element={<UpadateBlogPage />}></Route>
-
-        {/* url 주소 테스트 페이지 */}
-        <Route path="/test" element={<TestPage />}></Route>
       </Routes>
     </div>
   );

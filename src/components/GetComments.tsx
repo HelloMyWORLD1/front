@@ -36,11 +36,8 @@ export default function GetComments() {
   // const {user} = useSelector(
   //   (state:RootState) => state.user
   // );
-  const { comment, comments } = useSelector(
-    (state: RootState) => state.comment
-  );
   const dispatch = useAppDispatch();
-  const blogIdNum = Number(document.location.href.split("/:")[1]);
+  const blogIdNum = Number(document.location.href.split("/:")[2]);
   // console.log(document.location.href.split("/")[4]);
   const [blogId, setBlogId] = React.useState<getCommentType>({
     blogId: blogIdNum,
@@ -159,7 +156,7 @@ export default function GetComments() {
 
   return (
     <GetBlogAllTable>
-      <GetBlogAllTr >
+      <GetBlogAllTr>
         <td>
           <div>댓글 {commentCnt}</div>
         </td>

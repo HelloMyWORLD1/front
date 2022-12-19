@@ -9,7 +9,6 @@ import { useAppDispatch } from "../hooks";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import { registerComment } from "../slices/comment/commentSlice";
-import { useLocation } from "react-router-dom";
 
 export default function PostComment() {
   const { comment, comments } = useSelector(
@@ -17,7 +16,7 @@ export default function PostComment() {
   );
   const { user } = useSelector((state: RootState) => state.user);
   const dispatch = useAppDispatch();
-  const blogIdNum = Number(document.location.href.split("/:")[1]);
+  const blogIdNum = Number(document.location.href.split("/:")[2]);
   console.log(document.location.href.split("/")[4]);
   const [commentData, setCommentData] = React.useState<postCommentType>({
     blogId: blogIdNum,

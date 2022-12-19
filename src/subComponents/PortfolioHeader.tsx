@@ -18,6 +18,7 @@ function PortfolioHeader() {
   const { user } = useAppSelector((state: RootState) => state.user);
   const navigate = useNavigate();
   const userNickname = document.location.href.split("/:")[1];
+
   const navigateHome = () => {
     navigate(`/portfolio/get/:${userNickname}`);
   };
@@ -33,6 +34,7 @@ function PortfolioHeader() {
   const onClickLogo = () => {
     navigate("/");
   };
+
   const loginClick = () => {
     navigate("/logIn");
   };
