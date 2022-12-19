@@ -34,6 +34,7 @@ function PortfolioHeader() {
   const onClickLogo = () => {
     navigate("/");
   };
+
   const loginClick = () => {
     navigate("/logIn");
   };

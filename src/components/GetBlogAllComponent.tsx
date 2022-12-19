@@ -84,7 +84,7 @@ export default function GetBlogAllComponent() {
   const blogInput = useRef<HTMLTableRowElement>(null);
   const blogClick = (event: any) => {
     console.log(event.target.id);
-    navigate(`/blog/:${Number(event.target.id)}`);
+    navigate(`/blog/get/:${userNickname}/:${Number(event.target.id)}`);
   };
   const USERINFO = localStorage.getItem("userInfo");
 
